@@ -31,17 +31,33 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String phone = request.getParameter("phone");
+        String type = request.getParameter("type");
         
         DBManager manager = (DBManager) session.getAttribute("manager");
+        
+        Validator val = new Validator();
         
         try {
             User exist = manager.findUser(email, password);
             if (exist != null) {
-                System.out.println("user already exists");
-            } else {
-                System.out.println("here");
-                manager.addUser(name, email, password, phone);
-                User user = new User(name, email, password, phone);
+                session.setAttribute("regError", "User already exists.");
+                request.getRequestDispatcher("register.jsp").include(request, response);
+            }
+            else if(!val.validateName(name)) {
+                session.setAttribute("regError", "Name format wrong.");
+                request.getRequestDispatcher("register.jsp").include(request, response);
+            }
+            else if(!val.validateEmail(email)) {
+                session.setAttribute("regError", "Email format wrong.");
+                request.getRequestDispatcher("register.jsp").include(request, response);
+            }
+            else if(!val.validatePassword(password)) {
+                session.setAttribute("regError", "Password format wrong.");
+                request.getRequestDispatcher("register.jsp").include(request, response);
+            }
+            else {
+                manager.addUser(name, email, password, phone, type);
+                User user = new User(name, email, password, phone, type);
                 session.setAttribute("user", user);
                 request.getRequestDispatcher("welcome.jsp").include(request, response);
             }
