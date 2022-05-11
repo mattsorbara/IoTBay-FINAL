@@ -170,7 +170,7 @@ public class DBManager {
 
     
     public ArrayList<Catalogue> fetchProducts() throws SQLException {
-            String fetch = "SELECT * FROM IOTADMIN.Products";
+            String fetch = "SELECT * FROM IOTADMIN.PRODUCTS";
             ResultSet rs = st.executeQuery(fetch);
             ArrayList<Catalogue> products = new ArrayList();
 
@@ -189,7 +189,7 @@ public class DBManager {
     }
     
     public Catalogue findProduct(int productid) throws SQLException {
-        String fetch = "SELECT * FROM IOTADMIN.Products WHERE id="+productid;
+        String fetch = "SELECT * FROM IOTADMIN.PRODUCTS WHERE PRODUCTID="+productid;
         ResultSet rs = st.executeQuery(fetch);
         
         while (rs.next()) {
@@ -208,7 +208,7 @@ public class DBManager {
     
     public ArrayList<Catalogue> searchProducts(String query) throws SQLException {
             String cleanQuery = query.replaceAll("'", "");
-            String fetch = "SELECT DISTINCT * FROM IOTAdmin.Products WHERE UPPER(Title) LIKE UPPER('%"+cleanQuery+"%') OR UPPER(Type) LIKE UPPER('%"+cleanQuery+"%')";
+            String fetch = "SELECT DISTINCT * FROM IOTADMIN.PRODUCTS WHERE UPPER(PRODUCTTITLE) LIKE UPPER('%"+cleanQuery+"%') OR UPPER(PRODUCTTYPE) LIKE UPPER('%"+cleanQuery+"%')";
             ResultSet rs = st.executeQuery(fetch);
             ArrayList<Catalogue> products = new ArrayList();
 
@@ -227,19 +227,19 @@ public class DBManager {
     }
     
     public void addProduct(int id, String title, double price, String description, String image, int stock, String type) throws SQLException {
-        st.executeUpdate("INSERT INTO IOTADMIN.Products (id, title, price, description, image, stock, type) VALUES (" + id + ", '" + title + "', " + price +",'" + description + "','" + image + "'," + stock + ", '" + type + "')");
+        st.executeUpdate("INSERT INTO IOTADMIN.PRODUCTS (PRODUCTID, PRODUCTTITLE, PRODUCTTITLE, PRODUCTDESCRIPTION, PRODUCTIMAGE, PRODUCTSTOCK, PRODUCTTYPE) VALUES (" + id + ", '" + title + "', " + price +",'" + description + "','" + image + "'," + stock + ", '" + type + "')");
     }
     
     public void deleteProduct(int id) throws SQLException {
-        st.executeUpdate("DELETE FROM IOTADMIN.Products WHERE ID="+id);
+        st.executeUpdate("DELETE FROM IOTADMIN.PRODUCTS WHERE PRODUCTID="+id);
     }
     
     public void editProduct(int id, double price, int stock) throws SQLException {
-        st.executeUpdate("UPDATE IOTADMIN.Products SET PRICE="+price+", STOCK="+stock+" WHERE ID="+id);
+        st.executeUpdate("UPDATE IOTADMIN.PRODUCT SET PRODUCTPRICE="+price+", PRODUCTSTOCK="+stock+" WHERE PRODUCTID="+id);
     }
     
     public boolean checkProduct(int id) throws SQLException {
-        String fetch = "SELECT * FROM IOTADMIN.Products where ID=" + id;
+        String fetch = "SELECT * FROM IOTADMIN.PRODUCTS WHERE PRODUCTID=" + id;
         ResultSet rs = st.executeQuery(fetch);
         
         while (rs.next()) {

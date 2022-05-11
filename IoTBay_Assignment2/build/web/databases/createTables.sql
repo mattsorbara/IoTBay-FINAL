@@ -28,11 +28,11 @@ CREATE TABLE LOGS (
 CREATE TABLE PRODUCTS (
     productId INT GENERATED ALWAYS AS IDENTITY NOT NULL PRIMARY KEY,
     productTitle VARCHAR(50),
-    productPrice VARCHAR(50),
+    productPrice DECIMAL(5),
     productDescription VARCHAR(500),
+    productImage VARCHAR(500),
     productStock INT,
-    productType VARCHAR(50),
-    productImage VARCHAR(50)
+    productType VARCHAR(20)
 );
 
 CREATE TABLE ORDERS (
