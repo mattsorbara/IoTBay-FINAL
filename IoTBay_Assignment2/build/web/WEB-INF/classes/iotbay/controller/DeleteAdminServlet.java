@@ -35,7 +35,7 @@ public class DeleteAdminServlet extends HttpServlet {
         
         try {
             manager.deleteUser(user.getEmail());
-            request.getRequestDispatcher("Home.jsp").include(request, response);
+            request.getRequestDispatcher("Delete.jsp").include(request, response);
         
             
         } catch (SQLException ex) {

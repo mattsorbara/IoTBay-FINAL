@@ -46,11 +46,11 @@ public class LoginServlet extends HttpServlet {
         try {
             user = manager.findUser(email, password);
             testProduct = manager.testGetDevice();
-            
+////            
             session.setAttribute("testProduct", testProduct);
 
             savedPayment = manager.findSavedpayment(email);
-
+//
             if (savedPayment != null) {
                 session.setAttribute("savedPayment", savedPayment);
             } else {
