@@ -16,13 +16,15 @@ public class User {
     private String phone;
     
     private String userType;
+    private boolean userActive;
     
-    public User(String name, String email, String password, String phone) {
+    public User(String name, String email, String password, String phone, String type) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.phone = phone;
-        this.userType = "Customer";
+        this.userType = type;
+        this.userActive = true;
     }
 
     public String getName() {
@@ -55,6 +57,14 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+    
+    public String getUserType() {
+        return this.userType;
+    }
+    
+    public void setUserType(String type) {
+        this.userType = type;
     }
     
 }

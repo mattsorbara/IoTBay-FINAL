@@ -20,57 +20,59 @@ public class DBManager {
     }
     
     public User findUser(String email, String password) throws SQLException {
-        String fetch = "SELECT * FROM IOTADMIN.USERS WHERE USEREMAIL='" + email + "' AND PASSWORD='" + password + "'";
+        String fetch = "SELECT * FROM IOTADMIN.Users WHERE EMAIL='" + email + "' AND PASSWORD='" + password + "'";
         ResultSet rs = st.executeQuery(fetch);
         
         while (rs.next()) {
-            String userEmail = rs.getString(1);
+            String userEmail = rs.getString(2);
             String userPass = rs.getString(3);
             if (userEmail.equals(email) && userPass.equals(password)) {
-                String userName = rs.getString(2);
+                String userName = rs.getString(1);
                 String userPhone = rs.getString(4);
-                return new User(userName, userEmail, password, userPhone);
+                String userType = rs.getString(5);
+                return new User(userName, userEmail, password, userPhone, userType);
                 
             }
         }
         return null;
     }
     
-    public void addUser(String name, String email, String password, String phone) throws SQLException {
-        st.executeUpdate("INSERT INTO IOTADMIN.USERS " + "VALUES ('" + email + "', '" + name + "', '" + password +"','" + phone + "', 'customer')");
+    public void addUser(String name, String email, String password, String phone, String type) throws SQLException {
+        st.executeUpdate("INSERT INTO IOTADMIN.Users " + "VALUES ('" + name + "', '" + email + "', '" + password +"','" + phone + "', '" + type + "', true)");
     }
     
     public void updateUser(String name, String email, String password, String phone) throws SQLException {
-        st.executeUpdate("UPDATE IOTADMIN.USERS SET FULLNAME='" + name + "',PASSWORD='" + password + "',PHONE='" + phone + "' WHERE USEREMAIL='" + email + "'");
+        st.executeUpdate("UPDATE IOTADMIN.Users SET NAME='" + name + "',PASSWORD='" + password + "',PHONE='" + phone + "' WHERE EMAIL='" + email + "'");
         
     }
     
     public void deleteUser(String email) throws SQLException {
-        st.executeUpdate("DELETE FROM IOTADMIN.USERS WHERE USEREMAIL='" + email + "'");
+        st.executeUpdate("DELETE FROM IOTADMIN.Users WHERE EMAIL='" + email + "'");
     }
     
     public ArrayList<User> fetchUsers() throws SQLException {
-        String fetch = "SELECT * FROM IOTADMIN.USERS";
+        String fetch = "SELECT * FROM IOTADMIN.Users";
         ResultSet rs = st.executeQuery(fetch);
         ArrayList<User> temp = new ArrayList<User>();
         
         while (rs.next()) {
-            String name = rs.getString(2);
-            String email = rs.getString(1);
+            String name = rs.getString(1);
+            String email = rs.getString(2);
             String password = rs.getString(3);
             String phone = rs.getString(4);
+            String type = rs.getString(5);
             
-            temp.add(new User(name,email,password,phone));
+            temp.add(new User(name,email,password,phone,type));
         }
         return temp;
     }
     
     public boolean checkStudent(String email, String password) throws SQLException {
-        String fetch = "SELECT * FROM IOTADMIN.Users where USEREMAIL='" + email + "' AND PASSWORD='" + password + "'";
+        String fetch = "SELECT * FROM IOTADMIN.Users where EMAIL='" + email + "' AND PASSWORD='" + password + "'";
         ResultSet rs = st.executeQuery(fetch);
         
         while (rs.next()) {
-            String userEmail = rs.getString(1);
+            String userEmail = rs.getString(2);
             String userPass = rs.getString(3);
             if (userEmail.equals(email) && userPass.equals(password)) {
                 return true;
@@ -80,21 +82,21 @@ public class DBManager {
     }
     
     public void addLog(Timestamp login, Timestamp logout, String email) throws SQLException {
-        st.executeUpdate("INSERT INTO IOTADMIN.Logs " + "VALUES ('" + email + "', '" + login + "', '" + logout + "')");
+        st.executeUpdate("INSERT INTO IOTADMIN.Logs (EMAIL, LOGIN, LOGOUT) " + "VALUES ('" + email + "', '" + login + "', '" + logout + "')");
     }
     
     public ResultSet fetchAllLogs(String email) throws SQLException {
-        String fetch = "SELECT * FROM IOTADMIN.Logs WHERE USEREMAIL='" + email + "'";
+        String fetch = "SELECT * FROM IOTADMIN.Logs WHERE EMAIL='" + email + "'";
         ResultSet rs = st.executeQuery(fetch);
         return rs;
     }
     
     public ResultSet filterLogs(Timestamp from, Timestamp to, String email) throws SQLException {
-        String filter = "SELECT * FROM IOTADMIN.Logs WHERE USEREMAIL='" + email + "' AND LOGIN >= '" + from + "' AND LOGIN <= '" + to + "'";
+        String filter = "SELECT * FROM IOTADMIN.Logs WHERE EMAIL='" + email + "' AND LOGIN >= '" + from + "' AND LOGIN <= '" + to + "'";
         ResultSet rs = st.executeQuery(filter);
         return rs;
     }
-
+    
     public void submitFinalOrder(String orderID, String userEmail, String productID, double orderPrice, int quantity, String orderDate, String shippingType) throws SQLException {
         st.executeUpdate("INSERT INTO IOTADMIN.ORDERS " + "VALUES ('" + orderID + "', '" + userEmail + "', '" + productID + "', '" + orderPrice + "', '" + quantity + "', '" + orderDate + "', '" + shippingType + ", 'SUBMITTED')");
 
