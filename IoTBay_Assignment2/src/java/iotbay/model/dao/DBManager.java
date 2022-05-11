@@ -29,7 +29,6 @@ public void addShipment(String shipmethod, String unitno, String streetno, Strin
     }
 
     
-    
     public void deleteShipment(String email) throws SQLException {
         st.executeUpdate("DELETE FROM IOTADMIN.Shipment WHERE EMAIL='" + email + "'");
     }
