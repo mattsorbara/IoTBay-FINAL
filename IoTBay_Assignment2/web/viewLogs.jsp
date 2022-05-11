@@ -39,9 +39,9 @@
                     </tr>
                     <% while(rows.next()){ %>
                         <tr>
-                            <td><%=rows.getString(1)%></td>
                             <td><%=rows.getString(2)%></td>
                             <td><%=rows.getString(3)%></td>
+                            <td><%=rows.getString(4)%></td>
                         </tr>
                     <% } %>
 
