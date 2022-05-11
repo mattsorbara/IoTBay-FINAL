@@ -147,11 +147,11 @@ public class DBManager {
     } 
 
     public void deletePayment(String email) throws SQLException {
-        st.executeUpdate("DELETE FROM IOTADMIN.SAVEDPAYMENT WHERE email = '" + email + "'");
+        st.executeUpdate("DELETE FROM IOTADMIN.SAVEDPAYMENT WHERE USEREMAIL = '" + email + "'");
     } 
 
     public Savedpayment findSavedpayment(String email) throws SQLException {
-        String fetch = "SELECT * FROM IOTADMIN.Savedpayment WHERE EMAIL='" + email + "'";
+        String fetch = "SELECT * FROM IOTADMIN.Savedpayment WHERE USEREMAIL='" + email + "'";
         ResultSet rs = st.executeQuery(fetch);
         
         while (rs.next()) {
