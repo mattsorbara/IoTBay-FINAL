@@ -9,18 +9,10 @@ IoTBay_Assignment2/nbproject/private/private.properties
 *.xml
 *.properties
 *.dpf
-<<<<<<< Updated upstream
 
 *.xml
 *.properties
 *.xml
-=======
->>>>>>> Stashed changes
 *.properties
 *.xml
-*.properties
-/IoTBay_Assignment2/nbproject/private/
-/IoTBay_Assignment2/build/
-/IoTBay_Assignment2/dist/
-*.properties
 *.properties
