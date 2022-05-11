@@ -82,7 +82,7 @@ public class DBManager {
     }
     
     public void addLog(Timestamp login, Timestamp logout, String email) throws SQLException {
-        st.executeUpdate("INSERT INTO IOTADMIN.Logs (EMAIL, LOGIN, LOGOUT) " + "VALUES ('" + email + "', '" + login + "', '" + logout + "')");
+        st.executeUpdate("INSERT INTO IOTADMIN.Logs (USEREMAIL, LOGIN, LOGOUT) " + "VALUES ('" + email + "', '" + login + "', '" + logout + "')");
     }
     
     public ResultSet fetchAllLogs(String email) throws SQLException {
@@ -92,7 +92,7 @@ public class DBManager {
     }
     
     public ResultSet filterLogs(Timestamp from, Timestamp to, String email) throws SQLException {
-        String filter = "SELECT * FROM IOTADMIN.Logs WHERE EMAIL='" + email + "' AND LOGIN >= '" + from + "' AND LOGIN <= '" + to + "'";
+        String filter = "SELECT * FROM IOTADMIN.Logs WHERE USEREMAIL='" + email + "' AND LOGIN >= '" + from + "' AND LOGIN <= '" + to + "'";
         ResultSet rs = st.executeQuery(filter);
         return rs;
     }
@@ -147,11 +147,11 @@ public class DBManager {
     } 
 
     public void deletePayment(String email) throws SQLException {
-        st.executeUpdate("DELETE FROM IOTADMIN.SAVEDPAYMENT WHERE email = '" + email + "'");
+        st.executeUpdate("DELETE FROM IOTADMIN.SAVEDPAYMENT WHERE USEREMAIL = '" + email + "'");
     } 
 
     public Savedpayment findSavedpayment(String email) throws SQLException {
-        String fetch = "SELECT * FROM IOTADMIN.Savedpayment WHERE EMAIL='" + email + "'";
+        String fetch = "SELECT * FROM IOTADMIN.Savedpayment WHERE USEREMAIL='" + email + "'";
         ResultSet rs = st.executeQuery(fetch);
         
         while (rs.next()) {
