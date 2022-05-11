@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="iotbay.model.Catalogue"%>
+<%@page import="iotbay.model.dao.DBManager"%>
 <!DOCTYPE html>
 
 <html>
@@ -17,6 +18,13 @@
     <% 
         
         Catalogue product = (Catalogue) session.getAttribute("testProduct");
+        
+        DBManager manager = (DBManager) session.getAttribute("manager");
+        
+        int productID = (int) request.getAttribute("id");
+        
+        Catalogue productA = (Catalogue) manager.findProduct(productID);
+
     
     %>
     
@@ -28,19 +36,19 @@
                     <div class="registerFormElement" id="productName">
                         <label>Product Name</label>
                         <div>
-                            <input class="border-customized-input" type="text" name="productName" value="<%= product.getTitle() %>" readonly>
+                            <input class="border-customized-input" type="text" name="productName" value="<%= productA.getTitle() %>" readonly>
                         </div>
                     </div>
                     <div class="registerFormElement" id="productPrice">
                         <label>Product Price</label>
                         <div>
-                            <input class="border-customized-input" type="text" name="productPrice" value="$<%= product.getPrice() %>" readonly>
+                            <input class="border-customized-input" type="text" name="productPrice" value="$<%= productA.getPrice() %>" readonly>
                         </div>
                     </div>
                     <div class="registerFormElement" id="productStock">
                         <label>Stock</label>
                         <div>
-                            <input class="border-customized-input" type="text" name="quantity" value="<%= product.getStock() %>" readonly>
+                            <input class="border-customized-input" type="text" name="quantity" value="<%= productA.getStock() %>" readonly>
                         </div>
                     </div>
                     <div class="registerFormElement" id="Quantity">

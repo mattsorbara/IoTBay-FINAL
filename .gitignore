@@ -25,3 +25,4 @@ IoTBay_Assignment2/nbproject/private/private.xml
 IoTBay_Assignment2/dist/IoTBay_Assignment2.war
 IoTBay_Assignment2/nbproject/private/private.properties
 /IoTBay_Assignment2/dist/
+*.properties

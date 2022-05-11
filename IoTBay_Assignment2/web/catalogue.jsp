@@ -54,7 +54,7 @@
                             <p style="text-align:center;color:black"><%=p.getTitle()%></p>
                             <p style="text-align:center;color:black">$<%=p.getPrice()%>0</p>
                             <% if(p.getStock() > 0){%>
-                                <center><a href="/AddToOrderServlet?id=<%=p.getId()%>"><button class="addtocart">Add To Order</button></a></center>
+                                <center><a href="/orderCheckout.jsp?id=<%=p.getId()%>"><button name="id" type="submit" class="addtocart">Add To Order</button></a></center>
                             <%}else{%>
                                 <center><h4><font color="red">Out of Stock</font></h4></center>
                             <%}%>
