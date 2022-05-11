@@ -32,7 +32,7 @@ public class ActivateAdmin extends HttpServlet {
 
         
         try {
-            manager.activateUser(user.getEmail());
+            manager.setUserStatus(true, user.getEmail());
             request.getRequestDispatcher("Activate.jsp").include(request, response);
         }
             

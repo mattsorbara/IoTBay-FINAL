@@ -17,17 +17,15 @@
             <div class="loginContents">
                 <h2 id="title"><b>Login</b></h2>
                 <form class="loginForm" action="LoginServlet" method="post">
-                    <div class="loginFormElement" id="email">
+                    
                         <label>Email</label>
                         <div>
                             <input class="border-customized-input" type="text" required="true" name="email" placeholder="john@smith.com">
                         </div>
-                    </div>
+                    
                     <div class="loginFormElement" id="password">
                         <label>Password</label>
-                        <div>
                             <input class="border-customized-input" type="password" required="true" name="password" placeholder="Password">
-                        </div>
                     </div>
                     <div class="buttons">
                         <a href="home.jsp" class="cancel">Cancel</a>

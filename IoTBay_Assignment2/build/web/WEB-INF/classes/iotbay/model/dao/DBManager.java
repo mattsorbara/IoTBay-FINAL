@@ -61,7 +61,10 @@ public class DBManager {
     
     public void updateUser(String name, String email, String password, String phone) throws SQLException {
         st.executeUpdate("UPDATE IOTADMIN.Users SET FULLNAME='" + name + "',PASSWORD='" + password + "',PHONE='" + phone + "' WHERE USEREMAIL='" + email + "'");
-        
+    }
+    
+    public void setUserStatus(boolean status, String email) throws SQLException {
+        st.executeUpdate("UPDATE IOTADMIN.Users SET TYPE=" + status + "WHERE USEREMAIL='" + email + "'");
     }
     
     public void deleteUser(String email) throws SQLException {
