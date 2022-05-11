@@ -130,5 +130,39 @@ public class DBManager {
     }
 
      
+    public void addPayment1(String paymentID, String orderID, double amount, String paymentMethod, String email) throws SQLException {
+        st.executeUpdate("INSERT INTO IOTADMIN.payment " + "VALUES ('" + paymentID + "', '" + orderID + "', '" + paymentMethod + "', " + amount + ", '" + email + "', ' ', ' ', ' ')");
+    } 
+    
+    public void addPayment2(String paymentID, String cardNumber, String cardCVC, String cardExpiry) throws SQLException {
+        st.executeUpdate("UPDATE IOTADMIN.payment " + "SET cardNumber ='" + cardNumber + "', cardCVC ='" + cardCVC + "', cardExpiry='" + cardExpiry + "' WHERE paymentID ='" + paymentID + "'");
+    }
+
+    public void savePayment(String email, String cardNumber, String cardCVC, String cardExpiry) throws SQLException {
+        st.executeUpdate("INSERT INTO IOTADMIN.savedPayment " + "VALUES ('" + email + "', '" + cardNumber + "', '" + cardCVC + "', '" + cardExpiry + "')");
+    } 
+
+    public void updatePayment(String email, String cardNumber, String cardCVC, String cardExpiry) throws SQLException {
+        st.executeUpdate("UPDATE IOTADMIN.SAVEDPAYMENT SET cardNumber = '" + cardNumber + "', cardCVC = '" + cardCVC + "', cardExpiry ='" +cardExpiry + "' WHERE email = '" + email +"'");
+    } 
+
+    public void deletePayment(String email) throws SQLException {
+        st.executeUpdate("DELETE FROM IOTADMIN.SAVEDPAYMENT WHERE email = '" + email + "'");
+    } 
+
+    public Savedpayment findSavedpayment(String email) throws SQLException {
+        String fetch = "SELECT * FROM IOTADMIN.Savedpayment WHERE EMAIL='" + email + "'";
+        ResultSet rs = st.executeQuery(fetch);
+        
+        while (rs.next()) {
+            String userEmail = rs.getString(1);
+            String cardNumber = rs.getString(2);
+            String cardCVC = rs.getString(3);
+            String cardExpiry = rs.getString(4);
+            return new Savedpayment(userEmail, cardNumber, cardCVC, cardExpiry);
+        }
+        return null;
+    }
+     
     
 }
