@@ -163,6 +163,10 @@ public class DBManager {
         }
         return null;
     }
+
+    public void adminAddUser(String name, String email, String password, String phone, String type) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
      
     
 }
