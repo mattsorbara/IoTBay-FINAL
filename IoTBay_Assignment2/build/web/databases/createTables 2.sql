@@ -13,7 +13,7 @@ CREATE TABLE USERS (
     password VARCHAR(50),
     phone VARCHAR(50),
     userType VARCHAR(50),
-    userActive BOOLEAN
+    userAction BOOLEAN
 );
 
 CREATE TABLE LOGS (
@@ -74,7 +74,7 @@ CREATE TABLE SAVEDPAYMENT (
 
 CREATE TABLE SHIPMENT ( 
     shipmentID INT GENERATED ALWAYS AS IDENTITY NOT NULL PRIMARY KEY,
-    userEmail VARCHAR(50) NOT NULL,
+    userEmail INT NOT NULL,
     status VARCHAR (50) NOT NULL,
     shipMethod VARCHAR (50),
     shipDate DATE, 
