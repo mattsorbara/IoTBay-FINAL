@@ -145,6 +145,8 @@
         <servlet-name>EditProductServlet</servlet-name>
         <url-pattern>/EditProductServlet</url-pattern>
     </servlet-mapping>
+    
+    
     <session-config>
         <session-timeout>
             30

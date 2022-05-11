@@ -19,7 +19,7 @@ public class DBManager {
         st = conn.createStatement();
     }
 
-public void addShipment(String shipmethod, String unitno, String streetno, String streetname, String suburb, String postcode) throws SQLException {
+    public void addShipment(String shipmethod, String unitno, String streetno, String streetname, String suburb, String postcode) throws SQLException {
         st.executeUpdate("INSERT INTO IOTADMIN.Shipment " + "VALUES ('" + shipmethod + "', '" + unitno +"', '" + streetno + "', '" + streetname +"','" + suburb + "', '" + postcode);
     }
     
@@ -27,8 +27,6 @@ public void addShipment(String shipmethod, String unitno, String streetno, Strin
         st.executeUpdate("UPDATE IOTADMIN.Shipment SET SHIPMETHOD='" + shipmethod + "',UNITNUMBER='" + unitno + "',STREETNUMBER='" + streetno + "',STREETNAME='" + streetname + "',SUBURB='" + suburb + "',POSTCODE='" + postcode + "' WHERE EMAIL='" + email + "'");
         
     }
-
-    
     
     public void deleteShipment(String email) throws SQLException {
         st.executeUpdate("DELETE FROM IOTADMIN.Shipment WHERE EMAIL='" + email + "'");
@@ -131,9 +129,9 @@ public void addShipment(String shipmethod, String unitno, String streetno, Strin
             String title = rs.getString(2);
             double price = rs.getDouble(3);
             String description = rs.getString(4);
-            int stock = rs.getInt(5);
-            String type = rs.getString(6);
-            String image = rs.getString(7);
+            int stock = rs.getInt(6);
+            String type = rs.getString(7);
+            String image = rs.getString(5);
             return new Catalogue(id, title, price, description, image, stock, type);
         }
 
