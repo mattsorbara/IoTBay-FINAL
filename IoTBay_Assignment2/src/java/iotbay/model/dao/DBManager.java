@@ -18,6 +18,22 @@ public class DBManager {
     public DBManager(Connection conn) throws SQLException {
         st = conn.createStatement();
     }
+
+public void addShipment(String shipmethod, String unitno, String streetno, String streetname, String suburb, String postcode) throws SQLException {
+        st.executeUpdate("INSERT INTO IOTADMIN.Shipment " + "VALUES ('" + shipmethod + "', '" + unitno +"', '" + streetno + "', '" + streetname +"','" + suburb + "', '" + postcode);
+    }
+    
+    public void updateShipment(String shipmethod, String unitno, String streetno, String streetname, String suburb, String postcode, String email) throws SQLException {
+        st.executeUpdate("UPDATE IOTADMIN.Shipment SET SHIPMETHOD='" + shipmethod + "',UNITNUMBER='" + unitno + "',STREETNUMBER='" + streetno + "',STREETNAME='" + streetname + "',SUBURB='" + suburb + "',POSTCODE='" + postcode + "' WHERE EMAIL='" + email + "'");
+        
+    }
+
+    
+    
+    public void deleteShipment(String email) throws SQLException {
+        st.executeUpdate("DELETE FROM IOTADMIN.Shipment WHERE EMAIL='" + email + "'");
+    }
+    
     
     public User findUser(String email, String password) throws SQLException {
         String fetch = "SELECT * FROM IOTADMIN.USERS WHERE USEREMAIL='" + email + "' AND PASSWORD='" + password + "'";
