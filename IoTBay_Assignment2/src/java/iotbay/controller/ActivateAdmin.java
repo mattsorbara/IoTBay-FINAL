@@ -29,9 +29,7 @@ public class ActivateAdmin extends HttpServlet {
         
         DBManager manager = (DBManager)session.getAttribute("manager");
         User user = (User)session.getAttribute("user");
-        
-        System.out.println("hello" + manager);
-        System.out.println(user);
+
         
         try {
             manager.deleteUser(user.getEmail());

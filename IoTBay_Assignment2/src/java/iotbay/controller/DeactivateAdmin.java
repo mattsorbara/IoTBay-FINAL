@@ -32,9 +32,6 @@ public class DeactivateAdmin extends HttpServlet {
         DBManager manager = (DBManager)session.getAttribute("manager");
         User user = (User)session.getAttribute("user");
         
-        System.out.println("hello" + manager);
-        System.out.println(user);
-        
         try {
             manager.deleteUser(user.getEmail());
             request.getRequestDispatcher("Deactivate.jsp").include(request, response);
