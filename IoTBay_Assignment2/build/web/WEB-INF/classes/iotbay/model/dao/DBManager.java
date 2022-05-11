@@ -40,6 +40,10 @@ public class DBManager {
     public void addUser(String name, String email, String password, String phone, String type) throws SQLException {
         st.executeUpdate("INSERT INTO IOTADMIN.USERS " + "VALUES ('" + name + "', '" + email + "', '" + password +"','" + phone + "', '" + type + "', true)");
     }
+
+    public void adminAddUser(String name, String email, String password, String phone, String type) throws SQLException {
+        st.executeUpdate("INSERT INTO IOTADMIN.Users " + "VALUES ('" + name + "', '" + email + "', '" + password +"','" + phone + "', '" + type + "', true");
+    }
     
     public void updateUser(String name, String email, String password, String phone) throws SQLException {
         st.executeUpdate("UPDATE IOTADMIN.Users SET FULLNAME='" + name + "',PASSWORD='" + password + "',PHONE='" + phone + "' WHERE USEREMAIL='" + email + "'");
@@ -163,6 +167,5 @@ public class DBManager {
         }
         return null;
     }
-     
     
 }

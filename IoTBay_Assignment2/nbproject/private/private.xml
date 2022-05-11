@@ -10,15 +10,12 @@
             <file>file:/Users/saniyakhanna/Documents/IoTBay-FINAL%5C/IoTBay_Assignment2/src/java/iotbay/controller/RegisterAdminServlet.java</file>
             <file>file:/Users/saniyakhanna/Documents/IoTBay-FINAL%5C/IoTBay_Assignment2/src/java/iotbay/controller/DeactivateAdmin.java</file>
             <file>file:/Users/saniyakhanna/Documents/IoTBay-FINAL%5C/IoTBay_Assignment2/src/java/iotbay/controller/ConnectionServlet.java</file>
+            <file>file:/Users/saniyakhanna/Documents/IoTBay-FINAL%5C/IoTBay_Assignment2/src/java/iotbay/model/dao/DBManager.java</file>
             <file>file:/Users/saniyakhanna/Documents/IoTBay-FINAL%5C/IoTBay_Assignment2/web/HomeAdmin.jsp</file>
-            <file>file:/Users/saniyakhanna/Documents/IoTBay-FINAL%5C/IoTBay_Assignment2/src/java/iotbay/model/UserAdmin.java</file>
-            <file>file:/Users/saniyakhanna/Documents/IoTBay-FINAL%5C/IoTBay_Assignment2/src/java/iotbay/model/dao/DBAdmin.java</file>
             <file>file:/Users/saniyakhanna/Documents/IoTBay-FINAL%5C/IoTBay_Assignment2/src/java/iotbay/controller/ConnectionAdminServlet.java</file>
             <file>file:/Users/saniyakhanna/Documents/IoTBay-FINAL%5C/IoTBay_Assignment2/src/java/iotbay/controller/UpdateAdminServlet.java</file>
             <file>file:/Users/saniyakhanna/Documents/IoTBay-FINAL%5C/IoTBay_Assignment2/src/java/iotbay/controller/DeleteServlet.java</file>
-            <file>file:/Users/saniyakhanna/Documents/IoTBay-FINAL%5C/IoTBay_Assignment2/src/java/iotbay/model/dao/DBConnectorAdmin.java</file>
             <file>file:/Users/saniyakhanna/Documents/IoTBay-FINAL%5C/IoTBay_Assignment2/src/java/iotbay/controller/RegisterServlet.java</file>
-            <file>file:/Users/saniyakhanna/Documents/IoTBay-FINAL%5C/IoTBay_Assignment2/src/java/iotbay/model/dao/DBManagerAdmin.java</file>
         </group>
     </open-files>
 </project-private>
