@@ -167,5 +167,89 @@ public class DBManager {
         }
         return null;
     }
+
     
+    public ArrayList<Catalogue> fetchProducts() throws SQLException {
+            String fetch = "SELECT * FROM IOTADMIN.Products";
+            ResultSet rs = st.executeQuery(fetch);
+            ArrayList<Catalogue> products = new ArrayList();
+
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String title = rs.getString(2);
+                double price = rs.getDouble(3);
+                String description = rs.getString(4);
+                String image = rs.getString(5);
+                int stock = rs.getInt(6);
+                String type = rs.getString(7);
+
+                products.add(new Catalogue(id, title, price, description , image, stock, type));
+            }
+            return products;
+    }
+    
+    public Catalogue findProduct(int productid) throws SQLException {
+        String fetch = "SELECT * FROM IOTADMIN.Products WHERE id="+productid;
+        ResultSet rs = st.executeQuery(fetch);
+        
+        while (rs.next()) {
+                int id = rs.getInt(1);
+                String title = rs.getString(2);
+                double price = rs.getDouble(3);
+                String description = rs.getString(4);
+                String image = rs.getString(5);
+                int stock = rs.getInt(6);
+                String type = rs.getString(7);
+                
+                return new Catalogue(id, title, price, description , image, stock, type);
+        }
+        return null;
+    }
+    
+    public ArrayList<Catalogue> searchProducts(String query) throws SQLException {
+            String cleanQuery = query.replaceAll("'", "");
+            String fetch = "SELECT DISTINCT * FROM IOTAdmin.Products WHERE UPPER(Title) LIKE UPPER('%"+cleanQuery+"%') OR UPPER(Type) LIKE UPPER('%"+cleanQuery+"%')";
+            ResultSet rs = st.executeQuery(fetch);
+            ArrayList<Catalogue> products = new ArrayList();
+
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String title = rs.getString(2);
+                double price = rs.getDouble(3);
+                String description = rs.getString(4);
+                String image = rs.getString(5);
+                int stock = rs.getInt(6);
+                String type = rs.getString(7);
+
+                products.add(new Catalogue(id, title, price, description , image, stock, type));
+            }
+            return products;
+    }
+    
+    public void addProduct(int id, String title, double price, String description, String image, int stock, String type) throws SQLException {
+        st.executeUpdate("INSERT INTO IOTADMIN.Products (id, title, price, description, image, stock, type) VALUES (" + id + ", '" + title + "', " + price +",'" + description + "','" + image + "'," + stock + ", '" + type + "')");
+    }
+    
+    public void deleteProduct(int id) throws SQLException {
+        st.executeUpdate("DELETE FROM IOTADMIN.Products WHERE ID="+id);
+    }
+    
+    public void editProduct(int id, double price, int stock) throws SQLException {
+        st.executeUpdate("UPDATE IOTADMIN.Products SET PRICE="+price+", STOCK="+stock+" WHERE ID="+id);
+    }
+    
+    public boolean checkProduct(int id) throws SQLException {
+        String fetch = "SELECT * FROM IOTADMIN.Products where ID=" + id;
+        ResultSet rs = st.executeQuery(fetch);
+        
+        while (rs.next()) {
+            int productid = rs.getInt(1);
+            if (productid == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+     
+
 }

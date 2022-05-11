@@ -97,7 +97,54 @@
         <servlet-name>cardPaymentServlet</servlet-name>
         <url-pattern>/cardPaymentServlet</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>CatalogueServlet</servlet-name>
+        <servlet-class>iotbay.controller.CatalogueServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CatalogueServlet</servlet-name>
+        <url-pattern>/CatalogueServlet</url-pattern>
+    </servlet-mapping>    
+        <servlet>
+        <servlet-name>ProductServlet</servlet-name>
+        <servlet-class>iotbay.controller.ProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductServlet</servlet-name>
+        <url-pattern>/ProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CatalogueSearch</servlet-name>
+        <servlet-class>iotbay.controller.CatalogueSearch</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CatalogueSearch</servlet-name>
+        <url-pattern>/CatalogueSearch</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AddProductServlet</servlet-name>
+        <servlet-class>iotbay.controller.AddProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddProductServlet</servlet-name>
+        <url-pattern>/AddProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ProductDeleteServlet</servlet-name>
+        <servlet-class>iotbay.controller.ProductDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductDeleteServlet</servlet-name>
+        <url-pattern>/ProductDeleteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>EditProductServlet</servlet-name>
+        <servlet-class>iotbay.controller.EditProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditProductServlet</servlet-name>
+        <url-pattern>/EditProductServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
