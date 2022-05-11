@@ -33,7 +33,7 @@ public class DeactivateAdmin extends HttpServlet {
         User user = (User)session.getAttribute("user");
         
         try {
-            manager.deleteUser(user.getEmail());
+           manager.deactivateUser(user.getEmail());
             request.getRequestDispatcher("Deactivate.jsp").include(request, response);
         
             

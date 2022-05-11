@@ -32,11 +32,11 @@ public class ActivateAdmin extends HttpServlet {
 
         
         try {
-            manager.deleteUser(user.getEmail());
+            manager.activateUser(user.getEmail());
             request.getRequestDispatcher("Activate.jsp").include(request, response);
-        
+        }
             
-        } catch (SQLException ex) {
+        catch (SQLException ex) {
             System.out.println("Error: user not deleted.");
         }
        
