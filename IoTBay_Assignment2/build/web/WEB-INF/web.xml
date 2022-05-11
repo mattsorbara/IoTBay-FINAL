@@ -80,7 +80,23 @@
         <servlet-name>OrderCheckoutServlet</servlet-name>
         <url-pattern>/OrderCheckoutServlet</url-pattern>
     </servlet-mapping>
-    
+    <servlet>
+        
+        <servlet-name>PaymentServlet</servlet-name>
+        <servlet-class>iotbay.controller.PaymentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PaymentServlet</servlet-name>
+        <url-pattern>/PaymentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>cardPaymentServlet</servlet-name>
+        <servlet-class>iotbay.controller.cardPaymentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cardPaymentServlet</servlet-name>
+        <url-pattern>/cardPaymentServlet</url-pattern>
+    </servlet-mapping>
 
     <session-config>
         <session-timeout>

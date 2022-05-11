@@ -5,6 +5,7 @@
 package iotbay.controller;
 
 import iotbay.model.Catalogue;
+import iotbay.model.Savedpayment;
 import iotbay.model.User;
 import iotbay.model.dao.DBManager;
 import java.io.IOException;
@@ -39,6 +40,7 @@ public class LoginServlet extends HttpServlet {
         DBManager manager = (DBManager) session.getAttribute("manager");
         User user = null;
         Catalogue testProduct = null;
+        Savedpayment savedPayment = null;
 //        validator.clear(session);
         
         try {
@@ -46,6 +48,15 @@ public class LoginServlet extends HttpServlet {
             testProduct = manager.testGetDevice();
             
             session.setAttribute("testProduct", testProduct);
+
+            savedPayment = manager.findSavedpayment(email);
+
+            if (savedPayment != null) {
+                session.setAttribute("savedPayment", savedPayment);
+            } else {
+                Savedpayment nullPayment = new Savedpayment("N/A", "N/A", "N/A", "N/A");
+                session.setAttribute("savedPayment", nullPayment);
+            }
 
             if (user != null) {
                 
