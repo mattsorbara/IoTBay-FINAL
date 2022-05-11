@@ -19,3 +19,8 @@ IoTBay_Assignment2/nbproject/private/private.properties
 *.properties
 *.xml
 *.properties
+/IoTBay_Assignment2/nbproject/private/
+/IoTBay_Assignment2/build/
+/IoTBay_Assignment2/dist/
+*.properties
+*.properties
