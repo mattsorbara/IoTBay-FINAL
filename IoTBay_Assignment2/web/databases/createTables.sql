@@ -77,7 +77,7 @@ CREATE TABLE SHIPMENT (
     status VARCHAR (50) NOT NULL,
     shipMethod VARCHAR (50),
     shipDate DATE, 
-    unitNumber INT (4),
+    unitNumber INT,
     streetNumber VARCHAR (4),
     streetName VARCHAR (50),
     suburb VARCHAR (50),

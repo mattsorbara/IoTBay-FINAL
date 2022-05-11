@@ -125,6 +125,8 @@ public class DBManager {
         double amount = productPrice * quantity;
 
         st.executeUpdate("INSERT INTO IOTADMIN.ORDER (userEmail, productID, amount, orderQuantity, orderDate, orderStatus) VALUES ('" + userEmail + "', '" + productID + "', '" + amount + "', '" + quantity + "', '" + orderDate + "', 'SAVED')");
+
+        System.out.println("test");
     }
 
      
