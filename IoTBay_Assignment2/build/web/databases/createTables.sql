@@ -12,7 +12,8 @@ CREATE TABLE USERS (
     fullName VARCHAR(50),
     password VARCHAR(50),
     phone VARCHAR(50),
-    userType VARCHAR(50)
+    userType VARCHAR(50),
+    userAction BOOLEAN
 );
 
 CREATE TABLE LOGS (
@@ -81,7 +82,7 @@ CREATE TABLE SHIPMENT (
     streetNumber VARCHAR (4),
     streetName VARCHAR (50),
     suburb VARCHAR (50),
-    postcode INT (4),
+    postcode INT,
 
     CONSTRAINT FK_userShipment FOREIGN KEY (userEmail) REFERENCES USERS(userEmail)
 );
