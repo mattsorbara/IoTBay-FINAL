@@ -13,18 +13,16 @@ public class Order implements Serializable {
     private double orderPrice;
     private int orderQuantity;
     private String orderDate;
-    private String shippingType;
     private String orderStatus;    
 
     //initialise the variables
-    public Order(int orderID, String userEmail, int productID, double orderPrice, int orderQuantity, String orderDate, String shippingType, String orderStatus) {
+    public Order(int orderID, String userEmail, int productID, double orderPrice, int orderQuantity, String orderDate, String orderStatus) {
         this.orderID = orderID;
         this.userEmail = userEmail;
         this.productID = productID;
         this.orderPrice = orderPrice;
         this.orderQuantity = orderQuantity;
         this.orderDate = orderDate;
-        this.shippingType = shippingType;
         this.orderStatus = orderStatus;
     }
 
@@ -74,14 +72,6 @@ public class Order implements Serializable {
 
     public void setOrderDate(String date) {
         this.orderDate = date;
-    }
-    
-    public String getShippingType(){
-        return shippingType;
-    }
-    
-    public void setShippingType(String type){
-        this.shippingType = type;
     }
    
     public String getOrderStatus(){

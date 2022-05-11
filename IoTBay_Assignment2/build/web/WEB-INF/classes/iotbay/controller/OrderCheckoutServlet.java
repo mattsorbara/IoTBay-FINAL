@@ -8,6 +8,9 @@ import iotbay.model.*;
 import iotbay.model.dao.DBManager;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -27,28 +30,26 @@ public class OrderCheckoutServlet extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String phone = request.getParameter("phone");
-        
+
+        Catalogue product = (Catalogue) session.getAttribute("testProduct");
+
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        int productID = product.getId();
+        double orderPrice = product.getPrice();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+        Timestamp orderDate = new Timestamp(new Date().getTime());
+        String orderStatus = "SAVED";  
+
         DBManager manager = (DBManager) session.getAttribute("manager");
 
         try {
-            Catalogue testProduct = manager.testGetDevice();
-            session.setAttribute("testProduct", testProduct);
-            request.getRequestDispatcher("orderCheckout.jsp").include(request, response);
 
+            User user = (User) session.getAttribute("user");
 
-//            if (testProduct != null) {
-//                System.out.println("user already exists");
-//            } else {
-//                System.out.println("here");
-//                manager.addUser(name, email, password, phone);
-//                User user = new User(name, email, password, phone);
-//                session.setAttribute("user", user);
-//                request.getRequestDispatcher("welcome.jsp").include(request, response);
-//            }
+            System.out.println("here");
+            manager.addOrder(user.getEmail(), productID, orderPrice, quantity, orderDate.toString(), orderStatus);
+            session.setAttribute("user", user);
+            request.getRequestDispatcher("welcome.jsp").include(request, response);
             
         } catch(SQLException ex) {
             Logger.getLogger(OrderCheckoutServlet.class.getName()).log(Level.SEVERE, null, ex);

@@ -20,14 +20,14 @@ public class DBManager {
     }
     
     public User findUser(String email, String password) throws SQLException {
-        String fetch = "SELECT * FROM IOTADMIN.Users WHERE EMAIL='" + email + "' AND PASSWORD='" + password + "'";
+        String fetch = "SELECT * FROM IOTADMIN.USERS WHERE USEREMAIL='" + email + "' AND PASSWORD='" + password + "'";
         ResultSet rs = st.executeQuery(fetch);
         
         while (rs.next()) {
-            String userEmail = rs.getString(2);
+            String userEmail = rs.getString(1);
             String userPass = rs.getString(3);
             if (userEmail.equals(email) && userPass.equals(password)) {
-                String userName = rs.getString(1);
+                String userName = rs.getString(2);
                 String userPhone = rs.getString(4);
                 String userType = rs.getString(5);
                 return new User(userName, userEmail, password, userPhone, userType);
@@ -38,26 +38,26 @@ public class DBManager {
     }
     
     public void addUser(String name, String email, String password, String phone, String type) throws SQLException {
-        st.executeUpdate("INSERT INTO IOTADMIN.Users " + "VALUES ('" + name + "', '" + email + "', '" + password +"','" + phone + "', '" + type + "', true)");
+        st.executeUpdate("INSERT INTO IOTADMIN.USERS " + "VALUES ('" + name + "', '" + email + "', '" + password +"','" + phone + "', '" + type + "', true)");
     }
     
     public void updateUser(String name, String email, String password, String phone) throws SQLException {
-        st.executeUpdate("UPDATE IOTADMIN.Users SET NAME='" + name + "',PASSWORD='" + password + "',PHONE='" + phone + "' WHERE EMAIL='" + email + "'");
+        st.executeUpdate("UPDATE IOTADMIN.Users SET FULLNAME='" + name + "',PASSWORD='" + password + "',PHONE='" + phone + "' WHERE USEREMAIL='" + email + "'");
         
     }
     
     public void deleteUser(String email) throws SQLException {
-        st.executeUpdate("DELETE FROM IOTADMIN.Users WHERE EMAIL='" + email + "'");
+        st.executeUpdate("DELETE FROM IOTADMIN.USERS WHERE USEREMAIL='" + email + "'");
     }
     
     public ArrayList<User> fetchUsers() throws SQLException {
-        String fetch = "SELECT * FROM IOTADMIN.Users";
+        String fetch = "SELECT * FROM IOTADMIN.USERS";
         ResultSet rs = st.executeQuery(fetch);
         ArrayList<User> temp = new ArrayList<User>();
         
         while (rs.next()) {
-            String name = rs.getString(1);
-            String email = rs.getString(2);
+            String name = rs.getString(2);
+            String email = rs.getString(1);
             String password = rs.getString(3);
             String phone = rs.getString(4);
             String type = rs.getString(5);

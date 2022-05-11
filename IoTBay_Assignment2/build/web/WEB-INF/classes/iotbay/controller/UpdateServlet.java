@@ -32,8 +32,9 @@ public class UpdateServlet extends HttpServlet  {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String phone = request.getParameter("phone");
+        String type = request.getParameter("type");
         
-        User user = new User(name, email, password, phone);
+        User user = new User(name, email, password, phone, type);
         DBManager manager = (DBManager) session.getAttribute("manager");
         
         try {
@@ -52,9 +53,5 @@ public class UpdateServlet extends HttpServlet  {
         
         
     }
-    
-    
-    
-    
-    
+  
 }
