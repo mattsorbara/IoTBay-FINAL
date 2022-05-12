@@ -156,11 +156,11 @@ public class DBManager {
     }
 
      
-    public void addPayment1(String paymentID, String orderID, double amount, String paymentMethod, String email) throws SQLException {
+    public void addPayment1(int paymentID, int orderID, double amount, String paymentMethod, String email) throws SQLException {
         st.executeUpdate("INSERT INTO IOTADMIN.PAYMENT VALUES ('" + paymentID + "', '" + orderID + "', '" + email + "', " + paymentMethod + ", " + amount + ", ' ', ' ', ' ', CURRENT_TIMESTAMP)");
     } 
     
-    public void addPayment2(String paymentID, String cardNumber, String cardCVC, String cardExpiry) throws SQLException {
+    public void addPayment2(int paymentID, String cardNumber, String cardCVC, String cardExpiry) throws SQLException {
         st.executeUpdate("UPDATE IOTADMIN.payment " + "SET cardNumber ='" + cardNumber + "', cardCVC ='" + cardCVC + "', cardExpiry='" + cardExpiry + "' WHERE paymentID ='" + paymentID + "'");
     }
 

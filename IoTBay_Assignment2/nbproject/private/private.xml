@@ -5,9 +5,11 @@
         <group>
             <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/src/java/iotbay/model/dao/DBManager.java</file>
             <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/src/java/iotbay/controller/OrderCheckoutServlet.java</file>
+            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/src/java/iotbay/controller/cardPaymentServlet.java</file>
             <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/payment.jsp</file>
             <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/src/java/iotbay/controller/PaymentServlet.java</file>
             <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/src/java/iotbay/controller/LoginServlet.java</file>
+            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/orderCheckout.jsp</file>
             <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/cardPayment.jsp</file>
             <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/static/css/payment.css</file>
             <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/databases/createTables.sql</file>

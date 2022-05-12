@@ -5,7 +5,7 @@
 package iotbay.controller;
 
 import iotbay.model.*;
-import iotbay.model.dao.DBManager;
+import iotbay.model.dao.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -42,17 +42,21 @@ public class PaymentServlet extends HttpServlet {
         try {
 //            savedPayment = manager.findSavedpayment(email);
 
-            String paymentID = UUID.randomUUID().toString();
+            int paymentID = 4;
             session.setAttribute("bonk", paymentID);
-            String orderID = "testingNEW";
-            double amount = 69.69;
+            int orderID = 5;
+            double amount = 69.6;
             String cardNumber = "fake";
             String cardCVC = "fake";
             String cardExpiry = "fake";
 
-            manager.addPayment1(paymentID, orderID, amount, paymentMethod, email);
+            System.out.println("BEFORE");
+            System.out.println(paymentMethod);
 
+            manager.addPayment1(paymentID, orderID, amount, paymentMethod, email);
+                System.out.println("AFTER SQL");
             if (paymentMethod.equals("card")) {
+                System.out.println("IN CARD");
 //                session.setAttribute("card", paymentMethod);
                 request.getRequestDispatcher("cardPayment.jsp").include(request, response);
             } else if (paymentMethod.equals("savedCard")) {
