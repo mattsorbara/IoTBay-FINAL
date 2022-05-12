@@ -56,11 +56,11 @@ public class CatalogueServlet extends HttpServlet {
             if (products != null) {
                 session.setAttribute("catalogue", products);
                 request.getRequestDispatcher("catalogue.jsp").include(request, response);
-                response.sendRedirect("catalogue.jsp");
+//                response.sendRedirect("catalogue.jsp");
             }
             else{
                 request.getRequestDispatcher("catalogue.jsp").include(request, response);
-                response.sendRedirect("catalogue.jsp");
+//                response.sendRedirect("catalogue.jsp");
             }
             
                             

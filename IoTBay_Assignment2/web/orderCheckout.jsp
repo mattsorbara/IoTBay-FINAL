@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="iotbay.model.Catalogue"%>
+<%@page import="iotbay.model.dao.DBManager"%>
 <!DOCTYPE html>
 
 <html>
@@ -16,7 +17,7 @@
     </head>
     <% 
         
-        Catalogue product = (Catalogue) session.getAttribute("testProduct");
+        Catalogue product = (Catalogue) session.getAttribute("product");
     
     %>
     
@@ -49,8 +50,9 @@
                             <input class="border-customized-input" type="text" required="true" name="quantity" placeholder="Quantity">
                         </div>
                     </div>
+<!--                        <div class="registerFormElement" id="stockCheck"><Label>-->
                     <div class="buttons">
-                        <a href="home.jsp" class="cancel">Cancel</a>
+                        <a href="catalogue.jsp" class="cancel">Cancel</a>
                         <button class="submit" type="submit">Proceed to Shipment</button>
                     </div>
                 </form>
