@@ -17,14 +17,7 @@
     </head>
     <% 
         
-        Catalogue product = (Catalogue) session.getAttribute("testProduct");
-        
-        DBManager manager = (DBManager) session.getAttribute("manager");
-        
-        int productID = (int) request.getAttribute("id");
-        
-        Catalogue productA = (Catalogue) manager.findProduct(productID);
-
+        Catalogue product = (Catalogue) session.getAttribute("product");
     
     %>
     
@@ -36,19 +29,19 @@
                     <div class="registerFormElement" id="productName">
                         <label>Product Name</label>
                         <div>
-                            <input class="border-customized-input" type="text" name="productName" value="<%= productA.getTitle() %>" readonly>
+                            <input class="border-customized-input" type="text" name="productName" value="<%= product.getTitle() %>" readonly>
                         </div>
                     </div>
                     <div class="registerFormElement" id="productPrice">
                         <label>Product Price</label>
                         <div>
-                            <input class="border-customized-input" type="text" name="productPrice" value="$<%= productA.getPrice() %>" readonly>
+                            <input class="border-customized-input" type="text" name="productPrice" value="$<%= product.getPrice() %>" readonly>
                         </div>
                     </div>
                     <div class="registerFormElement" id="productStock">
                         <label>Stock</label>
                         <div>
-                            <input class="border-customized-input" type="text" name="quantity" value="<%= productA.getStock() %>" readonly>
+                            <input class="border-customized-input" type="text" name="quantity" value="<%= product.getStock() %>" readonly>
                         </div>
                     </div>
                     <div class="registerFormElement" id="Quantity">
@@ -57,8 +50,9 @@
                             <input class="border-customized-input" type="text" required="true" name="quantity" placeholder="Quantity">
                         </div>
                     </div>
+<!--                        <div class="registerFormElement" id="stockCheck"><Label>-->
                     <div class="buttons">
-                        <a href="home.jsp" class="cancel">Cancel</a>
+                        <a href="catalogue.jsp" class="cancel">Cancel</a>
                         <button class="submit" type="submit">Proceed to Shipment</button>
                     </div>
                 </form>

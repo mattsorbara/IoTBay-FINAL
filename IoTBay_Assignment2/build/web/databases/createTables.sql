@@ -41,7 +41,7 @@ CREATE TABLE ORDERS (
     productID INT NOT NULL,
     orderPrice INT NOT NULL,
     orderQuantity INT NOT NULL,
-    orderDate DATE NOT NULL,
+    orderDate TIMESTAMP NOT NULL,
     shippingType VARCHAR(50) NOT NULL,
     orderStatus VARCHAR(50) NOT NULL,
 
@@ -56,7 +56,8 @@ CREATE TABLE PAYMENT (
     paymentType VARCHAR(20),
     cardNumber VARCHAR(16),
     cardCVC VARCHAR(3),
-    cardExpiry DATE,
+    cardExpiry VARCHAR(10),
+    paymentDate TIMESTAMP,
 
     CONSTRAINT FK_paymentOrder FOREIGN KEY (orderID) REFERENCES ORDERS(orderID),
     CONSTRAINT FK_paymentUser FOREIGN KEY (userEmail) REFERENCES USERS(userEmail)
@@ -67,22 +68,24 @@ CREATE TABLE SAVEDPAYMENT (
     userEmail VARCHAR(50) PRIMARY KEY NOT NULL,
     cardNumber VARCHAR(16) NOT NULL,
     cardCVC VARCHAR(3) NOT NULL,
-    cardExpiry DATE,
+    cardExpiry VARCHAR(10,
 
     CONSTRAINT FK_userEmail FOREIGN KEY (userEmail) REFERENCES USERS(userEmail)
 );
 
 CREATE TABLE SHIPMENT ( 
     shipmentID INT GENERATED ALWAYS AS IDENTITY NOT NULL PRIMARY KEY,
+    orderID INT NOT NULL,
     userEmail VARCHAR(50) NOT NULL,
     status VARCHAR (50) NOT NULL,
     shipMethod VARCHAR (50),
-    shipDate DATE, 
+    shipDate TIMESTAMP, 
     unitNumber INT,
     streetNumber VARCHAR (4),
     streetName VARCHAR (50),
     suburb VARCHAR (50),
     postcode INT,
 
+    CONSTRAINT FK_orderShipment FOREIGN KEY (orderID) REFERENCES ORDERS(orderID),
     CONSTRAINT FK_userShipment FOREIGN KEY (userEmail) REFERENCES USERS(userEmail)
 );

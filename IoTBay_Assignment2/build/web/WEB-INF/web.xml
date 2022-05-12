@@ -80,8 +80,9 @@
         <servlet-name>OrderCheckoutServlet</servlet-name>
         <url-pattern>/OrderCheckoutServlet</url-pattern>
     </servlet-mapping>
+    
+    
     <servlet>
-        
         <servlet-name>PaymentServlet</servlet-name>
         <servlet-class>iotbay.controller.PaymentServlet</servlet-class>
     </servlet>
