@@ -68,7 +68,7 @@ CREATE TABLE SAVEDPAYMENT (
     userEmail VARCHAR(50) PRIMARY KEY NOT NULL,
     cardNumber VARCHAR(16) NOT NULL,
     cardCVC VARCHAR(3) NOT NULL,
-    cardExpiry VARCHAR(10,
+    cardExpiry VARCHAR(10),
 
     CONSTRAINT FK_userEmail FOREIGN KEY (userEmail) REFERENCES USERS(userEmail)
 );
