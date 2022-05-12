@@ -17,7 +17,7 @@ public class Validator {
     
    private String emailPattern = "([a-zA-Z0-9]+)(([._-])([a-zA-Z0-9]+))*(@)([a-z]+)(.)([a-z]{3})((([.])[a-z]{0,2})*)";      
    private String namePattern = "([A-Z][a-z]+[\\s])+[A-Z][a-z]*";       
-   private String passwordPattern = "[a-z0-9]{4,}";       
+   private String passwordPattern = "[A-Za-z0-9]{4,}";       
               
    public Validator(){ }       
                                   
