@@ -58,9 +58,6 @@ public class PaymentServlet extends HttpServlet {
             } else if (paymentMethod.equals("savedCard")) {
                 manager.addPayment2(paymentID, cardNumber, cardCVC, cardExpiry);
                 request.getRequestDispatcher("home.jsp").include(request, response);
-            } else if (crudPayment.equals("delete")) {
-                manager.deletePayment(email);
-                request.getRequestDispatcher("cardPayment.jsp").include(request, response);
             } else {
                 System.out.println("No");
             }

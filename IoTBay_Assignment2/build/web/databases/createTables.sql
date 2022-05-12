@@ -53,6 +53,7 @@ CREATE TABLE PAYMENT (
     orderID INT NOT NULL,
     userEmail VARCHAR(50),
     paymentType VARCHAR(20),
+    paymentAmount DECIMAL(5),
     cardNumber VARCHAR(16),
     cardCVC VARCHAR(3),
     cardExpiry VARCHAR(10),

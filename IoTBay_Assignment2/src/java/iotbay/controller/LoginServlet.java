@@ -4,6 +4,7 @@
  */
 package iotbay.controller;
 
+import iotbay.model.Savedpayment;
 import iotbay.model.User;
 import iotbay.model.dao.DBManager;
 import java.io.IOException;
@@ -33,14 +34,24 @@ public class LoginServlet extends HttpServlet {
         
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+
+        session.setAttribute("email", email);
         
         
         DBManager manager = (DBManager) session.getAttribute("manager");
         User user = null;
         Validator val = new Validator();
+        Savedpayment savedPayment = null;
         
         try {
-            
+            savedPayment = manager.findSavedpayment(email);
+
+            if (savedPayment != null) {
+                session.setAttribute("savedPayment", savedPayment);
+            } else {
+                Savedpayment nullPayment = new Savedpayment("N/A", "N/A", "N/A", "N/A");
+                session.setAttribute("savedPayment", nullPayment);
+            }
                 
             if (!val.validateEmail(email)) {
                 session.setAttribute("logError", "Email format wrong.");

@@ -157,7 +157,7 @@ public class DBManager {
 
      
     public void addPayment1(String paymentID, String orderID, double amount, String paymentMethod, String email) throws SQLException {
-        st.executeUpdate("INSERT INTO IOTADMIN.payment " + "VALUES ('" + paymentID + "', '" + orderID + "', '" + paymentMethod + "', " + amount + ", '" + email + "', ' ', ' ', ' ', CURRENT_TIMESTAMP)");
+        st.executeUpdate("INSERT INTO IOTADMIN.PAYMENT VALUES ('" + paymentID + "', '" + orderID + "', '" + email + "', " + paymentMethod + ", " + amount + ", ' ', ' ', ' ', CURRENT_TIMESTAMP)");
     } 
     
     public void addPayment2(String paymentID, String cardNumber, String cardCVC, String cardExpiry) throws SQLException {
