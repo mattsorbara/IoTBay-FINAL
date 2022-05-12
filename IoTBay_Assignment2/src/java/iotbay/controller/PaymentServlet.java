@@ -4,7 +4,7 @@
  */
 package iotbay.controller;
 
-import iotbay.model.Savedpayment;
+import iotbay.model.*;
 import iotbay.model.dao.DBManager;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -33,6 +33,7 @@ public class PaymentServlet extends HttpServlet {
         String paymentMethod = request.getParameter("paymentMethod");
         String email = (String) session.getAttribute("email");
         String crudPayment = (String) session.getAttribute("crudPayment");
+        Order currentOrder = (Order) session.getAttribute("currentOrder");
         
         DBManager manager = (DBManager) session.getAttribute("manager");
 //        Savedpayment savedPayment = null;
