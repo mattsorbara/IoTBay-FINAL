@@ -8,7 +8,7 @@
  */
 
 INSERT INTO IOTADMIN.PRODUCTS (PRODUCTTITLE, PRODUCTPRICE, PRODUCTDESCRIPTION, PRODUCTIMAGE, PRODUCTSTOCK, PRODUCTTYPE) 
-	VALUES ('alexa', 119, 'Amazon Smart Home Speaker', 'static/images/alexa.jpeg', 0, 'IOT');
+	VALUES ('Alexa', 119, 'Amazon Smart Home Speaker', 'https://cdn.shopify.com/s/files/1/0024/9803/5810/products/396303-Product-0-I_540x540.jpg?v=1635292554', 0, 'IOT');
 INSERT INTO IOTADMIN.PRODUCTS ( PRODUCTTITLE, PRODUCTPRICE, PRODUCTDESCRIPTION, PRODUCTIMAGE, PRODUCTSTOCK, PRODUCTTYPE)  
 	VALUES ('Philips Hue Floor Lamp', 455, 'Complement your home’s decor with the slim, stylish black design of the gradient Signe floor lamp, which blends multiple colours together to paint the walls with a unique gradient of light.', 'https://cdn.shopify.com/s/files/1/0024/9803/5810/products/583738-Product-0-I-637811123175052971_1080x1080.jpg?v=1645476048', 22, 'IOT');
 INSERT INTO IOTADMIN.PRODUCTS (PRODUCTTITLE, PRODUCTPRICE, PRODUCTDESCRIPTION, PRODUCTIMAGE, PRODUCTSTOCK, PRODUCTTYPE)

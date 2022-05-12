@@ -42,7 +42,7 @@ public class cardPaymentServlet extends HttpServlet {
 //        response.setContentType("text/html;charset=UTF-8");
 
         try {
-            String paymentID = (String) session.getAttribute("bonk");
+            int paymentID = (int) session.getAttribute("bonk");
 
             if (crudPayment.equals("create")) {
                 manager.savePayment(email, cardNumber, cardCVC, cardExpiry);

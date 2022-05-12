@@ -39,10 +39,9 @@ CREATE TABLE ORDERS (
     orderID INT GENERATED ALWAYS AS IDENTITY NOT NULL PRIMARY KEY,
     userEmail VARCHAR(50) NOT NULL,
     productID INT NOT NULL,
-    orderPrice INT NOT NULL,
+    orderPrice DECIMAL(5) NOT NULL,
     orderQuantity INT NOT NULL,
     orderDate TIMESTAMP NOT NULL,
-    shippingType VARCHAR(50) NOT NULL,
     orderStatus VARCHAR(50) NOT NULL,
 
     CONSTRAINT FK_userOrder FOREIGN KEY (userEmail) REFERENCES USERS(userEmail),
@@ -50,10 +49,11 @@ CREATE TABLE ORDERS (
 );
 
 CREATE TABLE PAYMENT (
-    paymentID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY NOT NULL,
+    paymentID INT PRIMARY KEY NOT NULL,
     orderID INT NOT NULL,
     userEmail VARCHAR(50),
     paymentType VARCHAR(20),
+    paymentAmount DECIMAL(5),
     cardNumber VARCHAR(16),
     cardCVC VARCHAR(3),
     cardExpiry VARCHAR(10),
