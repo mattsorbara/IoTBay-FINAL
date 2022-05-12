@@ -166,8 +166,6 @@ public class OrderCheckoutServlet extends HttpServlet {
             }
             
 
-            
-
             if (quantity <= product.getStock()) {
                 int productID = product.getId();
                 double orderPrice = product.getPrice();
