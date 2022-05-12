@@ -39,10 +39,9 @@ CREATE TABLE ORDERS (
     orderID INT GENERATED ALWAYS AS IDENTITY NOT NULL PRIMARY KEY,
     userEmail VARCHAR(50) NOT NULL,
     productID INT NOT NULL,
-    orderPrice INT NOT NULL,
+    orderPrice DECIMAL(5) NOT NULL,
     orderQuantity INT NOT NULL,
     orderDate TIMESTAMP NOT NULL,
-    shippingType VARCHAR(50) NOT NULL,
     orderStatus VARCHAR(50) NOT NULL,
 
     CONSTRAINT FK_userOrder FOREIGN KEY (userEmail) REFERENCES USERS(userEmail),

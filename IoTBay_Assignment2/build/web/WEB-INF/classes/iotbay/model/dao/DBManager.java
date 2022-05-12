@@ -142,12 +142,17 @@ public class DBManager {
         return null;
     }
 
-    public void addOrder(String userEmail, int productID, double productPrice, int quantity, String orderDate, String status) throws SQLException {
+    public int addOrder(String userEmail, int productID, double productPrice, int quantity, Timestamp orderDate, String status) throws SQLException {
         double amount = productPrice * quantity;
 
-        st.executeUpdate("INSERT INTO IOTADMIN.ORDER (userEmail, productID, amount, orderQuantity, orderDate, orderStatus) VALUES ('" + userEmail + "', '" + productID + "', '" + amount + "', '" + quantity + "', '" + orderDate + "', 'SAVED')");
+        st.executeUpdate("INSERT INTO IOTADMIN.ORDERS (userEmail, productID, orderPrice, orderQuantity, orderDate, orderStatus) VALUES ('" + userEmail + "', " + productID + ", " + amount + ", " + quantity + ", CURRENT_TIMESTAMP, 'SAVED')");
 
-        System.out.println("test");
+        ResultSet rs = st.executeQuery("SELECT MAX(ORDERID) FROM IOTADMIN.ORDERS");
+        if (rs.next()) {
+            return rs.getInt(1);
+        }
+
+        return 0;
     }
 
      
@@ -267,6 +272,6 @@ public class DBManager {
         }
         return false;
     }
-     
+
 
 }

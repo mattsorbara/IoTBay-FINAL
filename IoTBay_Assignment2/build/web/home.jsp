@@ -20,7 +20,7 @@
                     <div class="buttons">
                         <a href="login.jsp" class="submit">Login</a>
                         <a href="register.jsp" class="submit">Register</a>
-                        <a href="guestCataloguePLACEHOLDER.jsp" class="submit">Continue as Guest</a> 
+                        <a href="CatalogueServlet" class="submit">Continue as Guest</a> 
                     </div>
                 </div>
             </div>
