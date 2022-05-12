@@ -89,3 +89,16 @@ CREATE TABLE SHIPMENT (
     CONSTRAINT FK_orderShipment FOREIGN KEY (orderID) REFERENCES ORDERS(orderID),
     CONSTRAINT FK_userShipment FOREIGN KEY (userEmail) REFERENCES USERS(userEmail)
 );
+
+CREATE TABLE SAVEDSHIPMENT ( 
+    userEmail VARCHAR(50) NOT NULL PRIMARY KEY,
+    shipMethod VARCHAR (50),
+    shipDate TIMESTAMP, 
+    unitNumber INT,
+    streetNumber VARCHAR (4),
+    streetName VARCHAR (50),
+    suburb VARCHAR (50),
+    postcode INT,
+
+    CONSTRAINT FK_userSavedShipment FOREIGN KEY (userEmail) REFERENCES USERS(userEmail)
+);
