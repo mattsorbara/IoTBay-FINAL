@@ -51,6 +51,22 @@ public class DBManager {
         return null;
     }
     
+
+    public User fetchGuestUser() throws SQLException {
+        String fetch = "SELECT * FROM IOTADMIN.USERS WHERE USEREMAIL='guest@guest.com'";
+        ResultSet rs = st.executeQuery(fetch);
+        
+        while (rs.next()) {
+            String userEmail = rs.getString(1);
+            String userPass = rs.getString(3);
+            String userName = rs.getString(2);
+            String userPhone = rs.getString(4);
+            String userType = rs.getString(5);
+            return new User(userName, userEmail, userPass, userPhone, userType);
+        }
+        return null;
+    }
+
     public void addUser(String name, String email, String password, String phone, String type) throws SQLException {
         st.executeUpdate("INSERT INTO IOTADMIN.USERS " + "VALUES ('" + name + "', '" + email + "', '" + password +"','" + phone + "', '" + type + "', true)");
     }
@@ -83,7 +99,7 @@ public class DBManager {
             String phone = rs.getString(4);
             String type = rs.getString(5);
             
-            temp.add(new User(name,email,password,phone,type));
+            temp.add(new User(email,name,password,phone,type));
         }
         return temp;
     }

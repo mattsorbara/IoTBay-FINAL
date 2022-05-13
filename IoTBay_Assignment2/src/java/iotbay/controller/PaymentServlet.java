@@ -4,10 +4,13 @@
  */
 package iotbay.controller;
 
-import iotbay.model.*;
+import iotbay.model.Order;
+import iotbay.model.Savedpayment;
+import iotbay.model.User;
 import iotbay.model.dao.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -15,6 +18,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
+import java.util.Date;
+
 
 import java.util.UUID;
 
@@ -24,7 +30,57 @@ import java.util.UUID;
  */
 
 public class PaymentServlet extends HttpServlet {
+    
+    private DBManager manager;
+    private DBConnector Connector;
+        
 
+//    @Override
+//    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//        
+//        try
+//        {
+//            Connector = new DBConnector();
+//        }catch (ClassNotFoundException | SQLException ex){
+//            java.util.logging.Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE,null,ex);
+//        }
+//        
+//        try
+//        {       
+//            manager = new DBManager(Connector.openConnection());  
+//        }catch (SQLException ex){
+//            java.util.logging.Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE,null,ex);
+//        }
+//        
+//        //session
+//        HttpSession session = request.getSession();
+//
+//        User user = (User) session.getAttribute("user");
+//        
+//        String email = user.getEmail();
+//        Savedpayment savedPayment = null;
+//
+//        try {
+//            savedPayment = manager.findSavedpayment(email);
+//            System.out.print(savedPayment);
+//
+//            if (savedPayment != null) {
+//                System.out.print("IM HERE");
+//                session.setAttribute("savedPayment", savedPayment);
+//                request.getRequestDispatcher("payment.jsp").include(request, response);
+//            } else {
+//                System.out.print("HERE I AM");
+//                Savedpayment nullPayment = new Savedpayment("N/A", "N/A", "N/A", "N/A");
+//                session.setAttribute("savedPayment", nullPayment);
+//                request.getRequestDispatcher("payment.jsp").include(request, response);
+//            }
+//            
+//                            
+//        } catch (SQLException ex){
+//            Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -71,5 +127,14 @@ public class PaymentServlet extends HttpServlet {
 
         
     }
+
+//            savedPayment = manager.findSavedpayment(email);
+//
+//            if (savedPayment != null) {
+//                session.setAttribute("savedPayment", savedPayment);
+//            } else {
+//                Savedpayment nullPayment = new Savedpayment("N/A", "N/A", "N/A", "N/A");
+//                session.setAttribute("savedPayment", nullPayment);
+//            }
 
 }

@@ -13,8 +13,9 @@
         <title>Payment | IoT Bay</title>
         <link rel="stylesheet" type="text/css" href="static/css/payment.css">
     </head>
-    <% Savedpayment savedPayment = (Savedpayment) session.getAttribute("savedPayment");
-    Order currentOrder = (Order) session.getAttribute("currentOrder");
+    <% 
+//        Savedpayment savedPayment = (Savedpayment) session.getAttribute("savedPayment");
+        Order currentOrder = (Order) session.getAttribute("currentOrder");
     %>
     <body>
         <div class="loggedInMenu">            
@@ -55,7 +56,10 @@
                     </div>
                 </form><br><br>
                         
-                <h2 id="title"><b>Saved Payment</b></h2><br>
+                <h2 id="title"><b>Saved Payment</b></h2><br
+                <% 
+                    if ("guest@guest.com".equals(currentOrder.getUserEmail())){
+                %>
                 <table id="paymentTable" align="center">
                     <thead>
                         <tr>
@@ -66,14 +70,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><%= savedPayment.getEmail() %></td>
-                            <td><%= savedPayment.getCardNumber() %></td>
-                            <td><%= savedPayment.getCardCVC() %></td>
-                            <td><%= savedPayment.getCardExpiry() %></td>
+                        <tr> 
+<!--                            <td>savedPayment.getEmail()</td>
+                            <td>savedPayment.getCardNumber()</td>
+                            <td>savedPayment.getCardCVC(</td>
+                            <td>savedPayment.getCardExpiry()</td>-->
                         </tr>
                     </tbody>
                 </table>
+                <%}%>
             </div>
         </div>
     </body>

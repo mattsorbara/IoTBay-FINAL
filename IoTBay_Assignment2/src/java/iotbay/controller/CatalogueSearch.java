@@ -5,7 +5,7 @@
 package iotbay.controller;
 
 //Import both Catalogue and User for verification
-import iotbay.model.Catalogue;
+import iotbay.model.*;
 
 import iotbay.model.dao.*;
 import java.io.IOException;
