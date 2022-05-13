@@ -38,22 +38,36 @@ public class cardPaymentServlet extends HttpServlet {
         String cardExpiry = request.getParameter("cardExpiry");
         
         DBManager manager = (DBManager) session.getAttribute("manager");
+        Validator val = new Validator();
         
 //        response.setContentType("text/html;charset=UTF-8");
 
         try {
-            String paymentID = (String) session.getAttribute("bonk");
+            int paymentID = (int) session.getAttribute("bonk");
 
-            if (crudPayment.equals("create")) {
-                manager.savePayment(email, cardNumber, cardCVC, cardExpiry);
-            } else if (crudPayment.equals("update")){
-                manager.updatePayment(email, cardNumber, cardCVC, cardExpiry);
-            } else if (crudPayment.equals("delete")){
-                manager.deletePayment(email);
+            if(!val.validateCardNumber(cardNumber)) {
+                session.setAttribute("regError", "Card Number format wrong.");
+                request.getRequestDispatcher("cardPayment.jsp").include(request, response);
             }
-            manager.addPayment2(paymentID, cardNumber, cardCVC, cardExpiry);
-            request.getRequestDispatcher("home.jsp").include(request, response);
-
+            else if(!val.validateCardCVC(cardCVC)) {
+                session.setAttribute("regError", "Card CVC format wrong.");
+                request.getRequestDispatcher("cardPayment.jsp").include(request, response);
+            }
+            else if(!val.validateCardExpiry(cardExpiry)) {
+                session.setAttribute("regError", "Card Expiry format wrong.");
+                request.getRequestDispatcher("cardPayment.jsp").include(request, response);
+            }
+            else {
+                if (crudPayment.equals("create")) {
+                    manager.savePayment(email, cardNumber, cardCVC, cardExpiry);
+                } else if (crudPayment.equals("update")){
+                    manager.updatePayment(email, cardNumber, cardCVC, cardExpiry);
+                } else if (crudPayment.equals("delete")){
+                    manager.deletePayment(email);
+                }
+                manager.addPayment2(paymentID, cardNumber, cardCVC, cardExpiry);
+                request.getRequestDispatcher("home.jsp").include(request, response);
+            }
               
         } catch (SQLException ex) {
             Logger.getLogger(cardPaymentServlet.class.getName()).log(Level.SEVERE, null, ex);

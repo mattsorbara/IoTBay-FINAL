@@ -43,14 +43,22 @@ public class PaymentServlet extends HttpServlet {
 
             String paymentID = UUID.randomUUID().toString();
             session.setAttribute("bonk", paymentID);
+<<<<<<< Updated upstream
             String orderID = "testingNEW";
             double amount = 69.69;
+=======
+            int orderID = currentOrder.getOrderID();
+            double amount = currentOrder.getOrderPrice();
+>>>>>>> Stashed changes
             String cardNumber = "fake";
             String cardCVC = "fake";
             String cardExpiry = "fake";
 
             manager.addPayment1(paymentID, orderID, amount, paymentMethod, email);
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
             if (paymentMethod.equals("card")) {
 //                session.setAttribute("card", paymentMethod);
                 request.getRequestDispatcher("cardPayment.jsp").include(request, response);

@@ -4,8 +4,8 @@
  */
 package iotbay.controller;
 
-import iotbay.model.Savedpayment;
-import iotbay.model.dao.DBManager;
+import iotbay.model.*;
+import iotbay.model.dao.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -33,6 +33,7 @@ public class PaymentServlet extends HttpServlet {
         String paymentMethod = request.getParameter("paymentMethod");
         String email = (String) session.getAttribute("email");
         String crudPayment = (String) session.getAttribute("crudPayment");
+        Order currentOrder = (Order) session.getAttribute("currentOrder");
         
         DBManager manager = (DBManager) session.getAttribute("manager");
 //        Savedpayment savedPayment = null;
@@ -41,25 +42,25 @@ public class PaymentServlet extends HttpServlet {
         try {
 //            savedPayment = manager.findSavedpayment(email);
 
-            String paymentID = UUID.randomUUID().toString();
+            int paymentID = 4;
             session.setAttribute("bonk", paymentID);
-            String orderID = "testingNEW";
-            double amount = 69.69;
+            int orderID = currentOrder.getOrderID();
+            double amount = currentOrder.getOrderPrice();
             String cardNumber = "fake";
             String cardCVC = "fake";
             String cardExpiry = "fake";
 
-            manager.addPayment1(paymentID, orderID, amount, paymentMethod, email);
-
             if (paymentMethod.equals("card")) {
-//                session.setAttribute("card", paymentMethod);
+                manager.addPayment1(paymentID, orderID, amount, paymentMethod, email);
                 request.getRequestDispatcher("cardPayment.jsp").include(request, response);
             } else if (paymentMethod.equals("savedCard")) {
-                manager.addPayment2(paymentID, cardNumber, cardCVC, cardExpiry);
-                request.getRequestDispatcher("home.jsp").include(request, response);
-            } else if (crudPayment.equals("delete")) {
-                manager.deletePayment(email);
-                request.getRequestDispatcher("cardPayment.jsp").include(request, response);
+                if (manager.findSavedpayment(email) != null) {
+                    manager.addPayment1(paymentID, orderID, amount, paymentMethod, email);
+                    manager.addPayment2(paymentID, cardNumber, cardCVC, cardExpiry);
+                    request.getRequestDispatcher("home.jsp").include(request, response);
+                } else {
+                
+                }
             } else {
                 System.out.println("No");
             }

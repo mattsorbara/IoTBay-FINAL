@@ -150,17 +150,16 @@ public class DBManager {
         System.out.println("test");
     }
 
-     
-    public void addPayment1(String paymentID, String orderID, double amount, String paymentMethod, String email) throws SQLException {
-        st.executeUpdate("INSERT INTO IOTADMIN.payment " + "VALUES ('" + paymentID + "', '" + orderID + "', '" + paymentMethod + "', " + amount + ", '" + email + "', ' ', ' ', ' ')");
+    public void addPayment1(int paymentID, int orderID, double amount, String paymentMethod, String email) throws SQLException {
+        st.executeUpdate("INSERT INTO IOTADMIN.PAYMENT VALUES (" + paymentID + ", " + orderID + ", '" + email + "', '" + paymentMethod + "', " + amount + ", ' ', ' ', ' ', CURRENT_TIMESTAMP)");
     } 
     
-    public void addPayment2(String paymentID, String cardNumber, String cardCVC, String cardExpiry) throws SQLException {
-        st.executeUpdate("UPDATE IOTADMIN.payment " + "SET cardNumber ='" + cardNumber + "', cardCVC ='" + cardCVC + "', cardExpiry='" + cardExpiry + "' WHERE paymentID ='" + paymentID + "'");
+    public void addPayment2(int paymentID, String cardNumber, String cardCVC, String cardExpiry) throws SQLException {
+        st.executeUpdate("UPDATE IOTADMIN.payment SET cardNumber ='" + cardNumber + "', cardCVC ='" + cardCVC + "', cardExpiry='" + cardExpiry + "' WHERE paymentID ='" + paymentID + "'");
     }
 
     public void savePayment(String email, String cardNumber, String cardCVC, String cardExpiry) throws SQLException {
-        st.executeUpdate("INSERT INTO IOTADMIN.savedPayment " + "VALUES ('" + email + "', '" + cardNumber + "', '" + cardCVC + "', '" + cardExpiry + "')");
+        st.executeUpdate("INSERT INTO IOTADMIN.savedPayment VALUES ('" + email + "', '" + cardNumber + "', '" + cardCVC + "', '" + cardExpiry + "')");
     } 
 
     public void updatePayment(String email, String cardNumber, String cardCVC, String cardExpiry) throws SQLException {
