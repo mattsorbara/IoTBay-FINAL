@@ -41,27 +41,26 @@ public class PaymentServlet extends HttpServlet {
 
         try {
 //            savedPayment = manager.findSavedpayment(email);
+//            session.setAttribute("bonk", paymentID);
+            int orderID = currentOrder.getOrderID();
+            double amount = currentOrder.getOrderPrice();
 
-            int paymentID = 4;
-            session.setAttribute("bonk", paymentID);
-            int orderID = 5;
-            double amount = 69.6;
-            String cardNumber = "fake";
-            String cardCVC = "fake";
-            String cardExpiry = "fake";
 
-            System.out.println("BEFORE");
-            System.out.println(paymentMethod);
-
-            manager.addPayment1(paymentID, orderID, amount, paymentMethod, email);
-                System.out.println("AFTER SQL");
+            manager.addPayment1(orderID, amount, paymentMethod, email);
             if (paymentMethod.equals("card")) {
-                System.out.println("IN CARD");
-//                session.setAttribute("card", paymentMethod);
                 request.getRequestDispatcher("cardPayment.jsp").include(request, response);
             } else if (paymentMethod.equals("savedCard")) {
-                manager.addPayment2(paymentID, cardNumber, cardCVC, cardExpiry);
-                request.getRequestDispatcher("home.jsp").include(request, response);
+                Savedpayment savedPayment = manager.findSavedpayment(email);
+                if (savedPayment != null) {
+                    int paymentID = manager.getPaymentID(orderID);
+                    String cardNumber = savedPayment.getCardNumber();
+                    String cardCVC = savedPayment.getCardCVC();
+                    String cardExpiry = savedPayment.getCardExpiry();                     
+                    manager.addPayment2(paymentID, cardNumber, cardCVC, cardExpiry);
+                    request.getRequestDispatcher("home.jsp").include(request, response);
+                } else {
+                    System.out.println("Empty");
+                }
             } else {
                 System.out.println("No");
             }
