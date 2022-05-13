@@ -36,11 +36,11 @@ public class DeactivateAdmin extends HttpServlet {
         try {
             manager.setUserStatus(false, user.getEmail());
             session.invalidate();
-            request.getRequestDispatcher("home.jsp").include(request, response);
+            request.getRequestDispatcher("Deactivate.jsp").include(request, response);
         
             
         } catch (SQLException ex) {
-            System.out.println("Error: user not deleted.");
+            System.out.println("Error: user not deactivated.");
         }
        
     }

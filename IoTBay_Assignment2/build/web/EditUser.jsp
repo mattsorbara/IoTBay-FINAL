@@ -36,12 +36,15 @@
                             <input class="border-customized-input" type="text" required="true" name="email" placeholder="Email">
                         </div>
                     </div>
-                    <div class="registerFormElement" id="type">
+                    <div class="loginFormElement" id="type">
                         <label>Type</label>
                         <div>
-                            <input class="border-customized-input" type="text" required="true" name="type" placeholder="Type">
-                        </div>
+                        <input type="radio" id="type" name="type">
+                            <label for="customer">Customer</label>
+                       <input type="radio" id="type" name="type">     
+                            <label for="staff">Staff</label>
                     </div>
+                    </div> 
                      <div class="registerFormElement" id="phone">
                         <label>Phone Number</label>
                         <div>
@@ -56,6 +59,7 @@
                     </div>
                      <div class="buttons">
                         <a href="ViewUser.jsp" class="button4">Cancel</a>
+                        <a href="Confirm.jsp" class="button4">Confirm</a>
                         <a href="Activate.jsp" class="button4">Activate User</a>
                         <a href="Deactivate.jsp" class="button4">Deactivate User</a>
                         <a href="Delete.jsp" class="button4">Delete User</a>

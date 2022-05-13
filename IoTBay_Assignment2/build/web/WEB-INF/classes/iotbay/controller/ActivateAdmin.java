@@ -37,7 +37,7 @@ public class ActivateAdmin extends HttpServlet {
         }
             
         catch (SQLException ex) {
-            System.out.println("Error: user not deleted.");
+            System.out.println("Error: user not activated.");
         }
        
     }

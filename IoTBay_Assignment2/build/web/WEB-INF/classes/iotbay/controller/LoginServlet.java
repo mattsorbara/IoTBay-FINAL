@@ -36,6 +36,9 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         
+       if (email.equals("sysadmin@iotbay.com") && password.equals("sysadmin")) {
+            session.setAttribute("sysadmin", true);
+        }
         
         DBManager manager = (DBManager) session.getAttribute("manager");
         User user = null;
