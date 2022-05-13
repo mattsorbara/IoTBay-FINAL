@@ -44,15 +44,6 @@ public class LoginServlet extends HttpServlet {
         Savedpayment savedPayment = null;
         
         try {
-            savedPayment = manager.findSavedpayment(email);
-
-            if (savedPayment != null) {
-                session.setAttribute("savedPayment", savedPayment);
-            } else {
-                Savedpayment nullPayment = new Savedpayment("N/A", "N/A", "N/A", "N/A");
-                session.setAttribute("savedPayment", nullPayment);
-            }
-                
             if (!val.validateEmail(email)) {
                 session.setAttribute("logError", "Email format wrong.");
                 request.getRequestDispatcher("login.jsp").include(request, response);
@@ -62,6 +53,15 @@ public class LoginServlet extends HttpServlet {
                 request.getRequestDispatcher("login.jsp").include(request, response);
             }
             else {
+                savedPayment = manager.findSavedpayment(email);
+
+                if (savedPayment != null) {
+                    session.setAttribute("savedPayment", savedPayment);
+                } else {
+                    Savedpayment nullPayment = new Savedpayment("N/A", "N/A", "N/A", "N/A");
+                    session.setAttribute("savedPayment", nullPayment);
+                }
+                
                 user = manager.findUser(email, password);
                 if (user == null) {
                     session.setAttribute("logError", "User does not exist.");
