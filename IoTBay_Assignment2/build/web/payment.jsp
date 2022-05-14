@@ -62,7 +62,7 @@
                 <% 
                     if (!"guest@guest.com".equals(currentOrder.getUserEmail())){
                 %>                     
-                <h2 id="title"><b>Saved Payment</b></h2><br
+                <h2 id="title"><b>Saved Payment</b></h2><br>
                 <table id="paymentTable" align="center">
                     <thead>
                         <tr>
