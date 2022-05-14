@@ -71,8 +71,8 @@ public class DBManager {
         st.executeUpdate("DELETE FROM IOTADMIN.USERS WHERE USEREMAIL='" + email + "'");
     }
     
-    public ArrayList<User> fetchUsers() throws SQLException {
-        String fetch = "SELECT * FROM IOTADMIN.USERS";
+    public ArrayList<User> fetchCustomers() throws SQLException {
+        String fetch = "SELECT * FROM IOTADMIN.USERS WHERE USERTYPE = 'customer'";
         ResultSet rs = st.executeQuery(fetch);
         ArrayList<User> temp = new ArrayList<User>();
         
@@ -83,7 +83,24 @@ public class DBManager {
             String phone = rs.getString(4);
             String type = rs.getString(5);
             
-            temp.add(new User(name,email,password,phone,type));
+            temp.add(new User(email,name,password,phone,type));
+        }
+        return temp;
+    }
+
+    public ArrayList<User> fetchStaff () throws SQLException {
+        String fetch = "SELECT * FROM IOTADMIN.USERS WHERE USERTYPE = 'staff'";
+        ResultSet rs = st.executeQuery(fetch);
+        ArrayList<User> temp = new ArrayList<User>();
+        
+        while (rs.next()) {
+            String name = rs.getString(2);
+            String email = rs.getString(1);
+            String password = rs.getString(3);
+            String phone = rs.getString(4);
+            String type = rs.getString(5);
+            
+            temp.add(new User(email,name,password,phone,type));
         }
         return temp;
     }

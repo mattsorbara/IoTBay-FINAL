@@ -14,25 +14,26 @@
         <link rel="stylesheet" href="static/css/ViewUser.css">
     </head>
     <%
-        // get confirmation and error messages from session
         String msgUpdate = (session.getAttribute("msgUpdate") != null) ? (String) session.getAttribute("msgUpdate") : "";
         String msgCreate = (session.getAttribute("msgCreate") != null) ? (String) session.getAttribute("msgCreate") : "";
         String msgDelete = (session.getAttribute("msgDelete") != null) ? (String) session.getAttribute("msgDelete") : "";
         String userDeleted = (session.getAttribute("userDeleted") != null) ? (String) session.getAttribute("userDeleted") : "";
-        // clear confirmation and error messages so does not show again
+    
         session.setAttribute("msgUpdate", "");
         session.setAttribute("msgCreate", "");
         session.setAttribute("msgDelete", "");
         session.setAttribute("userDeleted", "");
     %>
-    <body>
+    
+    <body action="ViewUserAdmin">
+
        <div class="topnav">
         <a class="button1" href="Home.jsp">Home</a>
         <a class="button1" href="Login.jsp">Logout</a> 
         <a class="button1" href="ViewUser.jsp">View Users</a>
         <a class="button1" href="CreateUser.jsp">Create New Users</a>
         </div>
-       </div>
+       </div> 
         <div class="column1">
             <div class="view">
                 <div>
@@ -70,7 +71,27 @@
                                 <th>Password</th>
                             </tr>
                         </thead>
-                    </table>
+                        <tbody>
+                        <c:forEach items="${customers}" var="c">
+                            <tr>
+                                <td>
+                                    <form method="get" action="UpdateAdminServlet">
+                                       <input type="secret" name="customerEmail" value="${c.getEmail()}" />
+                                       <input type="secret" name="customerType" value="customer" />
+                                        <button class="button4" type="confirm">Edit</button> 
+                                    </form>
+                                </td>
+                               <td>Customer</td>
+                                    <td>${c.getType()}</td>  
+                                    <td>${c.getEmail()}</td>
+                                    <td>${c.getFirstName()}</td>
+                                    <td>${c.getLastName()}</td>
+                                    <td>${c.getPhoneNumber()}</td>
+                                    <td>${c.getPassword()}</td>
+                            </tr>
+                       </c:forEach>
+                    </tbody>
+                 </table>
                         <table id="STable"> <thead>
                             <tr><td colspan="2"><h2>Staff</h2></td></tr>
                             <tr>
@@ -84,7 +105,28 @@
                                 <th>Manager</th>
                             </tr>
                         </thead>
-                    </table>
+                    <tbody>
+                        <c:forEach items="${customers}" var="c">
+                            <tr>
+                                <td>
+                                    <form method="get" action="UpdateAdminServlet">
+                                       <input type="secret" name="staffEmail" value="${s.getEmail()}" />
+                                       <input type="secret" name="staffEmail" value="staff" />
+                                        <button class="button4" type="confirm">Edit</button> 
+                                    </form>
+                                </td>
+                               <td>Staff</td>
+                                    <td>${s.getType()}</td>  
+                                    <td>${s.getEmail()}</td>
+                                    <td>${s.getFirstName()}</td>
+                                    <td>${s.getLastName()}</td>
+                                    <td>${s.getPhoneNumber()}</td>
+                                    <td>${s.getPassword()}</td>
+                                    <td>${s.getManager()}</td>
+                            </tr>
+                       </c:forEach>
+                    </tbody>
+                 </table>
                 </div>
             </div>
         </div>
