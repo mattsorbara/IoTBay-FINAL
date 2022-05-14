@@ -189,6 +189,18 @@ public class DBManager {
         return 0;
     }
 
+    public double fetchOrderAmount(int orderID) throws SQLException {
+        String fetch = "SELECT ORDERPRICE FROM IOTADMIN.ORDERS WHERE ORDERID = " + orderID + "";
+        ResultSet rs = st.executeQuery(fetch);
+        while (rs.next()) {
+            return rs.getDouble(1);
+        }
+
+        return 0;
+
+    }
+
+
     public int getPaymentID(int orderID) throws SQLException {
         String fetch = "SELECT PAYMENTID FROM IOTADMIN.PAYMENT WHERE ORDERID= " + orderID;
         ResultSet rs = st.executeQuery(fetch);
