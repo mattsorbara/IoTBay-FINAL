@@ -66,7 +66,10 @@ public class LoginServlet extends HttpServlet {
                 if (user == null) {
                     session.setAttribute("logError", "User does not exist.");
                     request.getRequestDispatcher("login.jsp").include(request, response);
-                } 
+                } else if (user.getUserActive() == false) {
+                    session.setAttribute("logError", "User registration has been cancelled.");
+                    request.getRequestDispatcher("login.jsp").include(request, response);
+                }
                 else { 
                     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
                     Timestamp login = new Timestamp(new Date().getTime());  

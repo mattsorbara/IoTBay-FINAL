@@ -56,7 +56,7 @@
                         <input type="hidden" name="type" value="${user.userType}">
                     </div>
                     <div class="buttons">
-                        <a href="DeleteServlet" class="cancel">Delete User</a>
+                        <a href="DeleteServlet" class="cancel">Cancel Registration</a>
                         <button class="submit" type="submit">Update User</button>
                     </div>
                 </form>
