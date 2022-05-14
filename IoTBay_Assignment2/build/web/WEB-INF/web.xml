@@ -156,6 +156,15 @@
         <url-pattern>/OrderSearchServlet</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>EditOrderServlet</servlet-name>
+        <servlet-class>iotbay.controller.EditOrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditOrderServlet</servlet-name>
+        <url-pattern>/EditOrderServlet</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30

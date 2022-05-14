@@ -200,6 +200,18 @@ public class DBManager {
 
     }
 
+    public Order fetchOrder(int orderID) throws SQLException {
+        String fetch = "SELECT * FROM IOTADMIN.ORDERS WHERE ORDERID = " + orderID + "";
+        ResultSet rs = st.executeQuery(fetch);
+        while (rs.next()) {
+            return new Order(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getInt(5), rs.getString(6), rs.getString(7));
+        }
+        return null;
+    }
+
+    public void updateOrder(double orderAmount, int quantity, int orderID) throws SQLException {
+        st.executeUpdate("UPDATE IOTADMIN.ORDERS SET ORDERPRICE = " + orderAmount + ", ORDERQUANTITY = " + quantity + " WHERE ORDERID = " + orderID + "");
+    } 
 
     public int getPaymentID(int orderID) throws SQLException {
         String fetch = "SELECT PAYMENTID FROM IOTADMIN.PAYMENT WHERE ORDERID= " + orderID;

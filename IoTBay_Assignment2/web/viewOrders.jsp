@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Orders Search | IoT Bay</title>
-        <link rel="stylesheet" type="text/css" href="static/css/viewLogs.css">
+        <link rel="stylesheet" type="text/css" href="static/css/viewOrders.css">
     </head>
 
            <%  
@@ -34,13 +34,13 @@
                 <hr>
                 <% if (requestType.equals("2")) {  %>
                 <table id="logTable">
-                    <tr>
+                   <tr>
                         <th class="col">OrderID</th>
-                        <th class="col">User Email</th>
-                        <th class="col">Order Price</th>
-                        <th class="col">Order Quantity</th>
-                        <th class="col">Order Date</th>
-                        <th class="col">Order Status</th>
+                        <th class="col">Email</th>
+                        <th class="col">Amount</th>
+                        <th class="col">Quantity</th>
+                        <th class="col">Date</th>
+                        <th class="col">Status</th>
                     </tr>
                     <% while(rows.next()){ %>
                         <tr>
@@ -49,7 +49,16 @@
                             <td><%=rows.getString(4)%></td>
                             <td><%=rows.getString(5)%></td>
                             <td><%=rows.getString(6)%></td>
-                            <td><%=rows.getString(7)%></td>                                        
+                            <td><%=rows.getString(7)%></td>
+                            <% if (rows.getString(7).equals("SAVED")) {%>
+                            <td><a href="EditOrderServlet?id=<%=rows.getString(1)%>"><button class="submit">Edit Order</button></a></td>
+                            <td/>
+                            <%}%>
+                            <% if (rows.getString(7).equals("SUBMITTED") || rows.getString(7).equals("SAVED")){%>
+                            <td/>
+                            <td><a href="DeleteOrderServlet?id=<%=rows.getString(1)%>"><button class="cancel">Cancel Order</button></a></td>
+                            </form>
+                            <%}%>
                         </tr>
                     <% } %>
                 
@@ -59,11 +68,11 @@
                 <table id="logTable">
                     <tr>
                         <th class="col">OrderID</th>
-                        <th class="col">User Email</th>
-                        <th class="col">Order Price</th>
-                        <th class="col">Order Quantity</th>
-                        <th class="col">Order Date</th>
-                        <th class="col">Order Status</th>
+                        <th class="col">Email</th>
+                        <th class="col">Amount</th>
+                        <th class="col">Quantity</th>
+                        <th class="col">Date</th>
+                        <th class="col">Status</th>
                     </tr>
                     <% while(rows.next()){ %>
                         <tr>
@@ -72,13 +81,20 @@
                             <td><%=rows.getString(4)%></td>
                             <td><%=rows.getString(5)%></td>
                             <td><%=rows.getString(6)%></td>
-                            <td><%=rows.getString(7)%></td>                                        
+                            <td><%=rows.getString(7)%></td>
+                            <% if (rows.getString(7).equals("SAVED")) {%>
+                            <td><a href="EditOrderServlet?id=<%=rows.getString(1)%>"><button class="submit">Edit Order</button></a></td>
+                            <td/>
+                            <%}%>
+                            <% if (rows.getString(7).equals("SUBMITTED") || rows.getString(7).equals("SAVED")){%>
+ 
+                            <td><a href="DeleteOrderServlet?id=<%=rows.getString(1)%>"><button class="cancel">Cancel Order</button></a></td>
+                            <%}%>
                         </tr>
                     <%      } 
                         }
                     %>
                 </table>
-
             </div>
         </div>
     </body>

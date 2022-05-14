@@ -6,7 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Log Search | IoT Bay</title>
-        <link rel="stylesheet" type="text/css" href="static/css/logSearch.css">
+        <link rel="stylesheet" type="text/css" href="static/css/orderSearch.css">
     </head>
     <% 
         String orderViewError = (String) session.getAttribute("orderViewError");
@@ -26,7 +26,7 @@
                 <% 
                     if (!"guest@guest.com".equals(user.getEmail())){
                             %>
-                    <div>
+                    <div class="searchAttribute">
                         <label>From:</label>
                         <input type="datetime-local" name="from" value="2022-05-01T00:00">
                         <label>To:</label>
@@ -36,7 +36,7 @@
                 <%
                     }
                 %>
-                    <div>
+                    <div class="searchAttribute">
                         <label>Order ID:</label>
                         <input type="text" name="orderIDSearch">
                         <button name="id" value="2" type="submit" class="submit">Search by Order ID</button>
