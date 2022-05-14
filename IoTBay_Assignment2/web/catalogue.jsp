@@ -24,7 +24,13 @@
 
         %>
         
+        <% 
+            if (!"guest@guest.com".equals(user.getEmail())){
+                    %>
         <jsp:include page="header.jsp"/>
+        <%
+            }
+        %>
         
         <div class="catalogue">
             <div class="catalogueContents">
