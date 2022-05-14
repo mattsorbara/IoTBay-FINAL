@@ -45,8 +45,8 @@
                 </div>
                 <div>
                     <input type="text" id="inputFName" class="searchbox" onkeyup="filterTable()" placeholder="First name" title="Type in a name">
-                    <input type="text" id="inputLName" class="searchbox" onkeyup="filterTable()" placeholder="Last name.." title="Type in a name">
-                    <input type="text" id="inputPhone" class="searchbox" onkeyup="filterTable()" placeholder="Phone number" title="Type in a name">
+                    <input type="text" id="inputLName" class="searchbox" onkeyup="filterTable()" placeholder="Last name" title="Type in a name">
+                    <input type="text" id="inputPhone" class="searchbox" onkeyup="filterTable()" placeholder="Phone number" title="Type in number">
                   <select id="inputType" onchange="filterTable()" >
                         <option value="all">View All</option>
                         <option value="customer">Only Customers</option>
@@ -62,8 +62,7 @@
                         <thead>
                             <tr><td colspan="2"><h2>Customers</h2></td></tr>
                             <tr>
-                                <th colspan="2">Update</th>
-                                <th>Type</th>
+                                <th colspan="2">Type</th>
                                 <th>Email</th>
                                 <th>First name</th>
                                 <th>Last name</th>
@@ -76,13 +75,11 @@
                             <tr>
                                 <td>
                                     <form method="get" action="UpdateAdminServlet">
-                                       <input type="secret" name="customerEmail" value="${c.getEmail()}" />
-                                       <input type="secret" name="customerType" value="customer" />
+                                       <input type="hidden" name="customerEmail" value="${c.getEmail()}" />
                                         <button class="button4" type="confirm">Edit</button> 
                                     </form>
                                 </td>
                                <td>Customer</td>
-                                    <td>${c.getType()}</td>  
                                     <td>${c.getEmail()}</td>
                                     <td>${c.getFirstName()}</td>
                                     <td>${c.getLastName()}</td>
@@ -95,8 +92,7 @@
                         <table id="STable"> <thead>
                             <tr><td colspan="2"><h2>Staff</h2></td></tr>
                             <tr>
-                                <th colspan="2">Update</th>
-                                <th>Type</th>
+                                <th colspan="2">Type</th>
                                 <th>Email</th>
                                 <th>First name</th>
                                 <th>Last name</th>
@@ -109,14 +105,12 @@
                         <c:forEach items="${customers}" var="c">
                             <tr>
                                 <td>
-                                    <form method="get" action="UpdateAdminServlet">
-                                       <input type="secret" name="staffEmail" value="${s.getEmail()}" />
-                                       <input type="secret" name="staffEmail" value="staff" />
+                                    <form method="get" action="EditUser.jsp">
+                                       <input type="hidden" name="staffEmail" value="${s.getEmail()}" />
                                         <button class="button4" type="confirm">Edit</button> 
                                     </form>
                                 </td>
                                <td>Staff</td>
-                                    <td>${s.getType()}</td>  
                                     <td>${s.getEmail()}</td>
                                     <td>${s.getFirstName()}</td>
                                     <td>${s.getLastName()}</td>

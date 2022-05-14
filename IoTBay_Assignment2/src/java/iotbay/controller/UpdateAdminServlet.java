@@ -33,19 +33,54 @@ class UpdateAdminServlet extends HttpServlet{
         DBManager manager = (DBManager) session.getAttribute("manager");
         
         User user = null;
+
         try {
-            user = manager.findUser(email, password);
-            if (user != null) {
+                user = manager.findUser(email, password);
                 session.setAttribute("user", user);
-                request.getRequestDispatcher("UpdateUser.jsp").include(request, response);
-            } else {
-                System.out.println("user does not exist");
+                request.getRequestDispatcher("EditUser.jsp").include(request, response);
+
+
+                ArrayList<User> staff = manager.fetchStaff();
+                request.setAttribute("staff", staff);
+
+                request.getRequestDispatcher("EditUser.jsp").include(request, response);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(EditServlet.class.getName()).log(Level.SEVERE, null, ex);
+                request.getRequestDispatcher("main.jsp").include(request, response);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println(ex.getErrorCode() + " and "  + ex.getMessage());
-        }
+
+        try {
+                user = manager.findUser(email, password);
+                session.setAttribute("user", user);
+                request.getRequestDispatcher("EditUser.jsp").include(request, response);
+
+
+                ArrayList<User> customer = manager.fetchCustomers();
+                request.setAttribute("staff", customer);
+
+                request.getRequestDispatcher("EditUser.jsp").include(request, response);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(EditServlet.class.getName()).log(Level.SEVERE, null, ex);
+                request.getRequestDispatcher("main.jsp").include(request, response);
+            }
+
+
+                }
+//        try {
+//            user = manager.findUser(email, password);
+//            if (user != null) {
+//                session.setAttribute("user", user);
+//                request.getRequestDispatcher("EditUser.jsp").include(request, response);
+//            } else {
+//                System.out.println("user does not exist");
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+//            System.out.println(ex.getErrorCode() + " and "  + ex.getMessage());
+//        }
         
-        request.getRequestDispatcher("UpdateUser.jsp").include(request, response);
-    }
-}
+//        request.getRequestDispatcher("UpdateUser.jsp").include(request, response);
+//    }
+//}

@@ -29,22 +29,23 @@ public class ViewUserAdmin extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        HttpSession session = request.getSession();
+ 
+        DBManager manager = (DBManager) session.getAttribute("manager");
 
         try {
-            HttpSession session = request.getSession();
-      
-            DBManager customer = (DBManager) session.getAttribute("customer");
-            DBManager staff = (DBManager) session.getAttribute("staff");
-
-            ArrayList<User> customer = Manager.fetchCustomers();
-            ArrayList<User> staff = Manager.fetchStaff();
+     
+            ArrayList<User> customer = manager.fetchCustomers();
+            ArrayList<User> staff = manager.fetchStaff();
 
             request.setAttribute("customers", customer);
             request.setAttribute("staffs", staff);
 
             request.getRequestDispatcher("ViewUser.jsp").include(request, response);
 
-        } catch (SQLException ex) {
+        } 
+
+            catch (SQLException ex) {
             Logger.getLogger(ViewUserAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
 
