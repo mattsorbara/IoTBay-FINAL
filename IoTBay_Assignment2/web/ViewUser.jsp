@@ -32,10 +32,7 @@
         
        
         HttpSession current_session = request.getSession();
-        ResultSet rs = (ResultSet)current_session.getAttribute("userView");
-
-        String from = (String)current_session.getAttribute("from");
-        String to = (String)current_session.getAttribute("to");
+        ResultSet rows = (ResultSet)current_session.getAttribute("userLogRows");
 
      %>
 
@@ -72,6 +69,7 @@
                         <button class="button2" type="submit">Add New User</button>
                     </form>
                 </div>
+                
                 <div class="tablewrap">
                     <table class="UserTable">
                         <thead>
@@ -85,12 +83,13 @@
                             </tr>   
                           </thead>
                     <tbody>
+                        <% while(rows.next()){ %>
                         <tr>
-                            <td><%=rs.getString(1)%></td>
-                            <td><%=rs.getString(2)%></td>
-                            <td><%=rs.getString(4)%></td>
+                            <td><%=rows.getString(1)%></td>
+                            <td><%=rows.getString(2)%></td>
+                            <td><%=rows.getString(4)%></td>
                         </tr>
-       
+                            <% } %>
         </tbody>
  </table>
                         <table class="UserTable"> 
@@ -104,13 +103,13 @@
                                 <th>Password</th>
                                 <th>Manager</th>
                             </tr>
-
+                    <% while(rows.next()){ %>
                         <tr>
-                            <td><%=rs.getString(1)%></td>
-                            <td><%=rs.getString(2)%></td>
-                            <td><%=rs.getString(4)%></td>
+                            <td><%=rows.getString(1)%></td>
+                            <td><%=rows.getString(2)%></td>
+                            <td><%=rows.getString(4)%></td>
                         </tr>
-
+                        <% } %>
                         </thead>
 
                  </table>

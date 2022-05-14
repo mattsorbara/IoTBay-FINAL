@@ -63,6 +63,10 @@ public class DBManager {
         st.executeUpdate("UPDATE IOTADMIN.Users SET FULLNAME='" + name + "',PASSWORD='" + password + "',PHONE='" + phone + "' WHERE USEREMAIL='" + email + "'");
     }
     
+    public void findUser(String name, String email, String password, String phone) throws SQLException {
+        st.executeUpdate("UPDATE IOTADMIN.Users SET FULLNAME='" + name + "',PASSWORD='" + password + "',PHONE='" + phone + "' WHERE USEREMAIL='" + email + "'");
+    }
+
     public void setUserStatus(boolean status, String email) throws SQLException {
         st.executeUpdate("UPDATE IOTADMIN.Users SET TYPE=" + status + "WHERE USEREMAIL='" + email + "'");
     }
@@ -104,6 +108,7 @@ public class DBManager {
         }
         return temp;
     }
+
     
     public boolean checkStudent(String email, String password) throws SQLException {
         String fetch = "SELECT * FROM IOTADMIN.Users where EMAIL='" + email + "' AND PASSWORD='" + password + "'";

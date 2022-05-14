@@ -28,8 +28,11 @@ class UpdateAdminServlet extends HttpServlet{
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
+        String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String phone = request.getParameter("phone");
+        String type = request.getParameter("type");
         
         DBManager manager = (DBManager) session.getAttribute("manager");
         
@@ -54,12 +57,23 @@ class UpdateAdminServlet extends HttpServlet{
                 request.getRequestDispatcher("HomeAdmin.jsp").include(request, response);
             }
 
-   
     }
     }
 
+        try {
+                    manager.updateUser(email, name, phone, password);
+                    User updateUser = manager.findUser (email);
+                    session.setAttribute("staff", updateUser);
 
-                
+          } catch (SQLException ex) {
+
+                    session.setAttribute("updateMsg", "Update was not successful");
+                    response.sendRedirect("UpdateAdminServlet");
+        
+    }
+  
+
+               
 //        try {
 //            user = manager.findUser(email, password);
 //            if (user != null) {
