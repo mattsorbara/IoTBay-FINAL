@@ -18,6 +18,7 @@
     <% 
         Order order = (Order) session.getAttribute("currentOrder");
         Payment payment = (Payment) session.getAttribute("confirmedPayment");
+        Catalogue product = (Catalogue) session.getAttribute("product");
     %>
     
      <body>
@@ -37,7 +38,7 @@
                 <div class="registerFormElement" id="productName">
                     <label>Product Name</label>
                     <div>
-                        <input class="border-customized-input" type="text" value="<%= order.getProductID() %>" readonly>
+                        <input class="border-customized-input" type="text" value="<%= product.getTitle() %>" readonly>
                     </div>
                 </div>
                 <div class="registerFormElement" id="productStock">
