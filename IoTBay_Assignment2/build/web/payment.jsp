@@ -46,7 +46,11 @@
                             <!--<input class="border-customized-input" type="text" required="true" name="paymentMethod">-->
                             <select name="paymentMethod">
                                 <option value="card">Card</option>
+                                <% 
+                                if (!"guest@guest.com".equals(currentOrder.getUserEmail())){
+                                %>
                                 <option value="savedCard">Saved Payment</option>
+                                <%}%>
                             </select>
                         </div>
                     </div>
