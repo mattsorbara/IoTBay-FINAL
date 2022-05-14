@@ -4,9 +4,7 @@
  */
 package iotbay.controller;
 
-import iotbay.model.Order;
-import iotbay.model.Savedpayment;
-import iotbay.model.User;
+import iotbay.model.*;
 import iotbay.model.dao.*;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -35,52 +33,6 @@ public class PaymentServlet extends HttpServlet {
     private DBConnector Connector;
         
 
-//    @Override
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        
-//        try
-//        {
-//            Connector = new DBConnector();
-//        }catch (ClassNotFoundException | SQLException ex){
-//            java.util.logging.Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE,null,ex);
-//        }
-//        
-//        try
-//        {       
-//            manager = new DBManager(Connector.openConnection());  
-//        }catch (SQLException ex){
-//            java.util.logging.Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE,null,ex);
-//        }
-//        
-//        //session
-//        HttpSession session = request.getSession();
-//
-//        User user = (User) session.getAttribute("user");
-//        
-//        String email = user.getEmail();
-//        Savedpayment savedPayment = null;
-//
-//        try {
-//            savedPayment = manager.findSavedpayment(email);
-//            System.out.print(savedPayment);
-//
-//            if (savedPayment != null) {
-//                System.out.print("IM HERE");
-//                session.setAttribute("savedPayment", savedPayment);
-//                request.getRequestDispatcher("payment.jsp").include(request, response);
-//            } else {
-//                System.out.print("HERE I AM");
-//                Savedpayment nullPayment = new Savedpayment("N/A", "N/A", "N/A", "N/A");
-//                session.setAttribute("savedPayment", nullPayment);
-//                request.getRequestDispatcher("payment.jsp").include(request, response);
-//            }
-//            
-//                            
-//        } catch (SQLException ex){
-//            Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -118,7 +70,9 @@ public class PaymentServlet extends HttpServlet {
                     String cardCVC = savedPayment.getCardCVC();
                     String cardExpiry = savedPayment.getCardExpiry();                     
                     manager.addPayment2(paymentID, cardNumber, cardCVC, cardExpiry);
-                    request.getRequestDispatcher("home.jsp").include(request, response);
+                    Payment confirmedPayment = manager.getPayment(orderID);
+                    session.setAttribute("confirmedPayment", confirmedPayment);
+                    request.getRequestDispatcher("orderConfirmation.jsp").include(request, response);
 //                } else {
 //
 //                }

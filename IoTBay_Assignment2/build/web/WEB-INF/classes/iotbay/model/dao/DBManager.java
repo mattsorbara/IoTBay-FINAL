@@ -200,6 +200,25 @@ public class DBManager {
         return 0;
     }
 
+    public Payment getPayment(int orderID) throws SQLException {
+        String fetch = "SELECT * FROM IOTADMIN.PAYMENT WHERE ORDERID= " + orderID;
+        ResultSet rs = st.executeQuery(fetch);
+
+         while (rs.next()) {
+            int productID = rs.getInt(1);
+            int fetchedOrderID = rs.getInt(2);
+            String userEmail= rs.getString(3);
+            String paymentType= rs.getString(4);
+            double paymentAmount= rs.getDouble(5);
+            String cardNumber= rs.getString(6);
+            String cardCVC= rs.getString(7);
+            String cardExpiry= rs.getString(8);
+            Timestamp paymentDate= rs.getTimestamp(9);
+            return new Payment(productID, fetchedOrderID, userEmail, paymentType, paymentAmount, cardNumber, cardCVC, cardExpiry, paymentDate);
+        }
+        return null;
+    }
+
     public void addPayment1(int orderID, double amount, String paymentMethod, String email) throws SQLException {
         st.executeUpdate("INSERT INTO IOTADMIN.PAYMENT (orderID, useremail, paymentType, paymentAmount, cardNumber, cardCVC, cardExpiry, paymentDate) VALUES (" + orderID + ", '" + email + "', '" + paymentMethod + "', " + amount + ", ' ', ' ', ' ', CURRENT_TIMESTAMP)");
     } 

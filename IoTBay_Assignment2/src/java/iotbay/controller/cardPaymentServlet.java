@@ -55,7 +55,9 @@ public class cardPaymentServlet extends HttpServlet {
                 manager.deletePayment(email);
             }
             manager.addPayment2(paymentID, cardNumber, cardCVC, cardExpiry);
-            request.getRequestDispatcher("home.jsp").include(request, response);
+            Payment confirmedPayment = manager.getPayment(orderID);
+            session.setAttribute("confirmedPayment", confirmedPayment);
+            request.getRequestDispatcher("orderConfirmation.jsp").include(request, response);
 
               
         } catch (SQLException ex) {

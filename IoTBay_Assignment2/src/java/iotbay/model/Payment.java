@@ -4,69 +4,73 @@
  */
 package iotbay.model;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author lindale
  */
 public class Payment {
-    private String paymentID;
-    private String orderID;
-    private double amount;
-    private String date;
-    private String paymentMethod;
+    private int paymentID;
+    private int orderID;
+    private String userEmail;
+    private String paymentType;
+    private double paymentAmount;
     private String cardNumber;
     private String cardExpiry;
     private String cardCVC;
+    private Timestamp paymentDate;
 
-    public Payment(String paymentID, String orderID, int amount, String date, String paymentMethod, String cardNumber, String cardCVC, String cardExpiry) {
+    public Payment(int paymentID, int orderID, String userEmail, String paymentType, double paymentAmount, String cardNumber, String cardExpiry, String cardCVC, Timestamp paymentDate) {
         this.paymentID = paymentID;
         this.orderID = orderID;
-        this.amount = amount;
-        this.date = date;
-        this.paymentMethod = paymentMethod;
+        this.userEmail = userEmail;
+        this.paymentType = paymentType;
+        this.paymentAmount = paymentAmount;
         this.cardNumber = cardNumber;
         this.cardExpiry = cardExpiry;
         this.cardCVC = cardCVC;
+        this.paymentDate = paymentDate;
     }
 
-    public String getPaymentID() {
+    public int getPaymentID() {
         return paymentID;
     }
 
-    public void setPaymentID(String paymentID) {
+    public void setPaymentID(int paymentID) {
         this.paymentID = paymentID;
     }
 
-    public String getOrderID() {
+    public int getOrderID() {
         return orderID;
     }
 
-    public void setOrderID(String orderID) {
+    public void setOrderID(int orderID) {
         this.orderID = orderID;
     }
 
-    public double getAmount() {
-        return amount;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
-    public String getDate() {
-        return date;
+    public String getPaymentType() {
+        return paymentType;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
     }
 
-    public String getPaymentMethod() {
-        return paymentMethod;
+    public double getPaymentAmount() {
+        return paymentAmount;
     }
 
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
+    public void setPaymentAmount(double paymentAmount) {
+        this.paymentAmount = paymentAmount;
     }
 
     public String getCardNumber() {
@@ -93,6 +97,13 @@ public class Payment {
         this.cardCVC = cardCVC;
     }
 
+    public Timestamp getPaymentDate() {
+        return paymentDate;
+    }
+
+    public void setPaymentDate(Timestamp paymentDate) {
+        this.paymentDate = paymentDate;
+    }
 
 
 }
