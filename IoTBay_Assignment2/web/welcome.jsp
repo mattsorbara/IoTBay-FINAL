@@ -39,6 +39,9 @@
                 <div class="buttons">
                     <a href="orderSearch.jsp" class="submit">Search Order Logs</a>
                 </div>                
+                <div class="buttons">
+                    <a href="shipmentSearch.jsp" class="submit">Search Shipment Logs</a>
+                </div>
             </div>
         </div>
     </body>
