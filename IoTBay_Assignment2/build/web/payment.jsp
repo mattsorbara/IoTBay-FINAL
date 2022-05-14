@@ -14,7 +14,6 @@
         <link rel="stylesheet" type="text/css" href="static/css/payment.css">
     </head>
     <% 
-//        Savedpayment savedPayment = (Savedpayment) session.getAttribute("savedPayment");
         Order currentOrder = (Order) session.getAttribute("currentOrder");
     %>
     <body>
@@ -46,7 +45,11 @@
                             <!--<input class="border-customized-input" type="text" required="true" name="paymentMethod">-->
                             <select name="paymentMethod">
                                 <option value="card">Card</option>
+                                <% 
+                                if (!"guest@guest.com".equals(currentOrder.getUserEmail())){
+                                %>
                                 <option value="savedCard">Saved Payment</option>
+                                <%}%>
                             </select>
                         </div>
                     </div>
@@ -55,11 +58,13 @@
                         <a href="home.jsp" class="cancel">Cancel</a>
                     </div>
                 </form><br><br>
-                        
-                <h2 id="title"><b>Saved Payment</b></h2><br
+
                 <% 
-                    if ("guest@guest.com".equals(currentOrder.getUserEmail())){
-                %>
+                    if (!"guest@guest.com".equals(currentOrder.getUserEmail())){
+                        Savedpayment savedPayment = (Savedpayment) session.getAttribute("savedPayment");
+                %>                
+                <h2 id="title"><b>Saved Payment</b></h2><br>
+
                 <table id="paymentTable" align="center">
                     <thead>
                         <tr>
@@ -71,10 +76,10 @@
                     </thead>
                     <tbody>
                         <tr> 
-<!--                            <td>savedPayment.getEmail()</td>
-                            <td>savedPayment.getCardNumber()</td>
-                            <td>savedPayment.getCardCVC(</td>
-                            <td>savedPayment.getCardExpiry()</td>-->
+                            <td><%= savedPayment.getEmail()%></td>
+                            <td><%= savedPayment.getCardNumber()%></td>
+                            <td><%= savedPayment.getCardCVC()%></td>
+                            <td><%= savedPayment.getCardExpiry()%></td>
                         </tr>
                     </tbody>
                 </table>

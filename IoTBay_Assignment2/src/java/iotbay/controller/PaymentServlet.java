@@ -104,19 +104,20 @@ public class PaymentServlet extends HttpServlet {
 
             manager.addPayment1(orderID, amount, paymentMethod, email);
             if (paymentMethod.equals("card")) {
+                System.out.println("Empty");
                 request.getRequestDispatcher("cardPayment.jsp").include(request, response);
             } else if (paymentMethod.equals("savedCard")) {
                 Savedpayment savedPayment = manager.findSavedpayment(email);
-                if (savedPayment != null) {
+//                if (savedPayment != null) {
                     int paymentID = manager.getPaymentID(orderID);
                     String cardNumber = savedPayment.getCardNumber();
                     String cardCVC = savedPayment.getCardCVC();
                     String cardExpiry = savedPayment.getCardExpiry();                     
                     manager.addPayment2(paymentID, cardNumber, cardCVC, cardExpiry);
                     request.getRequestDispatcher("home.jsp").include(request, response);
-                } else {
-                    System.out.println("Empty");
-                }
+//                } else {
+//
+//                }
             } else {
                 System.out.println("No");
             }

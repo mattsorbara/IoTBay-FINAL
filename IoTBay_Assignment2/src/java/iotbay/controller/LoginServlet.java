@@ -62,6 +62,17 @@ public class LoginServlet extends HttpServlet {
                 request.getRequestDispatcher("login.jsp").include(request, response);
             }
             else {
+                savedPayment = manager.findSavedpayment(email);
+
+                if (savedPayment != null) {
+                    session.setAttribute("savedPayment", savedPayment);
+                    System.out.println(savedPayment.getCardNumber());
+                } else {
+                    Savedpayment nullPayment = new Savedpayment("N/A", "N/A", "N/A", "N/A");
+                    session.setAttribute("savedPayment", nullPayment);
+                    System.out.println(nullPayment.getCardNumber());
+                }
+
                 user = manager.findUser(email, password);
                 if (user == null) {
                     session.setAttribute("logError", "User does not exist.");
