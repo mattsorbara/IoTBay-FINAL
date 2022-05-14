@@ -5,9 +5,10 @@
 --%>
 
 <%@ page import="java.sql.*" %>
+<%@page import="iotbay.model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="iotbay.model.User"%>
+
 
 
 
@@ -31,7 +32,7 @@
         
        
         HttpSession current_session = request.getSession();
-        ResultSet rows = (ResultSet)current_session.getAttribute("userLogRows");
+        ResultSet rs = (ResultSet)current_session.getAttribute("userView");
 
         String from = (String)current_session.getAttribute("from");
         String to = (String)current_session.getAttribute("to");
@@ -41,13 +42,6 @@
 
     
     <body action="ViewUserAdmin">
-
-    <body>
-
-        
-        <%
-            ArrayList<User> user = (ArrayList<User>) session.getAttribute("user");
-        %>
 
        <div class="topnav">
         <a class="button1" href="HomeAdmin.jsp">Home</a>
@@ -88,17 +82,17 @@
                                 <th>Full name</th>
                                 <th>Phone number</th>
                                 <th>Password</th>
-                            </tr>
-                              <% while(rows.next()){ %>
+                            </tr>   
+                          </thead>
+                    <tbody>
                         <tr>
-                            <td><%=rows.getString(1)%></td>
-                            <td><%=rows.getString(2)%></td>
-                            <td><%=rows.getString(4)%></td>
+                            <td><%=rs.getString(1)%></td>
+                            <td><%=rs.getString(2)%></td>
+                            <td><%=rs.getString(4)%></td>
                         </tr>
-                    <% } %>
-        </thead>
-
-                 </table>
+       
+        </tbody>
+ </table>
                         <table class="UserTable"> 
                          <thead>
                             <tr><td colspan="2"><h2>Staff</h2></td></tr>
@@ -110,13 +104,13 @@
                                 <th>Password</th>
                                 <th>Manager</th>
                             </tr>
-                         <% while(rows.next()){ %>
+
                         <tr>
-                            <td><%=rows.getString(1)%></td>
-                            <td><%=rows.getString(2)%></td>
-                            <td><%=rows.getString(4)%></td>
+                            <td><%=rs.getString(1)%></td>
+                            <td><%=rs.getString(2)%></td>
+                            <td><%=rs.getString(4)%></td>
                         </tr>
-                    <% } %>
+
                         </thead>
 
                  </table>
