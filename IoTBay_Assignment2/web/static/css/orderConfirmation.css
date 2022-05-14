@@ -107,7 +107,7 @@ input  {
     margin-left: 85%;
     margin-right: 0;
     display: flex;
-    justify-content: space-evenly;
+    /*justify-content: space-evenly;*/
 }
 
 .button {

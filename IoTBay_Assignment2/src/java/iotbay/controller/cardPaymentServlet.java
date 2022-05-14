@@ -38,7 +38,7 @@ public class cardPaymentServlet extends HttpServlet {
         String cardExpiry = request.getParameter("cardExpiry");
         Order currentOrder = (Order) session.getAttribute("currentOrder");
 
-        
+        Validator val = new Validator();        
         DBManager manager = (DBManager) session.getAttribute("manager");
         
 //        response.setContentType("text/html;charset=UTF-8");
@@ -46,19 +46,31 @@ public class cardPaymentServlet extends HttpServlet {
         try {
             int orderID = currentOrder.getOrderID();
             int paymentID = manager.getPaymentID(orderID);
-
-            if (crudPayment.equals("create")) {
-                manager.savePayment(email, cardNumber, cardCVC, cardExpiry);
-            } else if (crudPayment.equals("update")){
-                manager.updatePayment(email, cardNumber, cardCVC, cardExpiry);
-            } else if (crudPayment.equals("delete")){
-                manager.deletePayment(email);
+            if(!val.validateCardNumber(cardNumber)) {
+                session.setAttribute("regError", "Card Number format wrong.");
+                request.getRequestDispatcher("cardPayment.jsp").include(request, response);
             }
-            manager.addPayment2(paymentID, cardNumber, cardCVC, cardExpiry);
-            Payment confirmedPayment = manager.getPayment(orderID);
-            session.setAttribute("confirmedPayment", confirmedPayment);
-            request.getRequestDispatcher("orderConfirmation.jsp").include(request, response);
-
+            else if(!val.validateCardCVC(cardCVC)) {
+                session.setAttribute("regError", "Card CVC format wrong.");
+                request.getRequestDispatcher("cardPayment.jsp").include(request, response);
+            }
+            else if(!val.validateCardExpiry(cardExpiry)) {
+                session.setAttribute("regError", "Card Expiry format wrong.");
+                request.getRequestDispatcher("cardPayment.jsp").include(request, response);
+            }
+            else {
+                if (crudPayment.equals("create")) {
+                    manager.savePayment(email, cardNumber, cardCVC, cardExpiry);
+                } else if (crudPayment.equals("update")){
+                    manager.updatePayment(email, cardNumber, cardCVC, cardExpiry);
+                } else if (crudPayment.equals("delete")){
+                    manager.deletePayment(email);
+                }
+                manager.addPayment2(paymentID, cardNumber, cardCVC, cardExpiry);
+                Payment confirmedPayment = manager.getPayment(orderID);
+                session.setAttribute("confirmedPayment", confirmedPayment);
+                request.getRequestDispatcher("orderConfirmation.jsp").include(request, response);
+            }
               
         } catch (SQLException ex) {
             Logger.getLogger(cardPaymentServlet.class.getName()).log(Level.SEVERE, null, ex);

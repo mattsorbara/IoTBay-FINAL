@@ -78,7 +78,6 @@ public class OrderCheckoutServlet extends HttpServlet {
         try {
 
             Catalogue product = (Catalogue) session.getAttribute("product");
-
             
             try {
                 quantity = Integer.parseInt(request.getParameter("quantity"));
@@ -109,6 +108,18 @@ public class OrderCheckoutServlet extends HttpServlet {
                 System.out.println(currentOrder.getUserEmail() + " " + currentOrder.getProductID() + " " + currentOrder.getOrderPrice() + " " + currentOrder.getOrderDate() + " " + currentOrder.getOrderStatus());
 
                 session.setAttribute("currentOrder", currentOrder);
+
+                Savedpayment savedPayment = manager.findSavedpayment(user.getEmail());
+
+                if (savedPayment != null) {
+                    session.setAttribute("savedPayment", savedPayment);
+                    session.setAttribute("anythingSaved", "true");
+
+                } else {
+                    Savedpayment nullPayment = new Savedpayment("N/A", "N/A", "N/A", "N/A");
+                    session.setAttribute("savedPayment", nullPayment);
+                    session.setAttribute("anythingSaved", "false");
+                }
                 request.getRequestDispatcher("payment.jsp").include(request, response);
             }
             

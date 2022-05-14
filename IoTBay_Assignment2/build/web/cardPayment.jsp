@@ -16,6 +16,7 @@
     <% 
         Savedpayment savedPayment = (Savedpayment) session.getAttribute("savedPayment");
         Order currentOrder = (Order) session.getAttribute("currentOrder");
+        String anythingSaved = (String) session.getAttribute("anythingSaved");
     %>
     <body>
         <div class="loggedInMenu">            
@@ -48,16 +49,17 @@
                         <button class="submit" type="submit" name="crudPayment" value="false">Pay</button>
                         <% 
                         if (!"guest@guest.com".equals(currentOrder.getUserEmail())){
+                            if (anythingSaved.equals("false")){
                         %>
                         <button class="submit" type="submit" name="crudPayment" value="create">Pay & Save Payment</button>
-                        <%}%>
+                        <%}}%>
                     </div>
                     <% 
                     if (!"guest@guest.com".equals(currentOrder.getUserEmail())){
                     %>
                     <div class="buttons">
                         <% 
-                        if (savedPayment != null){
+                        if (anythingSaved.equals("true")) {
                         %>
                         <button class="submit" type="submit" name="crudPayment" value="update">Pay & Update Payment</button>
                         <button class="submit" type="submit" name="crudPayment" value="delete">Pay & Delete Saved Payment</button>

@@ -41,7 +41,6 @@ public class LoginServlet extends HttpServlet {
         DBManager manager = (DBManager) session.getAttribute("manager");
         User user = null;
         Validator val = new Validator();
-        Savedpayment savedPayment = null;
         
         try {
             if (!val.validateEmail(email)) {
@@ -53,15 +52,6 @@ public class LoginServlet extends HttpServlet {
                 request.getRequestDispatcher("login.jsp").include(request, response);
             }
             else {
-                savedPayment = manager.findSavedpayment(email);
-
-                if (savedPayment != null) {
-                    session.setAttribute("savedPayment", savedPayment);
-                } else {
-                    Savedpayment nullPayment = new Savedpayment("N/A", "N/A", "N/A", "N/A");
-                    session.setAttribute("savedPayment", nullPayment);
-                }
-                
                 user = manager.findUser(email, password);
                 if (user == null) {
                     System.out.println("here1");

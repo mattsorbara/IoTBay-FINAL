@@ -16,6 +16,7 @@
     <% 
         Savedpayment savedPayment = (Savedpayment) session.getAttribute("savedPayment");
         Order currentOrder = (Order) session.getAttribute("currentOrder");
+        String anythingSaved = (String) session.getAttribute("anythingSaved");
     %>
     <body>
         <div class="loggedInMenu">            
@@ -47,10 +48,12 @@
                             <select name="paymentMethod">
                                 <option value="card">Card</option>
                                 <% 
-                                if (!"guest@guest.com".equals(currentOrder.getUserEmail())){
+                                if (!"guest@guest.com".equals(currentOrder.getUserEmail())) {
+                                    if (anythingSaved.equals("true")) {
                                 %>
                                 <option value="savedCard">Saved Payment</option>
-                                <%}%>
+                                <%  }
+                                }%>
                             </select>
                         </div>
                     </div>
