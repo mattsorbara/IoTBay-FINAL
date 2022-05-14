@@ -18,50 +18,27 @@ import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class EditOrderServlet extends HttpServlet {
+public class CancelOrderServlet extends HttpServlet {
     
     private DBManager manager;
     private DBConnector Connector;
     
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            Connector = new DBConnector();
-        } catch (ClassNotFoundException | SQLException ex){
-            java.util.logging.Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE,null,ex);
-        }
-        
-        try {       
-            manager = new DBManager(Connector.openConnection());  
-        } catch (SQLException ex) {
-            java.util.logging.Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE,null,ex);
-        }
-        
-        //session
-        HttpSession session = request.getSession();
-
-        try {
-            String orderID = request.getParameter("id");
-            Order targetOrder = (Order) manager.fetchOrder(Integer.parseInt(orderID));
-            
-            int productID = targetOrder.getProductID();
-
-            Catalogue product = manager.findProduct(productID);
-            
-            if (product != null) {
-                session.setAttribute("product", product);
-                session.setAttribute("targetOrder", targetOrder);
-                session.setAttribute("selectedOrderID", orderID);
-                
-                request.getRequestDispatcher("editOrder.jsp").include(request, response);
-                response.sendRedirect("editOrder.jsp");
-            }
-            
-                            
-        } catch (SQLException ex){
-            Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    @Override
+//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        try {
+//            Connector = new DBConnector();
+//        } catch (ClassNotFoundException | SQLException ex){
+//            java.util.logging.Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE,null,ex);
+//        }
+//        
+//        try
+//        {       
+//            manager = new DBManager(Connector.openConnection());  
+//        } catch (SQLException ex){
+//            java.util.logging.Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE,null,ex);
+//        }
+//        
+//    }
 
 //        try
 //        {
@@ -102,52 +79,64 @@ public class EditOrderServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+      
         HttpSession session = request.getSession();
         
         DBManager manager = (DBManager) session.getAttribute("manager");
-
-        Order targetOrder = (Order) session.getAttribute("targetOrder");
-        int orderID = targetOrder.getOrderID();
         
-        int quantity = 0;
-
+        String orderID = request.getParameter("id");
+        
         try {
-
-            Catalogue product = (Catalogue) session.getAttribute("product");
+            manager.setOrderStatus("CANCELLED", Integer.parseInt(orderID));
+            request.getRequestDispatcher("orderSearch.jsp").forward(request, response);
             
-            try {
-                quantity = Integer.parseInt(request.getParameter("quantity"));
-                
-                if (quantity != targetOrder.getOrderQuantity()) {
-                    if (quantity <= product.getStock()) {
-
-                        product.setStock((product.getStock() - quantity));
-                        
-                        double totalPrice = quantity * product.getPrice();
-
-                        manager.updateOrder(totalPrice, quantity, orderID);
-
-                        request.getRequestDispatcher("orderSearch.jsp").include(request, response);
-                    }
-                    else {
-                        session.setAttribute("orderError", "Quantity amount invalid!");
-                        request.getRequestDispatcher("editOrder.jsp").include(request, response);
-                    }
-                }
-                else {
-                   request.getRequestDispatcher("orderSearch.jsp").include(request, response);
-                }
-            }
-            catch (NumberFormatException invalidValueError) {
-                session.setAttribute("orderError", "Quantity amount invalid!");
-                request.getRequestDispatcher("editOrder.jsp").include(request, response);
-            }
-            
-        } catch(SQLException ex) {
-            Logger.getLogger(OrderCheckoutServlet.class.getName()).log(Level.SEVERE, null, ex);
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(CancelOrderServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+        
+//        Order targetOrder = (Order) session.getAttribute("targetOrder");
+//        int orderID = targetOrder.getOrderID();
+//        
+//        int quantity = 0;
+//
+//        try {
+//
+//            Catalogue product = (Catalogue) session.getAttribute("product");
+//            
+//            try {
+//                quantity = Integer.parseInt(request.getParameter("quantity"));
+//                
+//                if (quantity != targetOrder.getOrderQuantity()) {
+//                    if (quantity <= product.getStock()) {
+//
+//                        product.setStock((product.getStock() - quantity));
+//                        
+//                        double totalPrice = quantity * product.getPrice();
+//
+//                        manager.updateOrder(totalPrice, quantity, orderID);
+//
+//                        request.getRequestDispatcher("orderSearch.jsp").include(request, response);
+//                    }
+//                    else {
+//                        session.setAttribute("orderError", "Quantity amount invalid!");
+//                        request.getRequestDispatcher("editOrder.jsp").include(request, response);
+//                    }
+//                }
+//                else {
+//                   request.getRequestDispatcher("orderSearch.jsp").include(request, response);
+//                }
+//            }
+//            catch (NumberFormatException invalidValueError) {
+//                session.setAttribute("orderError", "Quantity amount invalid!");
+//                request.getRequestDispatcher("editOrder.jsp").include(request, response);
+//            }
+//            
+//        } catch(SQLException ex) {
+//            Logger.getLogger(OrderCheckoutServlet.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//       
+
     }
         
 }

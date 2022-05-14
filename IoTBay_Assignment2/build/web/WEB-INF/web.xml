@@ -157,12 +157,12 @@
     </servlet-mapping>
     
     <servlet>
-        <servlet-name>EditOrderServlet</servlet-name>
-        <servlet-class>iotbay.controller.EditOrderServlet</servlet-class>
+        <servlet-name>CancelOrderServlet</servlet-name>
+        <servlet-class>iotbay.controller.CancelOrderServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>EditOrderServlet</servlet-name>
-        <url-pattern>/EditOrderServlet</url-pattern>
+        <servlet-name>CancelOrderServlet</servlet-name>
+        <url-pattern>/CancelOrderServlet</url-pattern>
     </servlet-mapping>
     
     <session-config>

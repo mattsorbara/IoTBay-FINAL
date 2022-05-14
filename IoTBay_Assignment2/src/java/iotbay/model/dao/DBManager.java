@@ -212,6 +212,10 @@ public class DBManager {
     public void updateOrder(double orderAmount, int quantity, int orderID) throws SQLException {
         st.executeUpdate("UPDATE IOTADMIN.ORDERS SET ORDERPRICE = " + orderAmount + ", ORDERQUANTITY = " + quantity + " WHERE ORDERID = " + orderID + "");
     } 
+    
+    public void setOrderStatus(String status, int orderID) throws SQLException {
+        st.executeUpdate("UPDATE IOTADMIN.ORDERS SET ORDERSTATUS = '" + status + "' WHERE ORDERID = " + orderID + "");
+    } 
 
     public int getPaymentID(int orderID) throws SQLException {
         String fetch = "SELECT PAYMENTID FROM IOTADMIN.PAYMENT WHERE ORDERID= " + orderID;
