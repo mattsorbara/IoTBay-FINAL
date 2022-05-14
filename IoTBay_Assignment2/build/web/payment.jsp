@@ -72,6 +72,11 @@
                         </tr>
                     </tbody>
                 </table>
+<<<<<<< Updated upstream
+=======
+                <%}
+
+>>>>>>> Stashed changes
             </div>
         </div>
     </body>
