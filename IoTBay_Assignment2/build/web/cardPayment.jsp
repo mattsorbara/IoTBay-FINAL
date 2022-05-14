@@ -17,6 +17,7 @@
         Savedpayment savedPayment = (Savedpayment) session.getAttribute("savedPayment");
         Order currentOrder = (Order) session.getAttribute("currentOrder");
         String anythingSaved = (String) session.getAttribute("anythingSaved");
+        String errors = (String) session.getAttribute("cardError");
     %>
     <body>
         <div class="loggedInMenu">            
@@ -26,6 +27,7 @@
         <div class="payment">
             <div class="paymentContents">
                 <h2 id="title"><b>Payment</b></h2>
+                <p style="color: red; text-align: center; margin-bottom: 0">${cardError}</p>
                 <form class="paymentForm" action="cardPaymentServlet" method="post">
                     <div class="paymentFormElement" id="cardNumber">
                         <label>Card Number</label>

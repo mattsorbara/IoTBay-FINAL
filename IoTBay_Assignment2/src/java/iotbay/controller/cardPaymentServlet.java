@@ -47,15 +47,15 @@ public class cardPaymentServlet extends HttpServlet {
             int orderID = currentOrder.getOrderID();
             int paymentID = manager.getPaymentID(orderID);
             if(!val.validateCardNumber(cardNumber)) {
-                session.setAttribute("regError", "Card Number format wrong.");
+                session.setAttribute("cardError", "Card Number format wrong.");
                 request.getRequestDispatcher("cardPayment.jsp").include(request, response);
             }
             else if(!val.validateCardCVC(cardCVC)) {
-                session.setAttribute("regError", "Card CVC format wrong.");
+                session.setAttribute("cardError", "Card CVC format wrong.");
                 request.getRequestDispatcher("cardPayment.jsp").include(request, response);
             }
             else if(!val.validateCardExpiry(cardExpiry)) {
-                session.setAttribute("regError", "Card Expiry format wrong.");
+                session.setAttribute("cardError", "Card Expiry format wrong.");
                 request.getRequestDispatcher("cardPayment.jsp").include(request, response);
             }
             else {
