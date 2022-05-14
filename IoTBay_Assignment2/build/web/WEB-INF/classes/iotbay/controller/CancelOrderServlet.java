@@ -25,18 +25,20 @@ public class CancelOrderServlet extends HttpServlet {
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      
+        // grab current session      
         HttpSession session = request.getSession();
-        
+        // grab DBManager to access database         
         DBManager manager = (DBManager) session.getAttribute("manager");
-        
+        // fetch ID created from previous screen's button        
         String orderID = request.getParameter("id");
-        
+        // catch any errors if database returns invalid values        
         try {
+            // sets order to cancelled and specifies what order   
             manager.setOrderStatus("CANCELLED", Integer.parseInt(orderID));
+            // sends user to order search page  
             request.getRequestDispatcher("orderSearch.jsp").forward(request, response);
             
-           
+        // if database returns error            
         } catch (SQLException ex) {
             Logger.getLogger(CancelOrderServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

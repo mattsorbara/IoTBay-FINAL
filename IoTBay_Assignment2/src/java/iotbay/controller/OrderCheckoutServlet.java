@@ -25,14 +25,14 @@ public class OrderCheckoutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        //Intialise dbConnector
         try
         {
             Connector = new DBConnector();
         } catch (ClassNotFoundException | SQLException ex){
             java.util.logging.Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE,null,ex);
         }
-        
+        //Intialise dbManager
         try
         {       
             manager = new DBManager(Connector.openConnection());  
@@ -40,25 +40,29 @@ public class OrderCheckoutServlet extends HttpServlet {
             java.util.logging.Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE,null,ex);
         }
         
-        //session
+        //grabs current session
         HttpSession session = request.getSession();
-
+        //attempts to grab parameter "id" which contains productID for product
         try {
             String id = request.getParameter("id");
             int productid = Integer.parseInt(id);
 
+            //search database for product
             Catalogue product = manager.findProduct(productid);
+            //check if product is null
             if (product != null) {
+                //set product to an attribute, then direct user to orderCheckout.jsp
                 session.setAttribute("product", product);
                 request.getRequestDispatcher("orderCheckout.jsp").include(request, response);
                 response.sendRedirect("orderCheckout.jsp");
             }
+            //sends user back to catalogue if the product is null
             else{
                 request.getRequestDispatcher("catalogue.jsp").include(request, response);
                 response.sendRedirect("catalogue.jsp");
             }
             
-                            
+        //catches any SQL errors that dbmanager may throw                    
         } catch (SQLException ex){
             Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -67,71 +71,76 @@ public class OrderCheckoutServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //session
+        //current session
         HttpSession session = request.getSession();
-
+        //Intialise dbManager
         DBManager manager = (DBManager) session.getAttribute("manager");
-
+        //Set order and quantity to intialise
         Order currentOrder = null;
         int quantity = 0;
 
         try {
-
+            //assign product to a variable called product
             Catalogue product = (Catalogue) session.getAttribute("product");
             
             try {
+                //checks if the quantity is a valid number (within stock and numerical)
                 quantity = Integer.parseInt(request.getParameter("quantity"));
             }
+            //if the quantity is not valid, outputs an error
             catch (NumberFormatException invalidValueError) {
                 session.setAttribute("orderError", "Quantity amount invalid!");
                 request.getRequestDispatcher("orderCheckout.jsp").include(request, response);
             }
             
-
+            // checks if quantity is less than or equal to product's stock
             if (quantity <= product.getStock()) {
+                //Intialising fields necessary for data to be added to the database
                 int productID = product.getId();
                 double orderPrice = product.getPrice();
                 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
                 Timestamp orderDate = new Timestamp(new Date().getTime());
                 String orderStatus = "SAVED";
-
+                
+                //sets stock of object product
                 product.setStock((product.getStock() - quantity));
-
+                //fetch current user in session
                 User user = (User) session.getAttribute("user");
-
+                //add order to database whilst returning auto-generated orderID
                 int orderID = manager.addOrder(user.getEmail(), productID, orderPrice, quantity, orderDate, orderStatus);
-
+                //calculate totalPrice
                 double totalPrice = manager.fetchOrderAmount(orderID);
-
+                //add order to model object Order
                 currentOrder = new Order(orderID, user.getEmail(), productID, totalPrice, quantity, orderDate.toString(), orderStatus);
-
+                //sets attribute currentOrder with currentOrder
                 session.setAttribute("currentOrder", currentOrder);
-
+                //finds savedpayment for user
                 Savedpayment savedPayment = manager.findSavedpayment(user.getEmail());
-
+                // checks if savedPayment is null, then sets attribute for savedPayment
                 if (savedPayment != null) {
                     session.setAttribute("savedPayment", savedPayment);
                     session.setAttribute("anythingSaved", "true");
-
+                //if null, creates dummy savedPayment
                 } else {
                     Savedpayment nullPayment = new Savedpayment("N/A", "N/A", "N/A", "N/A");
                     session.setAttribute("savedPayment", nullPayment);
                     session.setAttribute("anythingSaved", "false");
                 }
+                //redirect user to page
                 request.getRequestDispatcher("payment.jsp").include(request, response);
             }
-            
+            //if quantity is larger than stock avaliable, returns error
             else if (quantity > product.getStock()) {
                 session.setAttribute("orderError", "Quantity exceeds avaliable stock!");
                 request.getRequestDispatcher("orderCheckout.jsp").include(request, response);
             }
-
+           //if quantity is in wrong format, returns error
             else {
                 session.setAttribute("orderError", "Quantity amount invalid!");
                 request.getRequestDispatcher("orderCheckout.jsp").include(request, response);
             }
 
-
+        //if dbmanager fails an SQL search, returns error
         } catch(SQLException ex) {
             Logger.getLogger(OrderCheckoutServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
