@@ -34,12 +34,13 @@ public class OrderSearchServlet extends HttpServlet {
         String fromString = request.getParameter("from")+":00";
         String toString = request.getParameter("to")+":00";
         String orderIDSearch = request.getParameter("orderIDSearch");
-        System.out.println("I AM HERE before try");
+        System.out.println(orderIDSearch);
+
         if (orderIDSearch != null) {
             System.out.println("I AM HERE");
             try {
                 ResultSet filteredLogs = manager.filterOrdersID(user.getEmail(), Integer.parseInt(orderIDSearch));
-
+                session.setAttribute("orderIDSearch", orderIDSearch);
                 session.setAttribute("orderLogRows", filteredLogs);
 
                 request.getRequestDispatcher("viewOrders.jsp").forward(request, response);

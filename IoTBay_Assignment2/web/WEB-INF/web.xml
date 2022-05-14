@@ -149,7 +149,7 @@
     
     <servlet>
         <servlet-name>OrderSearchServlet</servlet-name>
-        <servlet-class>OrderSearchServlet</servlet-class>
+        <servlet-class>iotbay.controller.OrderSearchServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>OrderSearchServlet</servlet-name>
