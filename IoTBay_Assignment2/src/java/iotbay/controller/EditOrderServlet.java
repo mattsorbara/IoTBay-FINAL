@@ -123,8 +123,8 @@ public class EditOrderServlet extends HttpServlet {
                     if (quantity <= product.getStock()) {
 
                         product.setStock((product.getStock() - quantity));
-
-                        double totalPrice = manager.fetchOrderAmount(orderID);
+                        
+                        double totalPrice = quantity * product.getPrice();
 
                         manager.updateOrder(totalPrice, quantity, orderID);
 
