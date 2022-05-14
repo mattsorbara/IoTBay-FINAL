@@ -20,7 +20,7 @@
         %>
        <div class="topnav">
             <a class="button1" href="HomeAdmin.jsp">Home</a>
-            <a class="button1" href="Login.jsp">Logout</a> 
+            <a class="button1" href="login.jsp">Logout</a> 
             <a class="button1" href="ViewUser.jsp">View Users</a>
             <a class="button1" href="CreateUser.jsp">Create New Users</a>
         </div>
@@ -30,15 +30,9 @@
                 <h2 id="title"><b>Edit User Details</b></h2>
                 <form class="editForm" action="RegisterServlet" method="post">
                     <div class="registerFormElement" id="name">
-                        <label>First Name</label>
+                        <label>Full Name</label>
                         <div>
-                            <input class="border-customized-input" type="text" value="${user.firstName}" required="true" name="firstName" placeholder="First Name">
-                        </div>
-                    </div>
-                     <div class="registerFormElement" id="name">
-                        <label>Last Name</label>
-                        <div>
-                            <input class="border-customized-input" type="text" value="${user.LastName}" required="true" name="lastName" placeholder="Last Name">
+                            <input class="border-customized-input" type="text" value="${user.fullName}" required="true" name="fullName" placeholder="Full Name">
                         </div>
                     </div>
                        <div class="registerFormElement" id="email">
@@ -52,7 +46,7 @@
                         <div>
                         <input type="radio"  value="${user.type}" id="type" name="customer">
                             <label for="customer">Customer</label>
-                       <input type="radio" id="type" name="staff">     
+                       <input type="radio"  value="${user.type}" id="type" name="staff">     
                             <label for="staff">Staff</label>
                     </div>
                     </div> 
@@ -79,8 +73,7 @@
                 
              <%
                 if(update != null) {
-                    String firstName = request.getParameter("FirstName");
-                    String lastName = request.getParameter("LastName");
+                    String fullName = request.getParameter("fullName");
                     String email = request.getParameter("Email");
                     String password = request.getParameter("Password");
                     String type = request.getParameter("Type");

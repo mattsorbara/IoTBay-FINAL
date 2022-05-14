@@ -4,7 +4,12 @@
     Author     : saniyakhanna
 --%>
 
+<%@ page import="java.sql.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="iotbay.model.User"%>
+
+
 
 <!DOCTYPE html>
 <html>  
@@ -23,9 +28,22 @@
         session.setAttribute("msgCreate", "");
         session.setAttribute("msgDelete", "");
         session.setAttribute("userDeleted", "");
-    %>
+        
+       
+        HttpSession current_session = request.getSession();
+        ResultSet rows = (ResultSet)current_session.getAttribute("userLogRows");
+
+        String from = (String)current_session.getAttribute("from");
+        String to = (String)current_session.getAttribute("to");
+
+     %>
+
+
     
     <body action="ViewUserAdmin">
+
+    <body>
+
         
         <%
             ArrayList<User> user = (ArrayList<User>) session.getAttribute("user");
@@ -48,8 +66,7 @@
                     <p class="error" align="center">${userDeleteErr}</p>
                 </div>
                 <div>
-                    <input type="text" id="inputFirstName" class="searchbox" onkeyup="filterTable()" placeholder="First name" title="Type in a name">
-                    <input type="text" id="inputLastName" class="searchbox" onkeyup="filterTable()" placeholder="Last name" title="Type in a name">
+                    <input type="text" id="inputFullName" class="searchbox" onkeyup="filterTable()" placeholder="Full name" title="Type in a name">
                     <input type="text" id="inputPhoneNumber" class="searchbox" onkeyup="filterTable()" placeholder="Phone number" title="Type in number">
                   <select id="inputType" onchange="filterTable()" >
                         <option value="all">View All</option>
@@ -66,75 +83,49 @@
                         <thead>
                             <tr><td colspan="2"><h2>Customers</h2></td></tr>
                             <tr>
-                                <th colspan="2">Type</th>
-                                <th>Type</th>
+                                <th colspan="2">Type</th>                             
                                 <th>Email</th>
-                                <th>First name</th>
-                                <th>Last name</th>
+                                <th>Full name</th>
                                 <th>Phone number</th>
                                 <th>Password</th>
                             </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach items="${customers}" var="c">
-                            <tr>
-                                <td>
-                                    <form method="get" action="UpdateAdminServlet">
-                                       <input type="hidden" name="customerEmail" value="${c.getEmail()}" />
-                                        <button class="button4" type="confirm">Edit</button> 
-                                    </form>
-                                </td>
-                               <td>Customer</td>
-                                    <td>${c.getEmail()}</td>
-                                    <td>${c.getFirstName()}</td>
-                                    <td>${c.getLastName()}</td>
-                                    <td>${c.getPhoneNumber()}</td>
-                                    <td>${c.getPassword()}</td>
-                            </tr>
-                       </c:forEach>
-                    </tbody>
+                              <% while(rows.next()){ %>
+                        <tr>
+                            <td><%=rows.getString(1)%></td>
+                            <td><%=rows.getString(2)%></td>
+                            <td><%=rows.getString(4)%></td>
+                        </tr>
+                    <% } %>
+        </thead>
+
                  </table>
-                        <table class="UserTable"> <thead>
+                        <table class="UserTable"> 
+                         <thead>
                             <tr><td colspan="2"><h2>Staff</h2></td></tr>
                             <tr>
                                 <th colspan="2">Type</th>
-                                <th>Type</th>
                                 <th>Email</th>
-                                <th>First name</th>
-                                <th>Last name</th>
+                                <th>Full name</th>
                                 <th>Phone number</th>
                                 <th>Password</th>
                                 <th>Manager</th>
                             </tr>
+                         <% while(rows.next()){ %>
+                        <tr>
+                            <td><%=rows.getString(1)%></td>
+                            <td><%=rows.getString(2)%></td>
+                            <td><%=rows.getString(4)%></td>
+                        </tr>
+                    <% } %>
                         </thead>
-                    <tbody>
-                        <c:forEach items="${customers}" var="c">
-                            <tr>
-                                <td>
-                                    <form method="get" action="EditUser.jsp">
-                                       <input type="hidden" name="staffEmail" value="${s.getEmail()}" />
-                                        <button class="button4" type="confirm">Edit</button> 
-                                    </form>
-                                </td>
-                               <td>Staff</td>
-                                    <td>${s.getEmail()}</td>
-                                    <td>${s.getFirstName()}</td>
-                                    <td>${s.getLastName()}</td>
-                                    <td>${s.getPhoneNumber()}</td>
-                                    <td>${s.getPassword()}</td>
-                                    <td>${s.getManager()}</td>
-                            </tr>
-                       </c:forEach>
-                    </tbody>
+
                  </table>
                 </div>
                  <script>
                     function filterUsers() {
-                        var input, filterFirstName, filterLastName, filterPhoneNumber, filterType, table, tr, tdFirstName, tdLastName, tdPhoneNumber, tdType, i, txtFirstName;
-                        input = document.getElementById("inputFirstName");
-                        filterFirstName = input.value.toUpperCase();
-                        input = document.getElementById("inputastLName");
-                        filterLastName = input.value.toUpperCase();
+                        var input, filterFullName, filterPhoneNumber, filterType, table, tr, tdFullName, tdPhoneNumber, tdType, i, txtFullName;
+                        input = document.getElementById("inputFullName");
+                        filterFullName = input.value.toUpperCase();
                         input = document.getElementById("inputPhoneNumber");
                         filterPhoneNumber = input.value.toUpperCase();
                         input = document.getElementById("inputType");
@@ -144,18 +135,16 @@
                         
                         for (i = 0; i < tr.length; i++) {
                             tdType = tr[i].getElementsByTagName("td")[2];
-                            tdFirstName = tr[i].getElementsByTagName("td")[4];
-                            tdLastName = tr[i].getElementsByTagName("td")[5];
-                            tdPhoneNumber = tr[i].getElementsByTagName("td")[6];
+                            tdFullName = tr[i].getElementsByTagName("td")[3];
+                            tdPhoneNumber = tr[i].getElementsByTagName("td")[4];
                             
-                        if (tdFirstName && tdLastName) {
+                        if (tdFullName {
                             txtType = tdType.textContent || tdType.innerText;
-                            txtFirstName = tdFirstName.textContent || tdFirstName.innerText;
-                            txtLastName = tdLastName.textContent || tdLastName.innerText;
+                            txtFullName = tdFullName.textContent || tdLastName.innerText;
                             txtPhoneNumber = tdPhoneNumber.textContent || tdPhoneNumber.innerText;
                             
                                 if (filterType === "CUSTOMER" || filterType === "STAFF") {
-                                    if (txtType.toUpperCase().indexOf(filterType) > -1 && txtFirstName.toUpperCase().indexOf(filterFirstName) > -1 && txtLastName.toUpperCase().indexOf(filterLastName) > -1 && txtPhoneNumber.toUpperCase().indexOf(filterPhoneNumber) > -1) {
+                                    if (txtType.toUpperCase().indexOf(filterType) > -1 && txtFullName.toUpperCase().indexOf(filterFullName) > -1 && txtPhoneNumber.toUpperCase().indexOf(filterPhoneNumber) > -1) {
                                         tr[i].style.display = "";
                                     } 
                                     
@@ -165,7 +154,7 @@
                                     }
                                     
                                 else {
-                                    if (txtFirstName.toUpperCase().indexOf(filterFirstName) > -1 && txtLastName.toUpperCase().indexOf(filterLastName) > -1 && txtPhoneNumber.toUpperCase().indexOf(filterPhoneNumber) > -1) {
+                                    if (txtFullName.toUpperCase().indexOf(filterFullName) > -1 && txtPhoneNumber.toUpperCase().indexOf(filterPhoneNumber) > -1) {
                                         tr[i].style.display = "";
                                     } else {
                                         tr[i].style.display = "none";
