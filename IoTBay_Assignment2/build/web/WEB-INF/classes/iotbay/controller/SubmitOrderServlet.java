@@ -34,6 +34,16 @@ public class SubmitOrderServlet extends HttpServlet {
         
         try {
             manager.setOrderStatus("SUBMITTED", Integer.parseInt(orderID));
+
+            Order order = (Order) manager.fetchOrder(Integer.parseInt(orderID));
+            int productID = order.getProductID();
+            Catalogue product = (Catalogue) manager.findProduct(productID);
+
+            int finalAmount = product.getStock() - order.getOrderQuantity();
+
+            System.out.println(finalAmount);
+
+            manager.setProductStock(finalAmount, productID);
             request.getRequestDispatcher("orderSearch.jsp").forward(request, response);
             
            

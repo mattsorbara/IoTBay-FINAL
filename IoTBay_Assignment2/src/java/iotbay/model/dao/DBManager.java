@@ -348,7 +348,11 @@ public class DBManager {
     }
     
     public void editProduct(int id, double price, int stock) throws SQLException {
-        st.executeUpdate("UPDATE IOTADMIN.PRODUCT SET PRODUCTPRICE="+price+", PRODUCTSTOCK="+stock+" WHERE PRODUCTID="+id);
+        st.executeUpdate("UPDATE IOTADMIN.PRODUCTS SET PRODUCTPRICE="+price+", PRODUCTSTOCK="+stock+" WHERE PRODUCTID="+id);
+    }
+
+    public void setProductStock(int stock, int id) throws SQLException {
+        st.executeUpdate("UPDATE IOTADMIN.PRODUCTS SET PRODUCTSTOCK="+stock+" WHERE PRODUCTID="+id);
     }
     
     public boolean checkProduct(int id) throws SQLException {
