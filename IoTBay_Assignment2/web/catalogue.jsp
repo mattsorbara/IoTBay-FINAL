@@ -25,23 +25,20 @@
         %>
         
         <% 
-            if (!"guest@guest.com".equals(user.getEmail())){
+            if ("guest@guest.com".equals(user.getEmail())){
                     %>
-        <jsp:include page="header.jsp"/>
-        <%
-            }
-        %>
+        <jsp:include page="guestHeader.jsp"/>
         
+        <% } else { %>
+        <jsp:include page="header.jsp"/>
+        <% } %>
         <div class="catalogue">
             <div class="catalogueContents">
+                    <% if ("guest@guest.com".equals(user.getEmail())) { %>
+                    <h2 id ="title">Catalogue - Guest</h2>
+                    <% } else { %>
                     <h2 id="title">Catalogue</h2>
-                    <% 
-                        if ("guest@guest.com".equals(user.getEmail())){
-                    %>
-                    <h2 id ="title">GUEST IS IN</h2>
-                        <%
-                            }
-                        %>
+                    <% } %>
                     <div class="searchForm">
                         <form class="search" action="CatalogueSearch" method="post">
                             <input class="searchField" type="text" name="query" placeholder="Search Products">

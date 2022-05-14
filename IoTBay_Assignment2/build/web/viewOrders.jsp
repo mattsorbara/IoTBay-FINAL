@@ -4,6 +4,7 @@
     Author     : matthewsorbara
 --%>
 <%@page import="java.sql.*" %>
+<%@page import="iotbay.model.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,13 +22,19 @@
                 String from = (String) current_session.getAttribute("from");
                 String to = (String) current_session.getAttribute("to");
                 
+                User user = (User) current_session.getAttribute("user");
+                
 //                String orderIDSearch = (String) current_session.getAttribute("orderIDSearch");
             %>
     <body>
-        <div class="loggedInMenu">            
-            <a href="welcome.jsp" class="button">Main</a>
-            <a href="LogoutServlet" class="button" id="logout">Logout</a>
-        </div>
+        
+        <% if ("guest@guest.com".equals(user.getEmail())) { %>
+        <jsp:include page="guestHeader.jsp"/>
+        
+        <% } else { %>
+        <jsp:include page="header.jsp"/>
+        <% } %>
+        
         <div class="log">
             <div class="logContents">
                 <h2 id="title"><b>Order ID Search</b></h2>
