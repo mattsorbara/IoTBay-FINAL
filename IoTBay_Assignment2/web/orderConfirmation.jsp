@@ -87,6 +87,11 @@
                     </div>
                 </div>
             </div>
+            <form action="SubmitOrderServlet" method="post">
+                <div class="buttons">
+                    <button name="id" value="<%= order.getOrderID() %>" class="submit">Submit Order</button>
+                </div>
+            </form>
         </div>
     </body>
 </html>

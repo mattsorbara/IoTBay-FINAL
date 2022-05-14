@@ -56,7 +56,8 @@
                             <%}%>
                             <% if (rows.getString(7).equals("SUBMITTED") || rows.getString(7).equals("SAVED")){%>
                             <td/>
-                            <td><a href="CancelOrderServlet?id=<%=rows.getString(1)%>"><button class="cancel">Cancel Order</button></a></td>
+                            <form action="CancelOrderServlet" method="post">
+                                <td><button name="id" value="<%=rows.getString(1)%>" class="cancel">Cancel Order</button></a></td>
                             </form>
                             <%}%>
                         </tr>
@@ -88,7 +89,8 @@
                             <%}%>
                             <% if (rows.getString(7).equals("SUBMITTED") || rows.getString(7).equals("SAVED")){%>
                             <form action="CancelOrderServlet" method="post">
-                            <td><button name="id" value="<%=rows.getString(1)%>" class="cancel">Cancel Order</button></a></td></form>
+                                <td><button name="id" value="<%=rows.getString(1)%>" class="cancel">Cancel Order</button></a></td>
+                            </form>
                             <%}%>
                         </tr>
                     <%      } 

@@ -165,6 +165,24 @@
         <url-pattern>/CancelOrderServlet</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>EditOrderServlet</servlet-name>
+        <servlet-class>iotbay.controller.EditOrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditOrderServlet</servlet-name>
+        <url-pattern>/EditOrderServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>SubmitOrderServlet</servlet-name>
+        <servlet-class>iotbay.controller.SubmitOrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SubmitOrderServlet</servlet-name>
+        <url-pattern>/SubmitOrderServlet</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30

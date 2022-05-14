@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class CancelOrderServlet extends HttpServlet {
+public class SubmitOrderServlet extends HttpServlet {
     
     private DBManager manager;
     private DBConnector Connector;
@@ -33,12 +33,12 @@ public class CancelOrderServlet extends HttpServlet {
         String orderID = request.getParameter("id");
         
         try {
-            manager.setOrderStatus("CANCELLED", Integer.parseInt(orderID));
+            manager.setOrderStatus("SUBMITTED", Integer.parseInt(orderID));
             request.getRequestDispatcher("orderSearch.jsp").forward(request, response);
             
            
         } catch (SQLException ex) {
-            Logger.getLogger(CancelOrderServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SubmitOrderServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }       
 }

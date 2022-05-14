@@ -53,8 +53,13 @@
                     </div>
                     <div class="buttons">
                         <button class="submit" type="submit">Update Order</button>
-                        </div>
+                    </div>
                 </form>
+                <form action="SubmitOrderServlet" method="post">
+                    <div class="buttons">
+                        <button name="id" value="<%= order.getOrderID() %>" class="submit">Submit Order</button>
+                    </div>
+                </form>    
             </div>
         </div>
     </body>
