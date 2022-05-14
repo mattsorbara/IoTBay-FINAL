@@ -68,11 +68,11 @@ public class DBManager {
     }
 
     public void addUser(String name, String email, String password, String phone, String type) throws SQLException {
-        st.executeUpdate("INSERT INTO IOTADMIN.USERS " + "VALUES ('" + name + "', '" + email + "', '" + password +"','" + phone + "', '" + type + "', true)");
+        st.executeUpdate("INSERT INTO IOTADMIN.USERS " + "VALUES ('" + email + "', '" + name + "', '" + password +"','" + phone + "', '" + type + "', true)");
     }
 
     public void adminAddUser(String name, String email, String password, String phone, String type) throws SQLException {
-        st.executeUpdate("INSERT INTO IOTADMIN.Users " + "VALUES ('" + name + "', '" + email + "', '" + password +"','" + phone + "', '" + type + "', true");
+        st.executeUpdate("INSERT INTO IOTADMIN.Users " + "VALUES ('" + email + "', '" + name + "', '" + password +"','" + phone + "', '" + type + "', true");
     }
     
     public void updateUser(String name, String email, String password, String phone) throws SQLException {
