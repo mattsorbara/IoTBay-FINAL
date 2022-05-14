@@ -86,8 +86,12 @@ public class PaymentServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
+
+
+        User user = (User) session.getAttribute("user");
+
         String paymentMethod = request.getParameter("paymentMethod");
-        String email = (String) session.getAttribute("email");
+        String email = (String) user.getEmail();
         String crudPayment = (String) session.getAttribute("crudPayment");
         Order currentOrder = (Order) session.getAttribute("currentOrder");
         
