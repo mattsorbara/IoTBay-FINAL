@@ -4,6 +4,7 @@
     Author     : lindale
 --%>
 
+<%@page import="iotbay.model.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +13,10 @@
         <title>Payment | IoT Bay</title>
         <link rel="stylesheet" type="text/css" href="static/css/payment.css">
     </head>
+    <% 
+        Savedpayment savedPayment = (Savedpayment) session.getAttribute("savedPayment");
+        Order currentOrder = (Order) session.getAttribute("currentOrder");
+    %>
     <body>
         <div class="loggedInMenu">            
             <a href="welcome.jsp" class="button">Main</a>
@@ -41,12 +46,25 @@
                     </div>
                     <div class="buttons">
                         <button class="submit" type="submit" name="crudPayment" value="false">Pay</button>
+                        <% 
+                        if (!"guest@guest.com".equals(currentOrder.getUserEmail())){
+                        %>
                         <button class="submit" type="submit" name="crudPayment" value="create">Pay & Save Payment</button>
+                        <%}%>
                     </div>
+                    <% 
+                    if (!"guest@guest.com".equals(currentOrder.getUserEmail())){
+                    %>
                     <div class="buttons">
+                        <% 
+                        if (savedPayment != null){
+                        %>
                         <button class="submit" type="submit" name="crudPayment" value="update">Pay & Update Payment</button>
                         <button class="submit" type="submit" name="crudPayment" value="delete">Pay & Delete Saved Payment</button>
+                        <%}%>
                     </div>
+                    <%}%>
+                    
                     <div class="buttons">
                         <a href="home.jsp" class="cancel">Cancel</a>
                     </div>
