@@ -44,7 +44,8 @@ public class DBManager {
                 String userName = rs.getString(2);
                 String userPhone = rs.getString(4);
                 String userType = rs.getString(5);
-                return new User(userName, userEmail, password, userPhone, userType);
+                boolean userActive = rs.getBoolean(6);
+                return new User(userName, userEmail, password, userPhone, userType, userActive);
                 
             }
         }
@@ -68,11 +69,11 @@ public class DBManager {
     }
 
     public void addUser(String name, String email, String password, String phone, String type) throws SQLException {
-        st.executeUpdate("INSERT INTO IOTADMIN.USERS " + "VALUES ('" + name + "', '" + email + "', '" + password +"','" + phone + "', '" + type + "', true)");
+        st.executeUpdate("INSERT INTO IOTADMIN.USERS " + "VALUES ('" + email + "', '" + name + "', '" + password +"','" + phone + "', '" + type + "', true)");
     }
 
     public void adminAddUser(String name, String email, String password, String phone, String type) throws SQLException {
-        st.executeUpdate("INSERT INTO IOTADMIN.Users " + "VALUES ('" + name + "', '" + email + "', '" + password +"','" + phone + "', '" + type + "', true");
+        st.executeUpdate("INSERT INTO IOTADMIN.Users " + "VALUES ('" + email + "', '" + name + "', '" + password +"','" + phone + "', '" + type + "', true");
     }
     
     public void updateUser(String name, String email, String password, String phone) throws SQLException {
@@ -85,6 +86,10 @@ public class DBManager {
     
     public void deleteUser(String email) throws SQLException {
         st.executeUpdate("DELETE FROM IOTADMIN.USERS WHERE USEREMAIL='" + email + "'");
+    }
+    
+    public void disableUser(String email) throws SQLException {
+        st.executeUpdate("UPDATE IOTADMIN.USERS SET USERACTIVE=false WHERE USEREMAIL='" + email + "'");
     }
     
     public ArrayList<User> fetchUsers() throws SQLException {

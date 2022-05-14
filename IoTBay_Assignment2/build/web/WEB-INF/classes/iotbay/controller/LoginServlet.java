@@ -44,15 +44,6 @@ public class LoginServlet extends HttpServlet {
         Savedpayment savedPayment = null;
         
         try {
-            savedPayment = manager.findSavedpayment(email);
-
-            if (savedPayment != null) {
-                session.setAttribute("savedPayment", savedPayment);
-            } else {
-                Savedpayment nullPayment = new Savedpayment("N/A", "N/A", "N/A", "N/A");
-                session.setAttribute("savedPayment", nullPayment);
-            }
-                
             if (!val.validateEmail(email)) {
                 session.setAttribute("logError", "Email format wrong.");
                 request.getRequestDispatcher("login.jsp").include(request, response);
@@ -66,18 +57,21 @@ public class LoginServlet extends HttpServlet {
 
                 if (savedPayment != null) {
                     session.setAttribute("savedPayment", savedPayment);
-                    System.out.println(savedPayment.getCardNumber());
                 } else {
                     Savedpayment nullPayment = new Savedpayment("N/A", "N/A", "N/A", "N/A");
                     session.setAttribute("savedPayment", nullPayment);
-                    System.out.println(nullPayment.getCardNumber());
                 }
-
+                
                 user = manager.findUser(email, password);
                 if (user == null) {
+                    System.out.println("here1");
                     session.setAttribute("logError", "User does not exist.");
                     request.getRequestDispatcher("login.jsp").include(request, response);
-                } 
+                } else if (user.getUserActive() == false) {
+                    System.out.println("here");
+                    session.setAttribute("logError", "User registration has been cancelled.");
+                    request.getRequestDispatcher("login.jsp").include(request, response);
+                }
                 else { 
                     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
                     Timestamp login = new Timestamp(new Date().getTime());  

@@ -26,7 +26,16 @@ public class User {
         this.userType = type;
         this.userActive = true;
     }
-
+    
+    public User(String name, String email, String password, String phone, String type, boolean active) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.userType = type;
+        this.userActive = active;
+    }
+    
     public String getName() {
         return name;
     }

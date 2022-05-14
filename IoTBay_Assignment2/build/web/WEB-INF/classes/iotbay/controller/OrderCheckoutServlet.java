@@ -29,14 +29,14 @@ public class OrderCheckoutServlet extends HttpServlet {
         try
         {
             Connector = new DBConnector();
-        }catch (ClassNotFoundException | SQLException ex){
+        } catch (ClassNotFoundException | SQLException ex){
             java.util.logging.Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE,null,ex);
         }
         
         try
         {       
             manager = new DBManager(Connector.openConnection());  
-        }catch (SQLException ex){
+        } catch (SQLException ex){
             java.util.logging.Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE,null,ex);
         }
         

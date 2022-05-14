@@ -36,7 +36,7 @@ public class DeleteServlet extends HttpServlet {
         System.out.println(user);
         
         try {
-            manager.deleteUser(user.getEmail());
+            manager.disableUser(user.getEmail());
             session.invalidate();
             request.getRequestDispatcher("home.jsp").include(request, response);
         
