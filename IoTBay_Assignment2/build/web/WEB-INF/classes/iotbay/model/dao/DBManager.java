@@ -44,7 +44,8 @@ public class DBManager {
                 String userName = rs.getString(2);
                 String userPhone = rs.getString(4);
                 String userType = rs.getString(5);
-                return new User(userName, userEmail, password, userPhone, userType);
+                boolean userActive = rs.getBoolean(6);
+                return new User(userName, userEmail, password, userPhone, userType, userActive);
                 
             }
         }

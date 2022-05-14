@@ -64,9 +64,11 @@ public class LoginServlet extends HttpServlet {
                 
                 user = manager.findUser(email, password);
                 if (user == null) {
+                    System.out.println("here1");
                     session.setAttribute("logError", "User does not exist.");
                     request.getRequestDispatcher("login.jsp").include(request, response);
                 } else if (user.getUserActive() == false) {
+                    System.out.println("here");
                     session.setAttribute("logError", "User registration has been cancelled.");
                     request.getRequestDispatcher("login.jsp").include(request, response);
                 }
