@@ -30,14 +30,7 @@ h1 {
 }
 
 
-#CTable {
-    margin-top: 20px;
-    text-align: center;
-    table-layout: fixed;
-    color: white;
-}
-
-#STable {
+.UserTable {
     margin-top: 20px;
     text-align: center;
     table-layout: fixed;

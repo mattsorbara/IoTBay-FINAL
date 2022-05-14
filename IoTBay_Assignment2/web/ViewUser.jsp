@@ -28,7 +28,7 @@
     <body action="ViewUserAdmin">
 
        <div class="topnav">
-        <a class="button1" href="Home.jsp">Home</a>
+        <a class="button1" href="HomeAdmin.jsp">Home</a>
         <a class="button1" href="Login.jsp">Logout</a> 
         <a class="button1" href="ViewUser.jsp">View Users</a>
         <a class="button1" href="CreateUser.jsp">Create New Users</a>
@@ -44,9 +44,9 @@
                     <p class="error" align="center">${userDeleteErr}</p>
                 </div>
                 <div>
-                    <input type="text" id="inputFName" class="searchbox" onkeyup="filterTable()" placeholder="First name" title="Type in a name">
-                    <input type="text" id="inputLName" class="searchbox" onkeyup="filterTable()" placeholder="Last name" title="Type in a name">
-                    <input type="text" id="inputPhone" class="searchbox" onkeyup="filterTable()" placeholder="Phone number" title="Type in number">
+                    <input type="text" id="inputFirstName" class="searchbox" onkeyup="filterTable()" placeholder="First name" title="Type in a name">
+                    <input type="text" id="inputLastName" class="searchbox" onkeyup="filterTable()" placeholder="Last name" title="Type in a name">
+                    <input type="text" id="inputPhoneNumber" class="searchbox" onkeyup="filterTable()" placeholder="Phone number" title="Type in number">
                   <select id="inputType" onchange="filterTable()" >
                         <option value="all">View All</option>
                         <option value="customer">Only Customers</option>
@@ -58,11 +58,12 @@
                     </form>
                 </div>
                 <div class="tablewrap">
-                    <table id="CTable">
+                    <table class="UserTable">
                         <thead>
                             <tr><td colspan="2"><h2>Customers</h2></td></tr>
                             <tr>
                                 <th colspan="2">Type</th>
+                                <th>Type</th>
                                 <th>Email</th>
                                 <th>First name</th>
                                 <th>Last name</th>
@@ -89,10 +90,11 @@
                        </c:forEach>
                     </tbody>
                  </table>
-                        <table id="STable"> <thead>
+                        <table class="UserTable"> <thead>
                             <tr><td colspan="2"><h2>Staff</h2></td></tr>
                             <tr>
                                 <th colspan="2">Type</th>
+                                <th>Type</th>
                                 <th>Email</th>
                                 <th>First name</th>
                                 <th>Last name</th>
@@ -122,6 +124,53 @@
                     </tbody>
                  </table>
                 </div>
+                 <script>
+                    function filterUsers() {
+                        var input, filterFirstName, filterLastName, filterPhoneNumber, filterType, table, tr, tdFirstName, tdLastName, tdPhoneNumber, tdType, i, txtFirstName;
+                        input = document.getElementById("inputFirstName");
+                        filterFirstName = input.value.toUpperCase();
+                        input = document.getElementById("inputastLName");
+                        filterLastName = input.value.toUpperCase();
+                        input = document.getElementById("inputPhoneNumber");
+                        filterPhoneNumber = input.value.toUpperCase();
+                        input = document.getElementById("inputType");
+                        filterType = input.value.toUpperCase();
+                        table = document.getElementById("UserTable");
+                        tr = table.getElementsByTagName("tr");
+                        
+                        for (i = 0; i < tr.length; i++) {
+                            tdType = tr[i].getElementsByTagName("td")[2];
+                            tdFirstName = tr[i].getElementsByTagName("td")[4];
+                            tdLastName = tr[i].getElementsByTagName("td")[5];
+                            tdPhoneNumber = tr[i].getElementsByTagName("td")[6];
+                            
+                        if (tdFirstName && tdLastName) {
+                            txtType = tdType.textContent || tdType.innerText;
+                            txtFirstName = tdFirstName.textContent || tdFirstName.innerText;
+                            txtLastName = tdLastName.textContent || tdLastName.innerText;
+                            txtPhoneNumber = tdPhoneNumber.textContent || tdPhoneNumber.innerText;
+                            
+                                if (filterType === "CUSTOMER" || filterType === "STAFF") {
+                                    if (txtType.toUpperCase().indexOf(filterType) > -1 && txtFirstName.toUpperCase().indexOf(filterFirstName) > -1 && txtLastName.toUpperCase().indexOf(filterLastName) > -1 && txtPhoneNumber.toUpperCase().indexOf(filterPhoneNumber) > -1) {
+                                        tr[i].style.display = "";
+                                    } 
+                                    
+                                    else {
+                                        tr[i].style.display = "none";
+                                    }
+                                    }
+                                    
+                                else {
+                                    if (txtFirstName.toUpperCase().indexOf(filterFirstName) > -1 && txtLastName.toUpperCase().indexOf(filterLastName) > -1 && txtPhoneNumber.toUpperCase().indexOf(filterPhoneNumber) > -1) {
+                                        tr[i].style.display = "";
+                                    } else {
+                                        tr[i].style.display = "none";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                </script>                    
             </div>
         </div>
     </body>

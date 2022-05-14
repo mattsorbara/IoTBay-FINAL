@@ -15,7 +15,7 @@
     </head>
      <body>
        <div class="topnav">
-            <a class="button1" href="Home.jsp">Home</a>
+            <a class="button1" href="HomeAdmin.jsp">Home</a>
             <a class="button1" href="Login.jsp">Logout</a> 
             <a class="button1" href="ViewUser.jsp">View Users</a>
             <a class="button1" href="CreateUser.jsp">Create New Users</a>
@@ -58,8 +58,8 @@
                         </div>
                     </div>
                     <div class="buttons">
-                        <a href="Home.jsp" class="cancel">Cancel</a>
-                        <button class="create" type="Create">Create</button>
+                        <a href="HomeAdmin.jsp" class="cancel">Cancel</a>
+                        <button href="UserCreated.jsp" class="create" type="Create">Create</button>
                     </div>
                 </form>
             </div>

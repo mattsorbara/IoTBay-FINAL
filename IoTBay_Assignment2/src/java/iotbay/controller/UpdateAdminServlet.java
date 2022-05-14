@@ -8,6 +8,7 @@ import iotbay.model.User;
 import iotbay.model.dao.DBManager;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -43,31 +44,22 @@ class UpdateAdminServlet extends HttpServlet{
                 ArrayList<User> staff = manager.fetchStaff();
                 request.setAttribute("staff", staff);
 
-                request.getRequestDispatcher("EditUser.jsp").include(request, response);
-
-            } catch (SQLException ex) {
-                Logger.getLogger(EditServlet.class.getName()).log(Level.SEVERE, null, ex);
-                request.getRequestDispatcher("main.jsp").include(request, response);
-            }
-
-        try {
-                user = manager.findUser(email, password);
-                session.setAttribute("user", user);
-                request.getRequestDispatcher("EditUser.jsp").include(request, response);
-
-
                 ArrayList<User> customer = manager.fetchCustomers();
-                request.setAttribute("staff", customer);
+                request.setAttribute("customer", customer);
 
                 request.getRequestDispatcher("EditUser.jsp").include(request, response);
 
             } catch (SQLException ex) {
                 Logger.getLogger(EditServlet.class.getName()).log(Level.SEVERE, null, ex);
-                request.getRequestDispatcher("main.jsp").include(request, response);
+                request.getRequestDispatcher("HomeAdmin.jsp").include(request, response);
             }
 
+   
+    }
+    }
 
-                }
+
+                
 //        try {
 //            user = manager.findUser(email, password);
 //            if (user != null) {
