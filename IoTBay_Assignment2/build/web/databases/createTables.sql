@@ -28,21 +28,20 @@ CREATE TABLE LOGS (
 CREATE TABLE PRODUCTS (
     productId INT GENERATED ALWAYS AS IDENTITY NOT NULL PRIMARY KEY,
     productTitle VARCHAR(50),
-    productPrice VARCHAR(50),
+    productPrice DECIMAL(5),
     productDescription VARCHAR(500),
+    productImage VARCHAR(500),
     productStock INT,
-    productType VARCHAR(50),
-    productImage VARCHAR(50)
+    productType VARCHAR(20)
 );
 
 CREATE TABLE ORDERS (
     orderID INT GENERATED ALWAYS AS IDENTITY NOT NULL PRIMARY KEY,
     userEmail VARCHAR(50) NOT NULL,
     productID INT NOT NULL,
-    orderPrice INT NOT NULL,
+    orderPrice DECIMAL(5) NOT NULL,
     orderQuantity INT NOT NULL,
-    orderDate DATE NOT NULL,
-    shippingType VARCHAR(50) NOT NULL,
+    orderDate TIMESTAMP NOT NULL,
     orderStatus VARCHAR(50) NOT NULL,
 
     CONSTRAINT FK_userOrder FOREIGN KEY (userEmail) REFERENCES USERS(userEmail),
@@ -50,13 +49,15 @@ CREATE TABLE ORDERS (
 );
 
 CREATE TABLE PAYMENT (
-    paymentID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY NOT NULL,
+    paymentID INT GENERATED ALWAYS AS IDENTITY NOT NULL PRIMARY KEY,
     orderID INT NOT NULL,
     userEmail VARCHAR(50),
     paymentType VARCHAR(20),
+    paymentAmount DECIMAL(5),
     cardNumber VARCHAR(16),
     cardCVC VARCHAR(3),
-    cardExpiry DATE,
+    cardExpiry VARCHAR(10),
+    paymentDate TIMESTAMP,
 
     CONSTRAINT FK_paymentOrder FOREIGN KEY (orderID) REFERENCES ORDERS(orderID),
     CONSTRAINT FK_paymentUser FOREIGN KEY (userEmail) REFERENCES USERS(userEmail)
@@ -67,22 +68,37 @@ CREATE TABLE SAVEDPAYMENT (
     userEmail VARCHAR(50) PRIMARY KEY NOT NULL,
     cardNumber VARCHAR(16) NOT NULL,
     cardCVC VARCHAR(3) NOT NULL,
-    cardExpiry DATE,
+    cardExpiry VARCHAR(10),
 
     CONSTRAINT FK_userEmail FOREIGN KEY (userEmail) REFERENCES USERS(userEmail)
 );
 
 CREATE TABLE SHIPMENT ( 
     shipmentID INT GENERATED ALWAYS AS IDENTITY NOT NULL PRIMARY KEY,
+    orderID INT NOT NULL,
     userEmail VARCHAR(50) NOT NULL,
     status VARCHAR (50) NOT NULL,
     shipMethod VARCHAR (50),
-    shipDate DATE, 
+    shipDate TIMESTAMP, 
     unitNumber INT,
     streetNumber VARCHAR (4),
     streetName VARCHAR (50),
     suburb VARCHAR (50),
     postcode INT,
 
+    CONSTRAINT FK_orderShipment FOREIGN KEY (orderID) REFERENCES ORDERS(orderID),
     CONSTRAINT FK_userShipment FOREIGN KEY (userEmail) REFERENCES USERS(userEmail)
+);
+
+CREATE TABLE SAVEDSHIPMENT ( 
+    userEmail VARCHAR(50) NOT NULL PRIMARY KEY,
+    shipMethod VARCHAR (50),
+    shipDate TIMESTAMP, 
+    unitNumber INT,
+    streetNumber VARCHAR (4),
+    streetName VARCHAR (50),
+    suburb VARCHAR (50),
+    postcode INT,
+
+    CONSTRAINT FK_userSavedShipment FOREIGN KEY (userEmail) REFERENCES USERS(userEmail)
 );

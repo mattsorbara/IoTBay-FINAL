@@ -1,0 +1,160 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 12/05/2022, 11:12:26 PM
+    Author     : oliverguerreiro
+*/
+@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Poppins:wght@300;600&display=swap');
+
+html {
+    background-color: #8EC5FC;
+    background-image: linear-gradient(192deg, #4e85bb 0%, #8539cc 100%);
+    height: 100%;
+    margin: 0;
+}
+
+body{
+    margin: 0;
+    height: 100%;
+}
+
+input  {
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.border-customized-input {
+    border: 2px solid rgb(62, 60, 60);
+    border-radius: 5px;
+    width: 93%
+} 
+
+.payment {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;   
+    height: 100%;
+}
+
+.paymentContents {
+    font-family: "Poppins", sans-serif;
+    background-color: #eff7ed;
+    padding: 40px;
+    width: 25%;
+    border-radius: 20px;
+    align-self: center;
+    margin: 5%;
+}
+
+.paymentForm {
+    display: inline-grid;
+    width: 100%;
+}
+
+.paymentFormElement {
+    display: inline-block;
+    justify-content: center;
+    margin-top: 20px;
+
+}
+
+.submit {
+    background-color: #4154b4;
+    border: 0;
+    padding: 10px;
+    margin-top: 10px;
+    color: white;
+    border-radius: 5px;
+    width: 49%;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+}
+
+
+.submit:hover {
+    background-color: #202d6c;
+}
+
+.cancel {
+    background-color: #b44141;
+    border: 0;
+    padding: 10px;
+    margin-top: 10px;
+    color: white;
+    border-radius: 5px;
+    width: 49%;
+    text-align: center;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.cancel:hover {
+    background-color: #951515;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+#title {
+    margin: 0;
+    justify-content: center;
+    text-align: center;
+}
+
+/* for constant menu */
+
+.loggedInMenu {
+    font-family: "Poppins", sans-serif;
+    width: 15%;
+    margin-left: 85%;
+    margin-right: 0;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.button {
+    padding: 5px;
+    width: 50%;
+    text-align: center;
+    background-color: #4154b4;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+}
+
+.button:hover {
+    background-color: #202d6c;
+}
+
+#logout {
+    background-color: #b44141;
+}
+
+#logout:hover {
+    background-color: #951515;
+}
+
+#paymentTable {
+    border: 1px solid;
+    border-color: black;
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+
+option {
+    font-family: "Poppins", sans-serif;
+    display: inline-grid;
+    width: 100%;
+    border: 2px solid rgb(62, 60, 60);
+    border-radius: 5px;
+    width: 93%;
+    margin: 10px 0;
+}

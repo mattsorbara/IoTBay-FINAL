@@ -34,8 +34,11 @@
                     <a href="deviceSearch.jsp" class="submit">Search Devices</a>
                 </div>
                 <div class="buttons">
-                    <a href="orderCheckout.jsp" class="submit">testCheckoutOrder</a>
+                    <a href="CatalogueServlet" class="submit">Browse Catalogue</a>
                 </div>
+                <div class="buttons">
+                    <a href="orderSearch.jsp" class="submit">Search Order Logs</a>
+                </div>                
             </div>
         </div>
     </body>

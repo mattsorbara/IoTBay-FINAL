@@ -12,22 +12,24 @@
         <title>Login | IoT Bay</title>
         <link rel="stylesheet" type="text/css" href="static/css/login.css">
     </head>
+    <%
+        String errors = (String) session.getAttribute("logError");
+    %>
     <body>
         <div class="login">
             <div class="loginContents">
                 <h2 id="title"><b>Login</b></h2>
+                <p style="color: red; text-align: center; margin-bottom: 0">${logError}</p>
                 <form class="loginForm" action="LoginServlet" method="post">
-                    <div class="loginFormElement" id="email">
+                    
                         <label>Email</label>
                         <div>
                             <input class="border-customized-input" type="text" required="true" name="email" placeholder="john@smith.com">
                         </div>
-                    </div>
+                    
                     <div class="loginFormElement" id="password">
                         <label>Password</label>
-                        <div>
                             <input class="border-customized-input" type="password" required="true" name="password" placeholder="Password">
-                        </div>
                     </div>
                     <div class="buttons">
                         <a href="home.jsp" class="cancel">Cancel</a>

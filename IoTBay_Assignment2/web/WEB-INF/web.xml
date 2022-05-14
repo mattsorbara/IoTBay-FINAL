@@ -80,8 +80,9 @@
         <servlet-name>OrderCheckoutServlet</servlet-name>
         <url-pattern>/OrderCheckoutServlet</url-pattern>
     </servlet-mapping>
+    
+    
     <servlet>
-        
         <servlet-name>PaymentServlet</servlet-name>
         <servlet-class>iotbay.controller.PaymentServlet</servlet-class>
     </servlet>
@@ -145,6 +146,16 @@
         <servlet-name>EditProductServlet</servlet-name>
         <url-pattern>/EditProductServlet</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>OrderSearchServlet</servlet-name>
+        <servlet-class>iotbay.controller.OrderSearchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderSearchServlet</servlet-name>
+        <url-pattern>/OrderSearchServlet</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30

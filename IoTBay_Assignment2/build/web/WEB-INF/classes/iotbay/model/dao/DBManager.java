@@ -18,6 +18,20 @@ public class DBManager {
     public DBManager(Connection conn) throws SQLException {
         st = conn.createStatement();
     }
+
+    public void addShipment(String shipmethod, String unitno, String streetno, String streetname, String suburb, String postcode) throws SQLException {
+        st.executeUpdate("INSERT INTO IOTADMIN.Shipment " + "VALUES ('" + shipmethod + "', '" + unitno +"', '" + streetno + "', '" + streetname +"','" + suburb + "', '" + postcode);
+    }
+    
+    public void updateShipment(String shipmethod, String unitno, String streetno, String streetname, String suburb, String postcode, String email) throws SQLException {
+        st.executeUpdate("UPDATE IOTADMIN.Shipment SET SHIPMETHOD='" + shipmethod + "',UNITNUMBER='" + unitno + "',STREETNUMBER='" + streetno + "',STREETNAME='" + streetname + "',SUBURB='" + suburb + "',POSTCODE='" + postcode + "' WHERE EMAIL='" + email + "'");
+        
+    }
+    
+    public void deleteShipment(String email) throws SQLException {
+        st.executeUpdate("DELETE FROM IOTADMIN.Shipment WHERE EMAIL='" + email + "'");
+    }
+    
     
     public User findUser(String email, String password) throws SQLException {
         String fetch = "SELECT * FROM IOTADMIN.USERS WHERE USEREMAIL='" + email + "' AND PASSWORD='" + password + "'";
@@ -30,24 +44,52 @@ public class DBManager {
                 String userName = rs.getString(2);
                 String userPhone = rs.getString(4);
                 String userType = rs.getString(5);
-                return new User(userName, userEmail, password, userPhone, userType);
+                boolean userActive = rs.getBoolean(6);
+                return new User(userName, userEmail, password, userPhone, userType, userActive);
                 
             }
         }
         return null;
     }
     
+
+    public User fetchGuestUser() throws SQLException {
+        String fetch = "SELECT * FROM IOTADMIN.USERS WHERE USEREMAIL='guest@guest.com'";
+        ResultSet rs = st.executeQuery(fetch);
+        
+        while (rs.next()) {
+            String userEmail = rs.getString(1);
+            String userPass = rs.getString(3);
+            String userName = rs.getString(2);
+            String userPhone = rs.getString(4);
+            String userType = rs.getString(5);
+            return new User(userName, userEmail, userPass, userPhone, userType);
+        }
+        return null;
+    }
+
     public void addUser(String name, String email, String password, String phone, String type) throws SQLException {
-        st.executeUpdate("INSERT INTO IOTADMIN.USERS " + "VALUES ('" + name + "', '" + email + "', '" + password +"','" + phone + "', '" + type + "', true)");
+        st.executeUpdate("INSERT INTO IOTADMIN.USERS " + "VALUES ('" + email + "', '" + name + "', '" + password +"','" + phone + "', '" + type + "', true)");
+    }
+
+    public void adminAddUser(String name, String email, String password, String phone, String type) throws SQLException {
+        st.executeUpdate("INSERT INTO IOTADMIN.Users " + "VALUES ('" + email + "', '" + name + "', '" + password +"','" + phone + "', '" + type + "', true");
     }
     
     public void updateUser(String name, String email, String password, String phone) throws SQLException {
         st.executeUpdate("UPDATE IOTADMIN.Users SET FULLNAME='" + name + "',PASSWORD='" + password + "',PHONE='" + phone + "' WHERE USEREMAIL='" + email + "'");
-        
+    }
+    
+    public void setUserStatus(boolean status, String email) throws SQLException {
+        st.executeUpdate("UPDATE IOTADMIN.Users SET TYPE=" + status + "WHERE USEREMAIL='" + email + "'");
     }
     
     public void deleteUser(String email) throws SQLException {
         st.executeUpdate("DELETE FROM IOTADMIN.USERS WHERE USEREMAIL='" + email + "'");
+    }
+    
+    public void disableUser(String email) throws SQLException {
+        st.executeUpdate("UPDATE IOTADMIN.USERS SET USERACTIVE=false WHERE USEREMAIL='" + email + "'");
     }
     
     public ArrayList<User> fetchUsers() throws SQLException {
@@ -62,7 +104,7 @@ public class DBManager {
             String phone = rs.getString(4);
             String type = rs.getString(5);
             
-            temp.add(new User(name,email,password,phone,type));
+            temp.add(new User(email,name,password,phone,type));
         }
         return temp;
     }
@@ -96,6 +138,19 @@ public class DBManager {
         ResultSet rs = st.executeQuery(filter);
         return rs;
     }
+
+    public ResultSet filterOrdersID(String email, int orderID) throws SQLException {
+        String filter = "SELECT * FROM IOTADMIN.ORDERS WHERE USEREMAIL='" + email + "' AND ORDERID = " + orderID + "";
+        ResultSet rs = st.executeQuery(filter);
+        return rs;
+    }
+
+    public ResultSet filterOrdersDate(Timestamp from, Timestamp to, String email) throws SQLException {
+        String filter = "SELECT * FROM IOTADMIN.ORDERS WHERE USEREMAIL='" + email + "' AND ORDERDATE >= '" + from + "' AND ORDERDATE <= '" + to + "'";
+        ResultSet rs = st.executeQuery(filter);
+        return rs;
+    }
+    
     
     public void submitFinalOrder(String orderID, String userEmail, String productID, double orderPrice, int quantity, String orderDate, String shippingType) throws SQLException {
         st.executeUpdate("INSERT INTO IOTADMIN.ORDERS " + "VALUES ('" + orderID + "', '" + userEmail + "', '" + productID + "', '" + orderPrice + "', '" + quantity + "', '" + orderDate + "', '" + shippingType + ", 'SUBMITTED')");
@@ -111,9 +166,9 @@ public class DBManager {
             String title = rs.getString(2);
             double price = rs.getDouble(3);
             String description = rs.getString(4);
-            int stock = rs.getInt(5);
-            String type = rs.getString(6);
-            String image = rs.getString(7);
+            int stock = rs.getInt(6);
+            String type = rs.getString(7);
+            String image = rs.getString(5);
             return new Catalogue(id, title, price, description, image, stock, type);
         }
 
@@ -121,25 +176,71 @@ public class DBManager {
         return null;
     }
 
-    public void addOrder(String userEmail, int productID, double productPrice, int quantity, String orderDate, String status) throws SQLException {
+    public int addOrder(String userEmail, int productID, double productPrice, int quantity, Timestamp orderDate, String status) throws SQLException {
         double amount = productPrice * quantity;
 
-        st.executeUpdate("INSERT INTO IOTADMIN.ORDER (userEmail, productID, amount, orderQuantity, orderDate, orderStatus) VALUES ('" + userEmail + "', '" + productID + "', '" + amount + "', '" + quantity + "', '" + orderDate + "', 'SAVED')");
+        st.executeUpdate("INSERT INTO IOTADMIN.ORDERS (userEmail, productID, orderPrice, orderQuantity, orderDate, orderStatus) VALUES ('" + userEmail + "', " + productID + ", " + amount + ", " + quantity + ", CURRENT_TIMESTAMP, 'SAVED')");
 
-        System.out.println("test");
+        ResultSet rs = st.executeQuery("SELECT MAX(ORDERID) FROM IOTADMIN.ORDERS");
+        if (rs.next()) {
+            return rs.getInt(1);
+        }
+
+        return 0;
     }
 
-     
-    public void addPayment1(String paymentID, String orderID, double amount, String paymentMethod, String email) throws SQLException {
-        st.executeUpdate("INSERT INTO IOTADMIN.payment " + "VALUES ('" + paymentID + "', '" + orderID + "', '" + paymentMethod + "', " + amount + ", '" + email + "', ' ', ' ', ' ')");
+    public double fetchOrderAmount(int orderID) throws SQLException {
+        String fetch = "SELECT ORDERPRICE FROM IOTADMIN.ORDERS WHERE ORDERID = " + orderID + "";
+        ResultSet rs = st.executeQuery(fetch);
+        while (rs.next()) {
+            return rs.getDouble(1);
+        }
+
+        return 0;
+
+    }
+
+
+    public int getPaymentID(int orderID) throws SQLException {
+        String fetch = "SELECT PAYMENTID FROM IOTADMIN.PAYMENT WHERE ORDERID= " + orderID;
+        ResultSet rs = st.executeQuery(fetch);
+
+         while (rs.next()) {
+            int paymentID = rs.getInt(1);
+            return paymentID;
+        }
+        return 0;
+    }
+
+    public Payment getPayment(int orderID) throws SQLException {
+        String fetch = "SELECT * FROM IOTADMIN.PAYMENT WHERE ORDERID= " + orderID;
+        ResultSet rs = st.executeQuery(fetch);
+
+         while (rs.next()) {
+            int productID = rs.getInt(1);
+            int fetchedOrderID = rs.getInt(2);
+            String userEmail= rs.getString(3);
+            String paymentType= rs.getString(4);
+            double paymentAmount= rs.getDouble(5);
+            String cardNumber= rs.getString(6);
+            String cardCVC= rs.getString(7);
+            String cardExpiry= rs.getString(8);
+            Timestamp paymentDate= rs.getTimestamp(9);
+            return new Payment(productID, fetchedOrderID, userEmail, paymentType, paymentAmount, cardNumber, cardCVC, cardExpiry, paymentDate);
+        }
+        return null;
+    }
+
+    public void addPayment1(int orderID, double amount, String paymentMethod, String email) throws SQLException {
+        st.executeUpdate("INSERT INTO IOTADMIN.PAYMENT (orderID, useremail, paymentType, paymentAmount, cardNumber, cardCVC, cardExpiry, paymentDate) VALUES (" + orderID + ", '" + email + "', '" + paymentMethod + "', " + amount + ", ' ', ' ', ' ', CURRENT_TIMESTAMP)");
     } 
     
-    public void addPayment2(String paymentID, String cardNumber, String cardCVC, String cardExpiry) throws SQLException {
-        st.executeUpdate("UPDATE IOTADMIN.payment " + "SET cardNumber ='" + cardNumber + "', cardCVC ='" + cardCVC + "', cardExpiry='" + cardExpiry + "' WHERE paymentID ='" + paymentID + "'");
+    public void addPayment2(int paymentID, String cardNumber, String cardCVC, String cardExpiry) throws SQLException {
+        st.executeUpdate("UPDATE IOTADMIN.payment SET cardNumber ='" + cardNumber + "', cardCVC ='" + cardCVC + "', cardExpiry='" + cardExpiry + "' WHERE paymentID =" + paymentID);
     }
 
     public void savePayment(String email, String cardNumber, String cardCVC, String cardExpiry) throws SQLException {
-        st.executeUpdate("INSERT INTO IOTADMIN.savedPayment " + "VALUES ('" + email + "', '" + cardNumber + "', '" + cardCVC + "', '" + cardExpiry + "')");
+        st.executeUpdate("INSERT INTO IOTADMIN.savedPayment VALUES ('" + email + "', '" + cardNumber + "', '" + cardCVC + "', '" + cardExpiry + "')");
     } 
 
     public void updatePayment(String email, String cardNumber, String cardCVC, String cardExpiry) throws SQLException {
@@ -166,7 +267,7 @@ public class DBManager {
 
     
     public ArrayList<Catalogue> fetchProducts() throws SQLException {
-            String fetch = "SELECT * FROM IOTADMIN.Products";
+            String fetch = "SELECT * FROM IOTADMIN.PRODUCTS";
             ResultSet rs = st.executeQuery(fetch);
             ArrayList<Catalogue> products = new ArrayList();
 
@@ -185,7 +286,7 @@ public class DBManager {
     }
     
     public Catalogue findProduct(int productid) throws SQLException {
-        String fetch = "SELECT * FROM IOTADMIN.Products WHERE id="+productid;
+        String fetch = "SELECT * FROM IOTADMIN.PRODUCTS WHERE PRODUCTID="+productid;
         ResultSet rs = st.executeQuery(fetch);
         
         while (rs.next()) {
@@ -204,7 +305,7 @@ public class DBManager {
     
     public ArrayList<Catalogue> searchProducts(String query) throws SQLException {
             String cleanQuery = query.replaceAll("'", "");
-            String fetch = "SELECT DISTINCT * FROM IOTAdmin.Products WHERE UPPER(Title) LIKE UPPER('%"+cleanQuery+"%') OR UPPER(Type) LIKE UPPER('%"+cleanQuery+"%')";
+            String fetch = "SELECT DISTINCT * FROM IOTADMIN.PRODUCTS WHERE UPPER(PRODUCTTITLE) LIKE UPPER('%"+cleanQuery+"%') OR UPPER(PRODUCTTYPE) LIKE UPPER('%"+cleanQuery+"%')";
             ResultSet rs = st.executeQuery(fetch);
             ArrayList<Catalogue> products = new ArrayList();
 
@@ -223,19 +324,19 @@ public class DBManager {
     }
     
     public void addProduct(int id, String title, double price, String description, String image, int stock, String type) throws SQLException {
-        st.executeUpdate("INSERT INTO IOTADMIN.Products (id, title, price, description, image, stock, type) VALUES (" + id + ", '" + title + "', " + price +",'" + description + "','" + image + "'," + stock + ", '" + type + "')");
+        st.executeUpdate("INSERT INTO IOTADMIN.PRODUCTS (PRODUCTID, PRODUCTTITLE, PRODUCTTITLE, PRODUCTDESCRIPTION, PRODUCTIMAGE, PRODUCTSTOCK, PRODUCTTYPE) VALUES (" + id + ", '" + title + "', " + price +",'" + description + "','" + image + "'," + stock + ", '" + type + "')");
     }
     
     public void deleteProduct(int id) throws SQLException {
-        st.executeUpdate("DELETE FROM IOTADMIN.Products WHERE ID="+id);
+        st.executeUpdate("DELETE FROM IOTADMIN.PRODUCTS WHERE PRODUCTID="+id);
     }
     
     public void editProduct(int id, double price, int stock) throws SQLException {
-        st.executeUpdate("UPDATE IOTADMIN.Products SET PRICE="+price+", STOCK="+stock+" WHERE ID="+id);
+        st.executeUpdate("UPDATE IOTADMIN.PRODUCT SET PRODUCTPRICE="+price+", PRODUCTSTOCK="+stock+" WHERE PRODUCTID="+id);
     }
     
     public boolean checkProduct(int id) throws SQLException {
-        String fetch = "SELECT * FROM IOTADMIN.Products where ID=" + id;
+        String fetch = "SELECT * FROM IOTADMIN.PRODUCTS WHERE PRODUCTID=" + id;
         ResultSet rs = st.executeQuery(fetch);
         
         while (rs.next()) {
@@ -246,6 +347,6 @@ public class DBManager {
         }
         return false;
     }
-     
-    
+
+
 }

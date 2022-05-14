@@ -6,6 +6,7 @@ package iotbay.controller;
 
 //Import both Catalogue and User for verification
 import iotbay.model.Catalogue;
+import iotbay.model.User;
 
 import iotbay.model.dao.*;
 import java.io.IOException;
@@ -48,7 +49,18 @@ public class CatalogueServlet extends HttpServlet {
         
         //session
         HttpSession session = request.getSession();
+       
         
+        try {
+            if (request.getParameter("id") != null) {
+                User guestUser = manager.fetchGuestUser();
+                session.setAttribute("user", guestUser);
+            }
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(CatalogueSearch.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         session.setAttribute("error", "");
         
         try {
@@ -56,11 +68,11 @@ public class CatalogueServlet extends HttpServlet {
             if (products != null) {
                 session.setAttribute("catalogue", products);
                 request.getRequestDispatcher("catalogue.jsp").include(request, response);
-                response.sendRedirect("catalogue.jsp");
+//                response.sendRedirect("catalogue.jsp");
             }
             else{
                 request.getRequestDispatcher("catalogue.jsp").include(request, response);
-                response.sendRedirect("catalogue.jsp");
+//                response.sendRedirect("catalogue.jsp");
             }
             
                             
