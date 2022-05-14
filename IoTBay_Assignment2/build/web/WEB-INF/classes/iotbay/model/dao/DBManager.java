@@ -51,6 +51,22 @@ public class DBManager {
         return null;
     }
     
+
+    public User fetchGuestUser() throws SQLException {
+        String fetch = "SELECT * FROM IOTADMIN.USERS WHERE USEREMAIL='guest@guest.com'";
+        ResultSet rs = st.executeQuery(fetch);
+        
+        while (rs.next()) {
+            String userEmail = rs.getString(1);
+            String userPass = rs.getString(3);
+            String userName = rs.getString(2);
+            String userPhone = rs.getString(4);
+            String userType = rs.getString(5);
+            return new User(userName, userEmail, userPass, userPhone, userType);
+        }
+        return null;
+    }
+
     public void addUser(String name, String email, String password, String phone, String type) throws SQLException {
         st.executeUpdate("INSERT INTO IOTADMIN.USERS " + "VALUES ('" + name + "', '" + email + "', '" + password +"','" + phone + "', '" + type + "', true)");
     }
@@ -83,7 +99,7 @@ public class DBManager {
             String phone = rs.getString(4);
             String type = rs.getString(5);
             
-            temp.add(new User(name,email,password,phone,type));
+            temp.add(new User(email,name,password,phone,type));
         }
         return temp;
     }
@@ -155,17 +171,27 @@ public class DBManager {
         return 0;
     }
 
-     
-    public void addPayment1(int paymentID, int orderID, double amount, String paymentMethod, String email) throws SQLException {
-        st.executeUpdate("INSERT INTO IOTADMIN.PAYMENT VALUES ('" + paymentID + "', '" + orderID + "', '" + email + "', " + paymentMethod + ", " + amount + ", ' ', ' ', ' ', CURRENT_TIMESTAMP)");
+    public int getPaymentID(int orderID) throws SQLException {
+        String fetch = "SELECT PAYMENTID FROM IOTADMIN.PAYMENT WHERE ORDERID= " + orderID;
+        ResultSet rs = st.executeQuery(fetch);
+
+         while (rs.next()) {
+            int paymentID = rs.getInt(1);
+            return paymentID;
+        }
+        return 0;
+    }
+
+    public void addPayment1(int orderID, double amount, String paymentMethod, String email) throws SQLException {
+        st.executeUpdate("INSERT INTO IOTADMIN.PAYMENT (orderID, useremail, paymentType, paymentAmount, cardNumber, cardCVC, cardExpiry, paymentDate) VALUES (" + orderID + ", '" + email + "', '" + paymentMethod + "', " + amount + ", ' ', ' ', ' ', CURRENT_TIMESTAMP)");
     } 
     
     public void addPayment2(int paymentID, String cardNumber, String cardCVC, String cardExpiry) throws SQLException {
-        st.executeUpdate("UPDATE IOTADMIN.payment " + "SET cardNumber ='" + cardNumber + "', cardCVC ='" + cardCVC + "', cardExpiry='" + cardExpiry + "' WHERE paymentID ='" + paymentID + "'");
+        st.executeUpdate("UPDATE IOTADMIN.payment SET cardNumber ='" + cardNumber + "', cardCVC ='" + cardCVC + "', cardExpiry='" + cardExpiry + "' WHERE paymentID =" + paymentID);
     }
 
     public void savePayment(String email, String cardNumber, String cardCVC, String cardExpiry) throws SQLException {
-        st.executeUpdate("INSERT INTO IOTADMIN.savedPayment " + "VALUES ('" + email + "', '" + cardNumber + "', '" + cardCVC + "', '" + cardExpiry + "')");
+        st.executeUpdate("INSERT INTO IOTADMIN.savedPayment VALUES ('" + email + "', '" + cardNumber + "', '" + cardCVC + "', '" + cardExpiry + "')");
     } 
 
     public void updatePayment(String email, String cardNumber, String cardCVC, String cardExpiry) throws SQLException {

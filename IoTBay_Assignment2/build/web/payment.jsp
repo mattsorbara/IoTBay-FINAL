@@ -4,7 +4,7 @@
     Author     : lindale
 --%>
 
-<%@page import="iotbay.model.Savedpayment"%>
+<%@page import="iotbay.model.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,7 +13,10 @@
         <title>Payment | IoT Bay</title>
         <link rel="stylesheet" type="text/css" href="static/css/payment.css">
     </head>
-    <% Savedpayment savedPayment = (Savedpayment) session.getAttribute("savedPayment"); %>
+    <% 
+//        Savedpayment savedPayment = (Savedpayment) session.getAttribute("savedPayment");
+        Order currentOrder = (Order) session.getAttribute("currentOrder");
+    %>
     <body>
         <div class="loggedInMenu">            
             <a href="welcome.jsp" class="button">Main</a>
@@ -21,20 +24,20 @@
         </div>
         <div class="payment">
             <div class="paymentContents">
-                <h2 id="title"><b>Order Summary</b></h2>
+                <h2 id="title"><b>Payment Summary</b></h2>
                 <form class="paymentForm" action="PaymentServlet" method="post">
-                    <div class="paymentFormElement" id="orderID">
+<!--                    <div class="paymentFormElement" id="orderID">
                         <label>Order ID</label>
                         <div>
                             <input class="border-customized-input" type="text" required="true" name="orderID">
-                            <!--<input class="border-customized-input" type="text" required="true" name="paymentID" value="${order.orderID}" readonly>-->
+                            <input class="border-customized-input" type="text" required="true" name="paymentID" value="${order.orderID}" readonly>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="paymentFormElement" id="amount">
                         <label>Amount</label>
                         <div>
-                            <input class="border-customized-input" type="double" required="true" name="amount">
-                            <!--<input class="border-customized-input" type="double" required="true" name="paymentID" value="${order.amount}" readonly>-->
+                            <!--<input class="border-customized-input" type="double" required="true" name="amount">-->
+                            <input class="border-customized-input" type="double" required="true" name="paymentID" placeholder="${currentOrder.getOrderPrice()}" readonly>
                         </div>
                     </div>
                     <div class="paymentFormElement" id="paymentMethod">
@@ -53,7 +56,10 @@
                     </div>
                 </form><br><br>
                         
-                <h2 id="title"><b>Saved Payment</b></h2><br>
+                <h2 id="title"><b>Saved Payment</b></h2><br
+                <% 
+                    if ("guest@guest.com".equals(currentOrder.getUserEmail())){
+                %>
                 <table id="paymentTable" align="center">
                     <thead>
                         <tr>
@@ -64,14 +70,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><%= savedPayment.getEmail() %></td>
-                            <td><%= savedPayment.getCardNumber() %></td>
-                            <td><%= savedPayment.getCardCVC() %></td>
-                            <td><%= savedPayment.getCardExpiry() %></td>
+                        <tr> 
+<!--                            <td>savedPayment.getEmail()</td>
+                            <td>savedPayment.getCardNumber()</td>
+                            <td>savedPayment.getCardCVC(</td>
+                            <td>savedPayment.getCardExpiry()</td>-->
                         </tr>
                     </tbody>
                 </table>
+                <%}%>
             </div>
         </div>
     </body>

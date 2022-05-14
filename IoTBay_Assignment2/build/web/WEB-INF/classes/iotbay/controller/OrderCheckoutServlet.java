@@ -102,7 +102,11 @@ public class OrderCheckoutServlet extends HttpServlet {
 
                 int orderID = manager.addOrder(user.getEmail(), productID, orderPrice, quantity, orderDate, orderStatus);
 
+                System.out.println(orderID);
+
                 currentOrder = new Order(orderID, user.getEmail(), productID, orderPrice, quantity, orderDate.toString(), orderStatus);
+
+                System.out.println(currentOrder.getUserEmail() + " " + currentOrder.getProductID() + " " + currentOrder.getOrderPrice() + " " + currentOrder.getOrderDate() + " " + currentOrder.getOrderStatus());
 
                 session.setAttribute("currentOrder", currentOrder);
                 request.getRequestDispatcher("payment.jsp").include(request, response);

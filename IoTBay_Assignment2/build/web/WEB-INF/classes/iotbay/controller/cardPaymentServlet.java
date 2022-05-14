@@ -4,7 +4,7 @@
  */
 package iotbay.controller;
 
-import iotbay.model.Payment;
+import iotbay.model.*;
 import iotbay.model.dao.DBManager;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -36,13 +36,16 @@ public class cardPaymentServlet extends HttpServlet {
         String cardNumber = request.getParameter("cardNumber");
         String cardCVC = request.getParameter("cardCVC");
         String cardExpiry = request.getParameter("cardExpiry");
+        Order currentOrder = (Order) session.getAttribute("currentOrder");
+
         
         DBManager manager = (DBManager) session.getAttribute("manager");
         
 //        response.setContentType("text/html;charset=UTF-8");
 
         try {
-            int paymentID = (int) session.getAttribute("bonk");
+            int orderID = currentOrder.getOrderID();
+            int paymentID = manager.getPaymentID(orderID);
 
             if (crudPayment.equals("create")) {
                 manager.savePayment(email, cardNumber, cardCVC, cardExpiry);

@@ -66,5 +66,13 @@ public class User {
     public void setUserType(String type) {
         this.userType = type;
     }
-    
+
+    public boolean getUserActive() {
+        return this.userActive;
+    }
+
+    public void setUserActive(boolean activeStatus) {
+        this.userActive = activeStatus;
+    }
+     
 }

@@ -19,6 +19,9 @@
         
         <%
             ArrayList<Catalogue> products = (ArrayList<Catalogue>) session.getAttribute("catalogue");
+            
+            User user = (User) session.getAttribute("user");
+
         %>
         
         <jsp:include page="header.jsp"/>
@@ -26,6 +29,13 @@
         <div class="catalogue">
             <div class="catalogueContents">
                     <h2 id="title">Catalogue</h2>
+                    <% 
+                        if ("guest@guest.com".equals(user.getEmail())){
+                    %>
+                    <h2 id ="title">GUEST IS IN</h2>
+                        <%
+                            }
+                        %>
                     <div class="searchForm">
                         <form class="search" action="CatalogueSearch" method="post">
                             <input class="searchField" type="text" name="query" placeholder="Search Products">
