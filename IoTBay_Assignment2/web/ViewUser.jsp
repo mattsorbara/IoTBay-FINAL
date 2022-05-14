@@ -26,6 +26,10 @@
     %>
     
     <body action="ViewUserAdmin">
+        
+        <%
+            ArrayList<User> user = (ArrayList<User>) session.getAttribute("user");
+        %>
 
        <div class="topnav">
         <a class="button1" href="HomeAdmin.jsp">Home</a>
