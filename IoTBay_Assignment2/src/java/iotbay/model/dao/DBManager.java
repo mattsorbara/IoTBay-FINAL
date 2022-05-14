@@ -138,6 +138,19 @@ public class DBManager {
         ResultSet rs = st.executeQuery(filter);
         return rs;
     }
+
+    public ResultSet filterOrdersID(String email, int orderID) throws SQLException {
+        String filter = "SELECT * FROM IOTADMIN.ORDERS WHERE USEREMAIL='" + email + "' AND ORDERID = " + orderID + "";
+        ResultSet rs = st.executeQuery(filter);
+        return rs;
+    }
+
+    public ResultSet filterOrdersDate(Timestamp from, Timestamp to, String email) throws SQLException {
+        String filter = "SELECT * FROM IOTADMIN.ORDERS WHERE USEREMAIL='" + email + "' AND ORDERDATE >= '" + from + "' AND ORDERDATE <= '" + to + "'";
+        ResultSet rs = st.executeQuery(filter);
+        return rs;
+    }
+    
     
     public void submitFinalOrder(String orderID, String userEmail, String productID, double orderPrice, int quantity, String orderDate, String shippingType) throws SQLException {
         st.executeUpdate("INSERT INTO IOTADMIN.ORDERS " + "VALUES ('" + orderID + "', '" + userEmail + "', '" + productID + "', '" + orderPrice + "', '" + quantity + "', '" + orderDate + "', '" + shippingType + ", 'SUBMITTED')");
