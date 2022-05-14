@@ -87,6 +87,10 @@ public class DBManager {
         st.executeUpdate("DELETE FROM IOTADMIN.USERS WHERE USEREMAIL='" + email + "'");
     }
     
+    public void disableUser(String email) throws SQLException {
+        st.executeUpdate("UPDATE IOTADMIN.USERS SET USERACTIVE=false WHERE USEREMAIL='" + email + "'");
+    }
+    
     public ArrayList<User> fetchUsers() throws SQLException {
         String fetch = "SELECT * FROM IOTADMIN.USERS";
         ResultSet rs = st.executeQuery(fetch);
