@@ -24,20 +24,7 @@
             <a class="button1" href="ViewUser.jsp">View Users</a>
             <a class="button1" href="CreateUser.jsp">Create New Users</a>
         </div>
-         
-        <div class="card">
-        <h1>Edit profile <span> <%= (update!= null) ? update:"" %> </span> </h1>
-        <form method="post" method="get" action="EditUser.jsp">
-            <table>
-                <tr><td>Email</td><td><input type="text" value="${user.email}" name="Email"></td></tr>
-                <tr><td>First Name</td><td><input type="text" value="${user.firstName}" name="FirstName"></td></tr>
-                <tr><td>Last Name</td><td><input type="text" value="${user.lastName}" name="LastName"></td></tr>
-                <tr><td>Password</td><td><input type="password" value="${user.password}" name="Password"></td></tr>
-                <tr><td>Edit</td><td><input type="radio" id="type" value="${user.type}" name="type"> <label for="custoemr">Customer</label><br> <input type="radio" id="type" name="type"><label for="Staff">Staff</label><br></td></tr>
-                <tr><td>Phone Number</td><td><input type="text" value="${user.phoneNumber}" name="PhoneNumber"></td></tr>   
-            </table>
-        </div>
-        </form>   
+  
         <div class="edit">
             <div class="editContents">
                 <h2 id="title"><b>Edit User Details</b></h2>
@@ -45,19 +32,25 @@
                     <div class="registerFormElement" id="name">
                         <label>First Name</label>
                         <div>
-                            <input class="border-customized-input" type="text" required="true" name="name" placeholder="Full Name">
+                            <input class="border-customized-input" type="text" value="${user.firstName}" required="true" name="firstName" placeholder="First Name">
+                        </div>
+                    </div>
+                     <div class="registerFormElement" id="name">
+                        <label>Last Name</label>
+                        <div>
+                            <input class="border-customized-input" type="text" value="${user.LastName}" required="true" name="lastName" placeholder="Last Name">
                         </div>
                     </div>
                        <div class="registerFormElement" id="email">
                         <label>Email</label>
                         <div>
-                            <input class="border-customized-input" type="text" required="true" name="email" placeholder="Email">
+                            <input class="border-customized-input" type="text" value="${user.email}" required="true" name="email" placeholder="Email">
                         </div>
                     </div>
                     <div class="loginFormElement" id="type">
                         <label>Type</label>
                         <div>
-                        <input type="radio" id="type" name="customer">
+                        <input type="radio"  value="${user.type}" id="type" name="customer">
                             <label for="customer">Customer</label>
                        <input type="radio" id="type" name="staff">     
                             <label for="staff">Staff</label>
@@ -66,13 +59,13 @@
                      <div class="registerFormElement" id="phone">
                         <label>Phone Number</label>
                         <div>
-                            <input class="border-customized-input" type="text" required="true" name="phone" placeholder="Phone Number">
+                            <input class="border-customized-input" type="text"  value="${user.phoneNumber}" required="true" name="phone" placeholder="Phone Number">
                         </div>
                     </div>
                     <div class="registerFormElement" id="password">
                         <label>Password</label>
                         <div>
-                            <input class="border-customized-input" type="text" required="true" name="password" placeholder="Password">
+                            <input class="border-customized-input" type="text"  value="${user.password}"required="true" name="password" placeholder="Password">
                         </div>
                     </div>
                      <div class="buttons">
@@ -90,14 +83,8 @@
                     String lastName = request.getParameter("LastName");
                     String email = request.getParameter("Email");
                     String password = request.getParameter("Password");
-                    String gender = request.getParameter("gender");
-                    String unitNumber = request.getParameter("UnitNumber");
-                    String streetAddress = request.getParameter("StreetAddress");
-                    String city = request.getParameter("City");
-                    String state = request.getParameter("State");
-                    String postCode = request.getParameter("PostCode");
+                    String type = request.getParameter("Type");
                     String phoneNumber = request.getParameter("PhoneNumber");
-                    user = new User(firstName, lastName, email, password, type, phoneNumber);
                     session.setAttribute("user", user);
                 }
             %>               
@@ -106,3 +93,4 @@
           </div>
     </body>
 </html>
+

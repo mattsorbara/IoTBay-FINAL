@@ -44,19 +44,6 @@ class UpdateAdminServlet extends HttpServlet{
                 ArrayList<User> staff = manager.fetchStaff();
                 request.setAttribute("staff", staff);
 
-                request.getRequestDispatcher("EditUser.jsp").include(request, response);
-
-            } catch (SQLException ex) {
-                Logger.getLogger(EditServlet.class.getName()).log(Level.SEVERE, null, ex);
-                request.getRequestDispatcher("HomeAdmin.jsp").include(request, response);
-            }
-
-        try {
-                user = manager.findUser(email, password);
-                session.setAttribute("user", user);
-                request.getRequestDispatcher("EditUser.jsp").include(request, response);
-
-
                 ArrayList<User> customer = manager.fetchCustomers();
                 request.setAttribute("customer", customer);
 
@@ -66,8 +53,8 @@ class UpdateAdminServlet extends HttpServlet{
                 Logger.getLogger(EditServlet.class.getName()).log(Level.SEVERE, null, ex);
                 request.getRequestDispatcher("HomeAdmin.jsp").include(request, response);
             }
-    
-    request.getRequestDispatcher("EditUser.jsp").include(request, response);
+
+   
     }
     }
 
