@@ -1,8 +1,3 @@
-<%-- 
-    Document   : viewLogs
-    Created on : 1 May 2022, 8:03:22 pm
-    Author     : matthewsorbara
---%>
 <%@page import="java.sql.*" %>
 <%@page import="iotbay.model.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

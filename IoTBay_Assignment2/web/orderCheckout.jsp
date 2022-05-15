@@ -1,9 +1,3 @@
-<%-- 
-    Document   : register
-    Created on : 29 Apr 2022, 5:39:23 pm
-    Author     : matthewsorbara
---%>
-
 <%@page import="iotbay.model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="iotbay.model.Catalogue"%>
