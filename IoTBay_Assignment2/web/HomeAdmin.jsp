@@ -15,7 +15,7 @@
     <body>
         <div class="topnav">
             <a class="button1" href="HomeAdmin.jsp">Home</a>
-            <a class="button1" href="login.jsp">Logout</a> 
+            <a class="button1" href="LogoutServlet">Logout</a> 
             <a class="button1" href="ViewUserAdminServlet">View Users</a>
             <a class="button1" href="CreateUser.jsp">Create New Users</a>
         </div>
