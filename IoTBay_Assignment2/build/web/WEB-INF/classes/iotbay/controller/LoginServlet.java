@@ -18,6 +18,7 @@ import java.sql.Timestamp;
 
 import java.text.SimpleDateFormat;  
 import java.util.Date;
+import java.util.Set;
 
 /**
  *
@@ -30,13 +31,18 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
-//        Validator validator = new Validator();
         
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
         session.setAttribute("email", email);
-        
+
+
+        if ("sysadmin@iotbay.com".equals(email) && "sysadmin".equals(password)) {
+            session.setAttribute("sysadmin", true);
+            request.getRequestDispatcher("HomeAdmin.jsp").include(request, response);
+            
+        }
         
         DBManager manager = (DBManager) session.getAttribute("manager");
         User user = null;

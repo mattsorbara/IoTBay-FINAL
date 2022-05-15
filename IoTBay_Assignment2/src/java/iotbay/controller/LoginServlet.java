@@ -31,7 +31,6 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
-//        Validator validator = new Validator();
         
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -41,6 +40,7 @@ public class LoginServlet extends HttpServlet {
 
         if ("sysadmin@iotbay.com".equals(email) && "sysadmin".equals(password)) {
             session.setAttribute("sysadmin", true);
+            request.getRequestDispatcher("HomeAdmin.jsp").include(request, response);
             
         }
         
