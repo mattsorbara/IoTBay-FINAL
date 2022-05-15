@@ -36,12 +36,24 @@ public class UpdateServlet extends HttpServlet  {
         String phone = request.getParameter("phone");
         String type = request.getParameter("type");
         
+        session.setAttribute("updateError", "");
+        
         User user = new User(name, email, password, phone, type);
         DBManager manager = (DBManager) session.getAttribute("manager");
+        Validator val = new Validator();
         
         try {
             // if user is not null
-            if (user != null) {
+
+            if (!val.validateName(name)) {
+                session.setAttribute("updateError", "Incorrect name format.");
+                request.getRequestDispatcher("edit.jsp").include(request, response);
+            }
+            else if (!val.validatePassword(password)) {
+                session.setAttribute("updateError", "Incorrect password format.");
+                request.getRequestDispatcher("edit.jsp").include(request, response);
+            }
+            else if (user != null) {
                 session.setAttribute("user", user);
                 session.setAttribute("updated", "Update successful.");
                 manager.updateUser(name, email, password, phone);

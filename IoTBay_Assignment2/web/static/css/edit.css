@@ -11,7 +11,7 @@ html {
 
 body{
     margin: 0;
-    height: 100%;
+    height: 95%;
 }
 
 input  {
@@ -100,6 +100,13 @@ input  {
     text-align: center;
     font-size: 12px;
     color: green;
+}
+
+.errormessage {
+    margin: 0;
+    text-align: center;
+    font-size: 12px;
+    color: red;
 }
 
 #title {
