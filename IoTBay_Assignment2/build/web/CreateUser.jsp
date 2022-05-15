@@ -15,15 +15,15 @@
     </head>
      <body>
        <div class="topnav">
-            <a class="button1" href="Home.jsp">Home</a>
-            <a class="button1" href="Login.jsp">Logout</a> 
+            <a class="button1" href="HomeAdmin.jsp">Home</a>
+            <a class="button1" href="login.jsp">Logout</a> 
             <a class="button1" href="ViewUser.jsp">View Users</a>
             <a class="button1" href="CreateUser.jsp">Create New Users</a>
         </div>
         <div class="login">
             <div class="loginContents">
                 <h2 id="title"><b>Create New User</b></h2>
-                <form class="loginForm" action="AdminRegister" method="post">
+                <form class="loginForm" action="RegisterAdminServlet" method="post">
                     <div class="loginFormElement" id="name">
                         <label>Full Name</label>
                         <div>
@@ -38,11 +38,11 @@
                     </div>
                     <div class="loginFormElement" id="type">
                         <label>Type</label>
-                        <div>
-                        <input type="radio" id="type" name="type">
-                            <label for="customer">Customer</label>
-                       <input type="radio" id="type" name="type">     
-                            <label for="staff">Staff</label>
+                       <div>
+                       <input type="radio" id="type" name="type" value="customer">
+                              <label for="customer">Customer</label>
+                       <input type="radio" id="type" name="type" value="staff">     
+                               <label for="staff">Staff</label>
                     </div>
                     </div>    
                     <div class="loginFormElement" id="password">
@@ -58,8 +58,8 @@
                         </div>
                     </div>
                     <div class="buttons">
-                        <a href="Home.jsp" class="cancel">Cancel</a>
-                        <button class="create" type="Create">Create</button>
+                        <a href="HomeAdmin.jsp" class="cancel">Cancel</a>
+                        <button class="button2" type="submit">Create</button>
                     </div>
                 </form>
             </div>

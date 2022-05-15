@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author saniyakhanna
  */
-public class DeleteAdminServlet extends HttpServlet {
+public class DeactivateAdminServlet extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -31,16 +31,16 @@ public class DeleteAdminServlet extends HttpServlet {
         
         DBManager manager = (DBManager)session.getAttribute("manager");
         User user = (User)session.getAttribute("targetUser");
-        
+
         
         try {
-            manager.deleteUser(user.getEmail());
+            manager.disableUser(user.getEmail());
             session.invalidate();
-            request.getRequestDispatcher("Delete.jsp").include(request, response);
+            request.getRequestDispatcher("Deactivate.jsp").include(request, response);
         
             
         } catch (SQLException ex) {
-            System.out.println("Error: user not deleted.");
+            System.out.println("Error: user not deactivated.");
         }
        
     }
