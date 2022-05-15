@@ -55,7 +55,6 @@ public class UpdateServlet extends HttpServlet  {
             }
             else if (user != null) {
                 session.setAttribute("user", user);
-                session.setAttribute("updated", "Update successful.");
                 manager.updateUser(name, email, password, phone);
                 request.getRequestDispatcher("welcome.jsp").include(request, response);
             }
@@ -63,7 +62,7 @@ public class UpdateServlet extends HttpServlet  {
             Logger.getLogger(EditServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         // redirect to edit.jsp
-        response.sendRedirect("edit.jsp");
+//        response.sendRedirect("edit.jsp");
     }
   
 }
