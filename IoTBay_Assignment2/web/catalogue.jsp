@@ -66,7 +66,7 @@
                             <a href="ProductServlet?id=<%=(int)p.getId()%>">
                         <div class="catalogueItem" style="background-color: white; border: 1px solid #000; margin-left: 10px; margin-top: 10px">
                             
-                                <img src="<%=p.getImage()%>" style="width: 200px; height: 200px" alt="<%=p.getTitle()%>">
+                                <img src="<%=p.getImage()%>" style="width: 250px; height: 250px" alt="<%=p.getTitle()%>">
                             
                             <p style="text-align:center;color:black"><%=p.getTitle()%></p>
                             <p style="text-align:center;color:black">$<%=p.getPrice()%>0</p>
