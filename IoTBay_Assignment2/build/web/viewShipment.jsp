@@ -22,7 +22,7 @@
      <% 
         Savedshipment savedShipment = (Savedshipment) session.getAttribute("savedShipment");
         Order currentOrder = (Order) session.getAttribute("currentOrder");
-        String anythingSaved = (String) session.getAttribute("anythingSaved");
+        String anythingSaved = (String) session.getAttribute("anythingSavedShipment");
     %>
     
     

@@ -134,12 +134,12 @@ public class OrderCheckoutServlet extends HttpServlet {
 
                 if (savedShipment != null) {
                     session.setAttribute("savedShipment", savedShipment);
-                    session.setAttribute("anythingSaved", "true");
+                    session.setAttribute("anythingSavedShipment", "true");
 
                 } else {
                     Savedshipment nullShipment = new Savedshipment("N/A", "N/A", "N/A", "N/A","N/A", "N/A");
                     session.setAttribute("savedShipment", nullShipment);
-                    session.setAttribute("anythingSaved", "false");
+                    session.setAttribute("anythingSavedShipment", "false");
                 }
                 request.getRequestDispatcher("viewShipment.jsp").include(request, response);
             
