@@ -20,16 +20,16 @@ public class DBManager {
     }
 
     public void addShipment(String shipmethod, String unitno, String streetno, String streetname, String suburb, String postcode) throws SQLException {
-        st.executeUpdate("INSERT INTO IOTADMIN.Shipment " + "VALUES ('" + shipmethod + "', '" + unitno +"', '" + streetno + "', '" + streetname +"','" + suburb + "', '" + postcode);
+        st.executeUpdate("INSERT INTO IOTADMIN.SHIPMENT " + "VALUES ('" + shipmethod + "', '" + unitno +"', '" + streetno + "', '" + streetname +"','" + suburb + "', '" + postcode);
     }
     
     public void updateShipment(String shipmethod, String unitno, String streetno, String streetname, String suburb, String postcode, String email) throws SQLException {
-        st.executeUpdate("UPDATE IOTADMIN.Shipment SET SHIPMETHOD='" + shipmethod + "',UNITNUMBER='" + unitno + "',STREETNUMBER='" + streetno + "',STREETNAME='" + streetname + "',SUBURB='" + suburb + "',POSTCODE='" + postcode + "' WHERE EMAIL='" + email + "'");
+        st.executeUpdate("UPDATE IOTADMIN.SAVEDSHIPMENT SET SHIPMETHOD='" + shipmethod + "',UNITNUMBER='" + unitno + "',STREETNUMBER='" + streetno + "',STREETNAME='" + streetname + "',SUBURB='" + suburb + "',POSTCODE='" + postcode + "' WHERE EMAIL='" + email + "'");
         
     }
 
     public void deleteShipment(String email) throws SQLException {
-        st.executeUpdate("DELETE FROM IOTADMIN.Shipment WHERE EMAIL='" + email + "'");
+        st.executeUpdate("DELETE FROM IOTADMIN.SAVEDSHIPMENT WHERE EMAIL='" + email + "'");
     }
     
     

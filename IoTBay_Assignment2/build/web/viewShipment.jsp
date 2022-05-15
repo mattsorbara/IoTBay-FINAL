@@ -44,7 +44,7 @@
         <div class="shipment">
             <div class="shipmentcontents">
                 <h2 id="title"><b>Shipment Summary</b></h2> 
-                <form class="shipmentForm" action="viewShipmentServlet" method="post">
+                <form class="shipmentForm" action="updateShipment.jsp" method="post">
              
                    
                     <div class="shipmentFormElement" id="shipmentMethod">
@@ -65,7 +65,7 @@
                     </div>
                             
                     <div class="buttons">
-                        <button href="updateShipment.jsp" class="updateButton" type="submit">Update Shipment</button>
+                  <!--THIS NOT WORKING -->   <button href="updateShipment.jsp" class="updateButton" type="submit">Update Shipment</button>
                         <button href="home.jsp" class="deleteButton">Cancel</button>
                     </div>
             </div> 
@@ -112,10 +112,10 @@
             
        
                 <div class="buttons">
-                <a href="index.html" class="deleteButton" > Back </a> 
+                <a href="index.html" class="updateButton" > Back </a> 
                 
                 
-                <a href="deleteShipment.jsp" action= "DeleteShipmentServlet" class="deleteButton" > Delete </a>
+              <a href="deleteShipment.jsp" action= "DeleteShipmentServlet" class="deleteButton" > Delete </a>
                 
                 <a href="payment.jsp" class="updateButton" > Go to Payment </a>
     </div>

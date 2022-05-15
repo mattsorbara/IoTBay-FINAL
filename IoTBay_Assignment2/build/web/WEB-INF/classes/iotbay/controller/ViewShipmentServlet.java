@@ -2,8 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package iotbay.shipment.controller;
+package iotbay.controller;
 
+import iotbay.model.Order;
+import iotbay.model.Savedshipment;
+import iotbay.model.User;
+import iotbay.model.dao.DBConnector;
+import iotbay.model.dao.DBManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -54,89 +59,26 @@ HttpSession session = request.getSession();
 
         try {
 //            
-            int shipmentID = currentOrder.getshipmentID();
+            int shipmentID = currentOrder.getShipmentID();
             
 
             manager.addShipment1(shipmentID, shipmethod, unitno, streetno, streetname, suburb, postcode);
-             if (!"guest@guest.com".equals(currentOrder.getUserEmail())){ {
+             if (!"guest@guest.com".equals(currentOrder.getUserEmail())){ 
                 Savedshipment savedShipment = manager.findsavedShipment(email);               
                     int shipmentID = manager.getshipmentID();
-                    String unitno = savedShipment.getunitno();
-                    String streetno = savedShipment.getstreetno();
-                    String streetname = savedShipment.getstreetname();
-                    String suburb = savedShipment.getsuburb();
-                    String postcode = savedShipment.getpostcode();
+                    String unitno = savedShipment.getUnitno();
+                    String streetno = savedShipment.getStreetno();
+                    String streetname = savedShipment.getStreetname();
+                    String suburb = savedShipment.getSuburb();
+                    String postcode = savedShipment.getPostcode();
                    
-                    session.setAttribute("confirmedShipment", confirmedShipment);
+
                     request.getRequestDispatcher("orderConfirmation.jsp").include(request, response);
-//                } else {
-//
-//                }
-            } 
-              
-        } catch (SQLException ex) {
+       
+         catch (SQLException ex) {
             Logger.getLogger(viewShipmentServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         
-    }
-        
-            
         }
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
-}
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
-
-    
-   
-        
-
-   
-
-        
-
-//            
-}

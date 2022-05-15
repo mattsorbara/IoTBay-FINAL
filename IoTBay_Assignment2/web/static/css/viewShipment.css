@@ -24,7 +24,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 ::after { 
-     background-color: #8EC5FC;
+    background-color: #8EC5FC;
     background-image: linear-gradient(192deg, #4e85bb 0%, #8539cc 100%);
 }
 html {
