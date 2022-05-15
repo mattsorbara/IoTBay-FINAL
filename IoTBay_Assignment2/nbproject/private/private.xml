@@ -3,45 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/welcome.jsp</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/guestHeader.jsp</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/WEB-INF/web.xml</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/src/java/iotbay/controller/OrderCheckoutServlet.java</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/src/java/iotbay/controller/cardPaymentServlet.java</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/payment.jsp</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/src/java/iotbay/controller/LoginServlet.java</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/src/java/iotbay/controller/RegisterServlet.java</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/home.jsp</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/viewOrders.jsp</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/register.jsp</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/src/java/iotbay/model/User.java</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/src/java/iotbay/model/dao/DB.java</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/editOrder.jsp</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/src/java/iotbay/controller/LogServlet.java</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/src/java/iotbay/controller/CatalogueServlet.java</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/src/java/iotbay/controller/CancelOrderServlet.java</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/src/java/iotbay/model/dao/DBManager.java</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/addproduct.jsp</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/orderSearch.jsp</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/static/css/catalogue.css</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/src/java/iotbay/controller/PaymentServlet.java</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/product.jsp</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/src/java/iotbay/controller/ConnectionAdminServlet.java</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/orderConfirmation.jsp</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/orderCheckout.jsp</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/src/java/iotbay/controller/OrderSearchServlet.java</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/src/java/iotbay/controller/EditOrderServlet.java</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/login.jsp</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/edit.jsp</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/src/java/iotbay/controller/SubmitOrderServlet.java</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/databases/createTables.sql</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/logSearch.jsp</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/src/java/iotbay/controller/AddProductServlet.java</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/static/css/viewOrders.css</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/editproduct.jsp</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/header.jsp</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/catalogue.jsp</file>
-            <file>file:/Users/oliverguerreiro/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/databases/insertUserRecords.sql</file>
+            <file>file:/Users/rubabr/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/addproduct.jsp</file>
+            <file>file:/Users/rubabr/Documents/IoTBay-FINAL/IoTBay_Assignment2/src/java/iotbay/model/dao/DBManager.java</file>
+            <file>file:/Users/rubabr/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/catalogue.jsp</file>
+            <file>file:/Users/rubabr/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/product.jsp</file>
+            <file>file:/Users/rubabr/Documents/IoTBay-FINAL/IoTBay_Assignment2/web/databases/createTables.sql</file>
         </group>
     </open-files>
 </project-private>

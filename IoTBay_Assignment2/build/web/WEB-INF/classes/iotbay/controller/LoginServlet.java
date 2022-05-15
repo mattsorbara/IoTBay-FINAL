@@ -38,13 +38,6 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         session.setAttribute("email", email);
-
-
-        if ("sysadmin@iotbay.com".equals(email) && "sysadmin".equals(password)) {
-            session.setAttribute("sysadmin", true);
-            request.getRequestDispatcher("HomeAdmin.jsp").include(request, response);
-            
-        }
         
         // initialise manager
         DBManager manager = (DBManager) session.getAttribute("manager");
@@ -76,6 +69,14 @@ public class LoginServlet extends HttpServlet {
                 else if (user.getUserActive() == false) {
                     session.setAttribute("logError", "User registration has been cancelled.");
                     request.getRequestDispatcher("login.jsp").include(request, response);
+                }
+                // if user is sysadmin redirect them to the admin page
+                else if (user.getEmail().equals("sysadmin@iotbay.com")) {
+                    session.setAttribute("sysadmin", "true");
+                    Timestamp login = new Timestamp(new Date().getTime());  
+                    session.setAttribute("loginTimestamp", login);  
+                    session.setAttribute("user", user);
+                    request.getRequestDispatcher("HomeAdmin.jsp").include(request, response);
                 }
                 // if ok, create new log and send user to welcome page
                 else { 

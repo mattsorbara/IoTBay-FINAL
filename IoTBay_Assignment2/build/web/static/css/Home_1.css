@@ -109,3 +109,13 @@ tbody {
 #p1 {
     padding-bottom: 5px;
 }
+
+.loggedInMenu {
+    font-family: "Poppins", sans-serif;
+    width: 15%;
+    margin-left: 84%;
+    margin-right: 50%;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+    display: flex;
+}

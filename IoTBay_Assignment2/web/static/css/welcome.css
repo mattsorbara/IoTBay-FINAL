@@ -10,7 +10,7 @@ html {
 
 body {
     margin: 0;
-    height: 100%;
+    height: 95%;
 }
 
 input {
@@ -21,10 +21,11 @@ input {
 .loggedInMenu {
     font-family: "Poppins", sans-serif;
     width: 15%;
-    margin-left: 85%;
-    margin-right: 0;
+    margin-left: 84%;
+    margin-right: 50%;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
     display: flex;
-    justify-content: space-evenly;
 }
 
 .button {

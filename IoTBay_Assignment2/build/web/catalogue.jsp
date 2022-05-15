@@ -21,6 +21,8 @@
             ArrayList<Catalogue> products = (ArrayList<Catalogue>) session.getAttribute("catalogue");
             
             User user = (User) session.getAttribute("user");
+            
+            String sysAdmin = (String) session.getAttribute("sysadmin");
 
         %>
         
@@ -44,13 +46,15 @@
                             <input class="searchField" type="text" name="query" placeholder="Search Products">
                             <button class="submit" type="submit">Search</button>
                         </form>
-                    </div>
-                    <hr>
-                    <div style="text-align:center; padding:10px">
-                        <b>If the user has admin access</b>
-                        <p>
-                        <a style="color:white; text-decoration: none;" href="addproduct.jsp"><button class="submit" style="width:8%">Add Product</button></a>
-                    </div>
+                    <% if (sysAdmin != null) {%>
+                        </div>
+                        <hr>
+                        <div style="text-align:center; padding:10px">
+                            <b>If the user has admin access</b>
+                            <p>
+                            <a style="color:white; text-decoration: none;" href="addproduct.jsp"><button class="submit" style="width:8%">Add Product</button></a>
+                        </div>
+                    <%}%>
                     
                     <%if(products.size() > 0){%>
                     <p><center>Click on a product to view more info</center></p>
@@ -62,7 +66,7 @@
                             <a href="ProductServlet?id=<%=(int)p.getId()%>">
                         <div class="catalogueItem" style="background-color: white; border: 1px solid #000; margin-left: 10px; margin-top: 10px">
                             
-                                <img src="<%=p.getImage()%>" style="width: 200px; height: 200px" alt="<%=p.getTitle()%>">
+                                <img src="<%=p.getImage()%>" style="width: 250px; height: 250px" alt="<%=p.getTitle()%>">
                             
                             <p style="text-align:center;color:black"><%=p.getTitle()%></p>
                             <p style="text-align:center;color:black">$<%=p.getPrice()%>0</p>
