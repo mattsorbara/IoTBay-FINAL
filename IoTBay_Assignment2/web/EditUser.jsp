@@ -17,9 +17,10 @@
      <body>
         <%
             DBManager manager = (DBManager) session.getAttribute("manager");
-            System.out.println(request.getParameter("adminsubmit"));
-            String retrievedEmail = request.getParameter("adminsubmit");
+            System.out.println(request.getParameter("adminSubmit"));
+            String retrievedEmail = request.getParameter("adminSubmit");
             User user = manager.findUserEmail(retrievedEmail);
+            session.setAttribute("targetUser", user);
             String update = request.getParameter("update");
             System.out.println(user.getEmail());
         %>
@@ -33,11 +34,12 @@
         <div class="edit">
             <div class="editContents">
                 <h2 id="title"><b>Edit User Details</b></h2>
-                <form class="editForm" action="RegisterServlet" method="post">
+                <h4 class="message"><span class="message"><%=(update != null ? update : "")%></span></h4>
+                <form class="editForm" action="UpdateAdminServlet" method="post">
                     <div class="registerFormElement" id="name">
                         <label>Full Name</label>
                         <div>
-                            <input class="border-customized-input" type="text" value="<%=user.getName()%>" required="true" name="fullName" placeholder="Full Name">
+                            <input class="border-customized-input" type="text" value="<%=user.getName()%>" required="true" name="name" placeholder="Full Name">
                         </div>
                     </div>
                        <div class="registerFormElement" id="email">
@@ -48,11 +50,11 @@
                     </div>
                     <div class="loginFormElement" id="type">
                         <label>Type</label>
-                        <div>
-                        <input type="radio"  value="<%=user.getUserType()%>" id="type" name="customer">
-                            <label for="customer">Customer</label>
-                       <input type="radio"  value="<%=user.getUserType()%>" id="type" name="staff">     
-                            <label for="staff">Staff</label>
+                    <div>
+                       <input type="radio" id="type" name="type" value="customer">
+                              <label for="customer">Customer</label>
+                       <input type="radio" id="type" name="type" value="staff">     
+                               <label for="staff">Staff</label>
                     </div>
                     </div> 
                      <div class="registerFormElement" id="phone">
@@ -69,17 +71,12 @@
                     </div>
                      <div class="buttons">
                         <a href="ViewUser.jsp" class="button4">Cancel</a>
-                        <a href="Confirm.jsp" class="button4">Confirm</a>
-                        <a href="Activate.jsp" class="button4">Activate User</a>
-                        <a href="Deactivate.jsp" class="button4">Deactivate User</a>
-                        <a href="Delete.jsp" class="button4">Delete User</a>
+                        <a class="button4"><button type="submit" class="button4">Confirm</button></a>
+                        <a href="ActivateAdminServlet" class="button4">Activate User</a>
+                        <a href="DeactivateAdminServlet" class="button4">Deactivate User</a>
+                        <a href="DeleteAdminServlet" class="button4">Delete User</a>
                     </div>
-               </form>
-                
-           <%
-
-           %>    
-                
+               </form>                
             </div>
           </div>
     </body>

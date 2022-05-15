@@ -75,9 +75,9 @@
                         <thead>
                             <tr><td colspan="2"><h2>Users</h2></td></tr>
                             <tr>                            
-                                <th>Full name</th>
-                                <th>User Type</th>
                                 <th>Email</th>
+                                <th>User Type</th>
+                                <th>Full Name</th>
                                 <th>Phone number</th>
                                 <th>Password</th>
                                 <th>Edit User Details</th>
@@ -92,7 +92,7 @@
                             <td><%=u.getName()%></td>
                             <td><%=u.getPhone()%></td>
                             <td><%=u.getPassword()%></td>
-                            <td><form method="post" action="EditUser.jsp"><button type="submit" name="adminsubmit" value="<%=u.getEmail()%>">Edit User</button></form></td>
+                            <td><form method="post" action="EditUser.jsp"><button type="submit" name="adminSubmit" value="<%=u.getEmail()%>">Edit User</button></form></td>
                         </tr>
                             <% } %>
         </tbody>

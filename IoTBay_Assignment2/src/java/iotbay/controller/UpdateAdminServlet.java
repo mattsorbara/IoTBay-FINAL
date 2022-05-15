@@ -21,10 +21,10 @@ import javax.servlet.http.HttpSession;
  *
  * @author saniyakhanna
  */
-class UpdateAdminServlet extends HttpServlet{
+public class UpdateAdminServlet extends HttpServlet{
     
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
@@ -35,43 +35,22 @@ class UpdateAdminServlet extends HttpServlet{
         String type = request.getParameter("type");
         
         DBManager manager = (DBManager) session.getAttribute("manager");
-        
         User user = new User (name, email, password, phone, type);
-
+        
         try {
-                manager.updateUser(email, name, phone, password);
-
+                manager.updateUser(name, email, password, phone);
                 session.setAttribute("user", user);
-
+ 
                 ArrayList<User> users = manager.fetchUsers();
                 request.setAttribute("users", users);
-
-                request.getRequestDispatcher("EditUser.jsp").include(request, response);
+                
+                request.getRequestDispatcher("Confirm.jsp").include(request, response);
  
 
             } catch (SQLException ex) {
                 session.setAttribute("updateMsg", "Update was not successful");
-                request.getRequestDispatcher("HomeAdmin.jsp").include(request, response);
+                request.getRequestDispatcher("UserCreated.jsp").include(request, response);
             }
 
     }
 }
-
-
-               
-//        try {
-//            user = manager.findUser(email, password);
-//            if (user != null) {
-//                session.setAttribute("user", user);
-//                request.getRequestDispatcher("EditUser.jsp").include(request, response);
-//            } else {
-//                System.out.println("user does not exist");
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-//            System.out.println(ex.getErrorCode() + " and "  + ex.getMessage());
-//        }
-        
-//        request.getRequestDispatcher("UpdateUser.jsp").include(request, response);
-//    }
-//}

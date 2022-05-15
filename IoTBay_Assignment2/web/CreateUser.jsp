@@ -38,11 +38,11 @@
                     </div>
                     <div class="loginFormElement" id="type">
                         <label>Type</label>
-                        <div>
-                        <input type="radio" id="type" name="type">
-                            <label for="customer">Customer</label>
-                       <input type="radio" id="type" name="type">     
-                            <label for="staff">Staff</label>
+                       <div>
+                       <input type="radio" id="type" name="type" value="customer">
+                              <label for="customer">Customer</label>
+                       <input type="radio" id="type" name="type" value="staff">     
+                               <label for="staff">Staff</label>
                     </div>
                     </div>    
                     <div class="loginFormElement" id="password">
@@ -59,7 +59,7 @@
                     </div>
                     <div class="buttons">
                         <a href="HomeAdmin.jsp" class="cancel">Cancel</a>
-                        <button type="submit">Create</button>
+                        <button class="button2" type="submit">Create</button>
                     </div>
                 </form>
             </div>

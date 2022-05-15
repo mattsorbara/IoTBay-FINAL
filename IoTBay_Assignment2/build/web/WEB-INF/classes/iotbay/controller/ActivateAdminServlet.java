@@ -28,11 +28,11 @@ public class ActivateAdminServlet extends HttpServlet {
         HttpSession session = request.getSession();
         
         DBManager manager = (DBManager)session.getAttribute("manager");
-        User user = (User)session.getAttribute("user");
+        User user = (User)session.getAttribute("targetUser");
 
         
         try {
-            manager.setUserStatus(true, user.getEmail());
+            manager.enableUser(user.getEmail());
             request.getRequestDispatcher("Activate.jsp").include(request, response);
         }
             

@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="static/css/Deactivate.css">
-        <title>Activated</title>
+        <title>Deactivated</title>
     </head>
     <body>
         <div class="topnav">
@@ -25,7 +25,7 @@
                     <p id="p1">
                         This user was successfully deactivated. 
                     </p>
-                    <a class="button3" href="ViewUser.jsp">View More Users Here</a>
+                    <a class="button3" href="ViewUserAdminServlet">View More Users Here</a>
             </div>
             </div>
     </body>

@@ -80,7 +80,7 @@ public class DBManager {
         st.executeUpdate("UPDATE IOTADMIN.Users SET FULLNAME='" + name + "',PASSWORD='" + password + "',PHONE='" + phone + "' WHERE USEREMAIL='" + email + "'");
     }
     
-    public void setUserStatus(boolean status, String email) throws SQLException {
+    public void setUserStatus(String status, String email) throws SQLException {
         st.executeUpdate("UPDATE IOTADMIN.Users SET TYPE=" + status + "WHERE USEREMAIL='" + email + "'");
     }
     
@@ -90,6 +90,10 @@ public class DBManager {
     
     public void disableUser(String email) throws SQLException {
         st.executeUpdate("UPDATE IOTADMIN.USERS SET USERACTIVE=false WHERE USEREMAIL='" + email + "'");
+    }
+
+    public void enableUser(String email) throws SQLException {
+        st.executeUpdate("UPDATE IOTADMIN.USERS SET USERACTIVE=true WHERE USEREMAIL='" + email + "'");
     }
     
     public User findUserEmail (String email) throws SQLException {
