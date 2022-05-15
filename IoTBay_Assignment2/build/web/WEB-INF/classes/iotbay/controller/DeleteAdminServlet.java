@@ -30,11 +30,12 @@ public class DeleteAdminServlet extends HttpServlet {
         HttpSession session = request.getSession();
         
         DBManager manager = (DBManager)session.getAttribute("manager");
-        User user = (User)session.getAttribute("user");
+        User user = (User)session.getAttribute("targetUser");
         
         
         try {
             manager.deleteUser(user.getEmail());
+            session.invalidate();
             request.getRequestDispatcher("Delete.jsp").include(request, response);
         
             

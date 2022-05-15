@@ -8,6 +8,7 @@ import iotbay.model.User;
 import iotbay.model.dao.DBManager;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -20,32 +21,36 @@ import javax.servlet.http.HttpSession;
  *
  * @author saniyakhanna
  */
-class UpdateAdminServlet extends HttpServlet{
+public class UpdateAdminServlet extends HttpServlet{
     
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
+        String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String phone = request.getParameter("phone");
+        String type = request.getParameter("type");
         
         DBManager manager = (DBManager) session.getAttribute("manager");
+        User user = new User (name, email, password, phone, type);
         
-        User user = null;
         try {
-            user = manager.findUser(email, password);
-            if (user != null) {
+                manager.updateUser(name, email, password, phone);
                 session.setAttribute("user", user);
-                request.getRequestDispatcher("UpdateUser.jsp").include(request, response);
-            } else {
-                System.out.println("user does not exist");
+ 
+                ArrayList<User> users = manager.fetchUsers();
+                request.setAttribute("users", users);
+                
+                request.getRequestDispatcher("Confirm.jsp").include(request, response);
+ 
+
+            } catch (SQLException ex) {
+                session.setAttribute("updateMsg", "Update was not successful");
+                request.getRequestDispatcher("UserCreated.jsp").include(request, response);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println(ex.getErrorCode() + " and "  + ex.getMessage());
-        }
-        
-        request.getRequestDispatcher("UpdateUser.jsp").include(request, response);
+
     }
 }

@@ -10,12 +10,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="static/css/Delete.css">
-        <title>Delete</title>
+        <title>Deleted</title>
     </head>
     <body>
         <div class="topnav">
-            <a class="button1" href="Home.jsp">Home</a>
-            <a class="button1" href="Login.jsp">Logout</a> 
+            <a class="button1" href="HomeAdmin.jsp">Home</a>
+            <a class="button1" href="login.jsp">Logout</a> 
             <a class="button1" href="ViewUser.jsp">View Users</a>
             <a class="button1" href="CreateUser.jsp">Create New Users</a>
         </div>
@@ -25,7 +25,7 @@
                     <p id="p1">
                         This user was successfully deleted. 
                     </p>
-                    <a class="button3" href="ViewUser.jsp">View More Users Here</a>
+                    <a class="button3" href="ViewUserAdminServlet">View More Users Here</a>
             </div>
             </div>
     </body>

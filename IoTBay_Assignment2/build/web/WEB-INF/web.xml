@@ -26,7 +26,22 @@
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>RegisterAdminServlet</servlet-name>
+        <servlet-class>iotbay.controller.RegisterAdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterAdminServlet</servlet-name>
+        <url-pattern>/RegisterAdminServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ViewUserAdminServlet</servlet-name>
+        <servlet-class>iotbay.controller.ViewUserAdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewUserAdminServlet</servlet-name>
+        <url-pattern>/ViewUserAdminServlet</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>EditServlet</servlet-name>
         <servlet-class>iotbay.controller.EditServlet</servlet-class>
@@ -190,6 +205,43 @@
         <servlet-name>PaymentSearchServlet</servlet-name>
         <url-pattern>/PaymentSearchServlet</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ActivateAdminServlet</servlet-name>
+        <servlet-class>iotbay.controller.ActivateAdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ActivateAdminServlet</servlet-name>
+        <url-pattern>/ActivateAdminServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>DeactivateAdminServlet</servlet-name>
+        <servlet-class>iotbay.controller.DeactivateAdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeactivateAdminServlet</servlet-name>
+        <url-pattern>/DeactivateAdminServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>DeleteAdminServlet</servlet-name>
+        <servlet-class>iotbay.controller.DeleteAdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteAdminServlet</servlet-name>
+        <url-pattern>/DeleteAdminServlet</url-pattern>
+    </servlet-mapping>
+    
+        <servlet>
+        <servlet-name>UpdateAdminServlet</servlet-name>
+        <servlet-class>iotbay.controller.UpdateAdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateAdminServlet</servlet-name>
+        <url-pattern>/UpdateAdminServlet</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30

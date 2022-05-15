@@ -69,6 +69,13 @@ public class LoginServlet extends HttpServlet {
                 else if (user.getUserActive() == false) {
                     session.setAttribute("logError", "User registration has been cancelled.");
                     request.getRequestDispatcher("login.jsp").include(request, response);
+                } 
+                else if (user.getEmail().equals("sysadmin@iotbay.com")) {
+                    session.setAttribute("sysadmin", true);
+                    Timestamp login = new Timestamp(new Date().getTime());  
+                    session.setAttribute("loginTimestamp", login);  
+                    session.setAttribute("user", user);
+                    request.getRequestDispatcher("HomeAdmin.jsp").include(request, response);
                 }
                 // if user is sysadmin redirect them to the admin page
                 else if (user.getEmail().equals("sysadmin@iotbay.com")) {
@@ -91,10 +98,7 @@ public class LoginServlet extends HttpServlet {
           // catch SQL error
         } catch (SQLException | NullPointerException ex) {
             System.out.println(ex.getMessage() == null ? "User does not exist" : "welcome");
-        }
-//        
-        
-        
+        }       
         
     }
     

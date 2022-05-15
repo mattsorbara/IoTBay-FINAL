@@ -9,14 +9,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="static/css/Home.css">
+        <link rel="stylesheet" type="text/css" href="static/css/HomeAdmin.css">
         <title>Home Page</title>
     </head>
     <body>
         <div class="topnav">
-            <a class="button1" href="Home.jsp">Home</a>
-            <a class="button1" href="Login.jsp">Logout</a> 
-            <a class="button1" href="ViewUser.jsp">View Users</a>
+            <a class="button1" href="HomeAdmin.jsp">Home</a>
+            <a class="button1" href="login.jsp">Logout</a> 
+            <a class="button1" href="ViewUserAdminServlet">View Users</a>
             <a class="button1" href="CreateUser.jsp">Create New Users</a>
         </div>
         <div class="welcomeback">
@@ -29,7 +29,7 @@
                     <p id="p1">
                         Here you can find, create, activate, deactivate or delete user accounts. 
                     </p>
-                    <a class="button3" href="ViewUser.jsp">View Users</a>
+                    <a class="button3" href="ViewUserAdminServlet">View Users</a>
             </div>
             </div>
     </body>

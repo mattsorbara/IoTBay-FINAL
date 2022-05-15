@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author saniyakhanna
  */
-public class ActivateAdmin extends HttpServlet {
+public class ActivateAdminServlet extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -28,16 +28,16 @@ public class ActivateAdmin extends HttpServlet {
         HttpSession session = request.getSession();
         
         DBManager manager = (DBManager)session.getAttribute("manager");
-        User user = (User)session.getAttribute("user");
+        User user = (User)session.getAttribute("targetUser");
 
         
         try {
-            manager.setUserStatus(true, user.getEmail());
+            manager.enableUser(user.getEmail());
             request.getRequestDispatcher("Activate.jsp").include(request, response);
         }
             
         catch (SQLException ex) {
-            System.out.println("Error: user not deleted.");
+            System.out.println("Error: user not activated.");
         }
        
     }

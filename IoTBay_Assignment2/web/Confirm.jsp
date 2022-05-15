@@ -9,8 +9,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="static/css/Delete.css">
-        <title>Deleted</title>
+        <link rel="stylesheet" type="text/css" href="static/css/Activate.css">
+        <title>Confirmed</title>
     </head>
     <body>
         <div class="topnav">
@@ -19,11 +19,11 @@
             <a class="button1" href="ViewUser.jsp">View Users</a>
             <a class="button1" href="CreateUser.jsp">Create New Users</a>
         </div>
-        <div class="delete">
+        <div class="activate">
             <div class="view">
-                    <h1 id="h1"> Deleted! </h1>
+                    <h1 id="h1"> Changes Successful! </h1>
                     <p id="p1">
-                        This user was successfully deleted. 
+                        The user details were successfully updated. 
                     </p>
                     <a class="button3" href="ViewUserAdminServlet">View More Users Here</a>
             </div>

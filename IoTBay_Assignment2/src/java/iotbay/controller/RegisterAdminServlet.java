@@ -36,25 +36,24 @@ public class RegisterAdminServlet extends HttpServlet {
         DBManager manager = (DBManager) session.getAttribute("manager");
         
         try {
+
             User exist = manager.findUser(email, password);
             if (exist != null) {
                 System.out.println("user already exists");
+
             } else {
-                System.out.println("here");
-                manager.adminAddUser(name, email, password, phone, type);
+                manager.addUser(name, email, password, phone, type);
                 User user = new User(name, email, password, phone, type);
                 session.setAttribute("user", user);
-                request.getRequestDispatcher("Home.jsp").include(request, response);
+                request.getRequestDispatcher("HomeAdmin.jsp").include(request, response);
             }
             
         } catch(SQLException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegisterAdminServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        
             
     }
-    
-    
+ 
     
 }
