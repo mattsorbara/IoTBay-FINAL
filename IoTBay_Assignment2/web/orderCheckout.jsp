@@ -4,6 +4,7 @@
     Author     : matthewsorbara
 --%>
 
+<%@page import="iotbay.model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="iotbay.model.Catalogue"%>
 <%@page import="iotbay.model.dao.DBManager"%>
@@ -18,8 +19,16 @@
     <% 
         Catalogue product = (Catalogue) session.getAttribute("product");
         String orderError = (String) session.getAttribute("orderError");
+        User user = (User) session.getAttribute("user");
     %>
-    
+     
+    <% if ("guest@guest.com".equals(user.getEmail())) { %>
+     <jsp:include page="guestHeader.jsp"/>
+        
+     <% } else { %>
+     <jsp:include page="header.jsp"/>
+     <% } %>
+     
      <body>
         <div class="register">
             <div class="registerContents">

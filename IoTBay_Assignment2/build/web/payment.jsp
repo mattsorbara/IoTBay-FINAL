@@ -17,12 +17,15 @@
         Savedpayment savedPayment = (Savedpayment) session.getAttribute("savedPayment");
         Order currentOrder = (Order) session.getAttribute("currentOrder");
         String anythingSaved = (String) session.getAttribute("anythingSaved");
+        User user = (User) session.getAttribute("user");
     %>
     <body>
-        <div class="loggedInMenu">            
-            <a href="welcome.jsp" class="button">Main</a>
-            <a href="LogoutServlet" class="button" id="logout">Logout</a>
-        </div>
+        <% if ("guest@guest.com".equals(user.getEmail())) { %>
+        <jsp:include page="guestHeader.jsp"/>
+        
+        <% } else { %>
+        <jsp:include page="header.jsp"/>
+        <% } %>
         <div class="payment">
             <div class="paymentContents">
                 <h2 id="title"><b>Payment Summary</b></h2>

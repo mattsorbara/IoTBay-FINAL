@@ -33,7 +33,12 @@
 
         %>
         
+        <% if ("guest@guest.com".equals(user.getEmail())) { %>
+        <jsp:include page="guestHeader.jsp"/>
+        
+        <% } else { %>
         <jsp:include page="header.jsp"/>
+        <% } %>
             
             <div class="product">
                 <div class="productContents">

@@ -19,13 +19,16 @@
         Order order = (Order) session.getAttribute("currentOrder");
         Payment payment = (Payment) session.getAttribute("confirmedPayment");
         Catalogue product = (Catalogue) session.getAttribute("product");
+        User user = (User) session.getAttribute("user");
     %>
     
      <body>
-        <div class="loggedInMenu">            
-            <a href="welcome.jsp" class="button">Main</a>
-            <a href="LogoutServlet" class="button" id="logout">Logout</a>
-        </div>
+        <% if ("guest@guest.com".equals(user.getEmail())) { %>
+        <jsp:include page="guestHeader.jsp"/>
+        
+        <% } else { %>
+        <jsp:include page="header.jsp"/>
+        <% } %>
         <div class="register">
             <div class="registerContents">
                 <h2 id="title"><b>Order Summary</b></h2>
@@ -88,12 +91,12 @@
                 </div>
             </div>
             <div class="registerContents">
-                <form action="SubmitOrderServlet" method="post">
-                    <div class="buttons">
+                <div style="margin-left: 33%">
+                    <form action="SubmitOrderServlet" method="post">
                         <button name="id" value="<%= order.getOrderID() %>" class="submit">Submit Order</button>
-                        <a href="catalogue.jsp"><button class="submit">Save Order</button></a>
-                    </div>
-                </form>
+                    </form>
+                    <a href="catalogue.jsp"><button class="submit">Save Order</button></a>
+                </div>
             </div>
         </div>
     </body>

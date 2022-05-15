@@ -3,6 +3,7 @@
     Created on : 1 May 2022, 8:03:22 pm
     Author     : matthewsorbara
 --%>
+<%@page import="iotbay.model.*"%>
 <%@ page import="java.sql.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,9 +20,17 @@
 
                 String from = (String)current_session.getAttribute("from");
                 String to = (String)current_session.getAttribute("to");
+                User user = (User) current_session.getAttribute("user");
 
             %>
-    <body>
+        <% if ("guest@guest.com".equals(user.getEmail())) { %>
+        <jsp:include page="guestHeader.jsp"/>
+        
+        <% } else { %>
+        <jsp:include page="header.jsp"/>
+        <% } %>
+            
+        <body>
         <div class="loggedInMenu">            
             <a href="welcome.jsp" class="button">Main</a>
             <a href="LogoutServlet" class="button" id="logout">Logout</a>

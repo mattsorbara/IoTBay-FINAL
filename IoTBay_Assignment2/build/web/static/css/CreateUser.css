@@ -140,3 +140,13 @@ input  {
 .button2:hover {
     background-color: #202d6c;
 }
+
+.button {
+    padding: 5px;
+    width: 50%;
+    text-align: center;
+    background-color: #4154b4;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+}
