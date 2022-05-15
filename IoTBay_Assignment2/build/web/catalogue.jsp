@@ -21,6 +21,8 @@
             ArrayList<Catalogue> products = (ArrayList<Catalogue>) session.getAttribute("catalogue");
             
             User user = (User) session.getAttribute("user");
+            
+            String sysAdmin = (String) session.getAttribute("sysadmin");
 
         %>
         
@@ -44,13 +46,15 @@
                             <input class="searchField" type="text" name="query" placeholder="Search Products">
                             <button class="submit" type="submit">Search</button>
                         </form>
-                    </div>
-                    <hr>
-                    <div style="text-align:center; padding:10px">
-                        <b>If the user has admin access</b>
-                        <p>
-                        <a style="color:white; text-decoration: none;" href="addproduct.jsp"><button class="submit" style="width:8%">Add Product</button></a>
-                    </div>
+                    <% if (sysAdmin != null) {%>
+                        </div>
+                        <hr>
+                        <div style="text-align:center; padding:10px">
+                            <b>If the user has admin access</b>
+                            <p>
+                            <a style="color:white; text-decoration: none;" href="addproduct.jsp"><button class="submit" style="width:8%">Add Product</button></a>
+                        </div>
+                    <%}%>
                     
                     <%if(products.size() > 0){%>
                     <p><center>Click on a product to view more info</center></p>
