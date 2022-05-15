@@ -74,11 +74,10 @@
                     <table class="UserTable">
                         <thead>
                             <tr><td colspan="2"><h2>Users</h2></td></tr>
-                            <tr>
-                                <th colspan="2">Users</th>                             
-                                <th>Email</th>
-                                <th>User Type</th>
+                            <tr>                            
                                 <th>Full name</th>
+                                <th>User Type</th>
+                                <th>Email</th>
                                 <th>Phone number</th>
                                 <th>Password</th>
                             </tr>   
@@ -96,49 +95,6 @@
         </tbody>
  </table>
                 </div>
-                 <script>
-                    function filterUsers() {
-                        var input, filterFullName, filterPhoneNumber, filterType, table, tr, tdFullName, tdPhoneNumber, tdType, i, txtFullName;
-                        input = document.getElementById("inputFullName");
-                        filterFullName = input.value.toUpperCase();
-                        input = document.getElementById("inputPhoneNumber");
-                        filterPhoneNumber = input.value.toUpperCase();
-                        input = document.getElementById("inputType");
-                        filterType = input.value.toUpperCase();
-                        table = document.getElementById("UserTable");
-                        tr = table.getElementsByTagName("tr");
-                        
-                        for (i = 0; i < tr.length; i++) {
-                            tdType = tr[i].getElementsByTagName("td")[2];
-                            tdFullName = tr[i].getElementsByTagName("td")[3];
-                            tdPhoneNumber = tr[i].getElementsByTagName("td")[4];
-                            
-                        if (tdFullName {
-                            txtType = tdType.textContent || tdType.innerText;
-                            txtFullName = tdFullName.textContent || tdLastName.innerText;
-                            txtPhoneNumber = tdPhoneNumber.textContent || tdPhoneNumber.innerText;
-                            
-                                if (filterType === "CUSTOMER" || filterType === "STAFF") {
-                                    if (txtType.toUpperCase().indexOf(filterType) > -1 && txtFullName.toUpperCase().indexOf(filterFullName) > -1 && txtPhoneNumber.toUpperCase().indexOf(filterPhoneNumber) > -1) {
-                                        tr[i].style.display = "";
-                                    } 
-                                    
-                                    else {
-                                        tr[i].style.display = "none";
-                                    }
-                                    }
-                                    
-                                else {
-                                    if (txtFullName.toUpperCase().indexOf(filterFullName) > -1 && txtPhoneNumber.toUpperCase().indexOf(filterPhoneNumber) > -1) {
-                                        tr[i].style.display = "";
-                                    } else {
-                                        tr[i].style.display = "none";
-                                    }
-                                }
-                            }
-                        }
-                    }
-                </script>                    
             </div>
         </div>
     </body>
