@@ -52,7 +52,7 @@
                     </div>
                     <div class="buttons">
                         <a href="catalogue.jsp" class="cancel">Cancel</a>
-                        <button class="submit" type="submit">Proceed to Shipment</button>
+                        <button href="viewShipment.jsp" class="submit" type="submit">Proceed to Shipment</button>
                     </div>
                 </form>
             </div>

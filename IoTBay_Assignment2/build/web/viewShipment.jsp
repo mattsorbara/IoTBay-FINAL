@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>IoTBay | View Shipment Details</title>
         
-        <link rel="stylesheet" href="static/viewShipment.css"/>
+        <link rel="stylesheet" href="static/css/viewShipment.css"/>
         
         
         <!-- calling everything --> 

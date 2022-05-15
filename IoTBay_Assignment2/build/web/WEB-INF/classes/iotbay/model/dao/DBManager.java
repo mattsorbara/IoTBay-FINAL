@@ -27,7 +27,7 @@ public class DBManager {
         st.executeUpdate("UPDATE IOTADMIN.Shipment SET SHIPMETHOD='" + shipmethod + "',UNITNUMBER='" + unitno + "',STREETNUMBER='" + streetno + "',STREETNAME='" + streetname + "',SUBURB='" + suburb + "',POSTCODE='" + postcode + "' WHERE EMAIL='" + email + "'");
         
     }
-    
+
     public void deleteShipment(String email) throws SQLException {
         st.executeUpdate("DELETE FROM IOTADMIN.Shipment WHERE EMAIL='" + email + "'");
     }

@@ -14,19 +14,25 @@
         <title>Shipment Management</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="static/searchShipment.css"/>
+        <link rel="stylesheet" href="static/css/searchShipment.css"/>
     </head>
    <% 
         String shipmentViewError = (String) session.getAttribute("shipmentViewError");
      /*   User user = (User) session.getAttribute("user"); - this always causes a run error*/
     %>
     <body>
-        <h1>Shipment Management</h1>
-        <h2>This page is where you can search for your shipment! </h2>
+        <div class="loggedInMenu">            
+            <a href="welcome.jsp" class="button">Main</a>
+            <a href="LogoutServlet" class="button" id="logout">Logout</a>
+        </div>
+
+        <br>
+        <br>
+        <br>
         
             <div class="SMhomeContents">
                <div class="trackOrderID"> 
-                    <h3>Search for your shipment here:</h3> 
+                    <h3 id="title">Search for your shipment here:</h3> 
                     <br>
                    <!-- order id input will come here--> 
                   <!--" method="post"> this will be made into a form later-->
@@ -51,7 +57,7 @@
                 </div>
                
             </div>
-        <button class="backbutton" href="welcome.jsp"> Back </button>
+        <button class="backbutton" href=""> Back </button>
     </body>
 </html>
 

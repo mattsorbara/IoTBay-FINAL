@@ -27,16 +27,23 @@ body{
     height: 100%;
 }
 
+
+
 .SMhomeContents {
     font-family: "Poppins", sans-serif;
     background-color: #eff7ed;
     padding: 40px;
     width: 95%;
     border-radius: 20px;
-    align-self: center;
+    
 }
 
 
+#title {
+    margin: 0;
+    justify-content: center;
+    text-align: center;
+}
 
 h1 { /* only used for top of page */ 
     font-family: "Poppins", sans-serif;
@@ -88,11 +95,8 @@ h2 {
     background-color: #951515;
 }
 
-.buttons {
-    display: flex; 
-    justify-content: space-between;
-    margin-top: 15px;
-}
+
+
 
 .buttonContainer {
     width: 90%;
@@ -103,6 +107,40 @@ h2 {
 .trackOrderID {
     display: inline-grid;
     width: 100%;
+}
+
+
+/* for constant menu */
+
+.loggedInMenu {
+    font-family: "Poppins", sans-serif;
+    width: 15%;
+    margin-left: 85%;
+    margin-right: 0;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.button {
+    padding: 5px;
+    width: 50%;
+    text-align: center;
+    background-color: #4154b4;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+}
+
+.button:hover {
+    background-color: #202d6c;
+}
+
+#logout {
+    background-color: #b44141;
+}
+
+#logout:hover {
+    background-color: #951515;
 }
 
 h3 {
