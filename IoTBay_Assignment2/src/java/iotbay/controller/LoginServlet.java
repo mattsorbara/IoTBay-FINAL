@@ -37,7 +37,6 @@ public class LoginServlet extends HttpServlet {
 
         session.setAttribute("email", email);
         
-        
         DBManager manager = (DBManager) session.getAttribute("manager");
         User user = null;
         Validator val = new Validator();
