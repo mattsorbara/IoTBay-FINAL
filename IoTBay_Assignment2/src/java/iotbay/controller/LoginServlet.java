@@ -38,13 +38,6 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         session.setAttribute("email", email);
-
-
-        if ("sysadmin@iotbay.com".equals(email) && "sysadmin".equals(password)) {
-            session.setAttribute("sysadmin", true);
-            request.getRequestDispatcher("HomeAdmin.jsp").include(request, response);
-            
-        }
         
         // initialise manager
         DBManager manager = (DBManager) session.getAttribute("manager");
