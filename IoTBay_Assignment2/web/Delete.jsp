@@ -15,8 +15,13 @@
     <body>
         <div class="topnav">
             <a class="button1" href="HomeAdmin.jsp">Home</a>
+<<<<<<< Updated upstream
+            <a class="button1" href="login.jsp">Logout</a> 
+            <a class="button1" href="ViewUser.jsp">View Users</a>
+=======
             <a class="button1" href="LogoutServlet">Logout</a> 
             <a class="button1" href="ViewUserAdminServlet">View Users</a>
+>>>>>>> Stashed changes
             <a class="button1" href="CreateUser.jsp">Create New Users</a>
         </div>
         <div class="delete">
