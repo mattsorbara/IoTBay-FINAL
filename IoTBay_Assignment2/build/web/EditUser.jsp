@@ -71,7 +71,7 @@
                     </div>
                      <div class="buttons">
                         <a href="ViewUser.jsp" class="button4">Cancel</a>
-                        <a class="button4"><button type="submit" class="button4">Confirm</button></a>
+                        <button id="confirm" type="submit" class="button4">Confirm</button>
                         <a href="ActivateAdminServlet" class="button4">Activate User</a>
                         <a href="DeactivateAdminServlet" class="button4">Deactivate User</a>
                         <a href="DeleteAdminServlet" class="button4">Delete User</a>
