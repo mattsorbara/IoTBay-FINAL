@@ -28,17 +28,21 @@ public class LogServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         
+        // initialise required fields
         HttpSession session = request.getSession();
         
         DBManager manager = (DBManager)session.getAttribute("manager");
         User user = (User)session.getAttribute("user");
         
+        // get from and to dates
         String fromString = request.getParameter("from")+":00";
         String toString = request.getParameter("to")+":00";
-
+        
+        // generate timestamps
         Timestamp fromTime = Timestamp.valueOf(fromString.replace("T"," "));
         Timestamp toTime = Timestamp.valueOf(toString.replace("T"," "));
         
+        // get result set from DB
         try {
            ResultSet filteredLogs = manager.filterLogs(fromTime, toTime, user.getEmail());
            

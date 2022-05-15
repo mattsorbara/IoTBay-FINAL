@@ -29,29 +29,24 @@ public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        // initialise required fields
         HttpSession session = request.getSession();
-        
         DBManager manager = (DBManager)session.getAttribute("manager");
         String userEmail = ((User)session.getAttribute("user")).getEmail();
-        
-        
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
-        
-        
+       
+        // generate timestamps
         Timestamp logout = new Timestamp(new Date().getTime());  
         Timestamp login = (Timestamp)session.getAttribute("loginTimestamp");  
         
+        // add log to DB
         try {
             manager.addLog(login, logout, userEmail);
         } catch (SQLException ex) {
             System.out.println("Error: log not created.");
         }
         
-        
-        
+        // invalidate session and redirect
         session.invalidate();
         request.getRequestDispatcher("home.jsp").include(request, response);
-        
     }
-    
 }

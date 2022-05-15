@@ -18,6 +18,7 @@ public class User {
     private String userType;
     private boolean userActive;
     
+    // constructor for 5 fields
     public User(String name, String email, String password, String phone, String type) {
         this.name = name;
         this.email = email;
@@ -27,6 +28,7 @@ public class User {
         this.userActive = true;
     }
     
+    // constructor for 6 fields
     public User(String name, String email, String password, String phone, String type, boolean active) {
         this.name = name;
         this.email = email;

@@ -30,8 +30,10 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        // get session data
         HttpSession session = request.getSession();
         
+        // get user info
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
@@ -44,30 +46,38 @@ public class LoginServlet extends HttpServlet {
             
         }
         
+        // initialise manager
         DBManager manager = (DBManager) session.getAttribute("manager");
         User user = null;
         Validator val = new Validator();
         
         try {
+            // validate email format
             if (!val.validateEmail(email)) {
                 session.setAttribute("logError", "Email format wrong.");
                 request.getRequestDispatcher("login.jsp").include(request, response);
             }
+            // validate password format
             else if (!val.validatePassword(password)) {
                 session.setAttribute("logError", "Password format wrong.");
                 request.getRequestDispatcher("login.jsp").include(request, response);
             }
+            // run code if email + password valid
             else {
                 user = manager.findUser(email, password);
+                
+                // if user is null
                 if (user == null) {
-                    System.out.println("here1");
                     session.setAttribute("logError", "User does not exist.");
                     request.getRequestDispatcher("login.jsp").include(request, response);
-                } else if (user.getUserActive() == false) {
-                    System.out.println("here");
+                } 
+                
+                // if user is disabled
+                else if (user.getUserActive() == false) {
                     session.setAttribute("logError", "User registration has been cancelled.");
                     request.getRequestDispatcher("login.jsp").include(request, response);
                 }
+                // if ok, create new log and send user to welcome page
                 else { 
                     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
                     Timestamp login = new Timestamp(new Date().getTime());  
@@ -76,7 +86,8 @@ public class LoginServlet extends HttpServlet {
                     request.getRequestDispatcher("welcome.jsp").include(request, response);  
                 }
             }
-            
+          
+          // catch SQL error
         } catch (SQLException | NullPointerException ex) {
             System.out.println(ex.getMessage() == null ? "User does not exist" : "welcome");
         }

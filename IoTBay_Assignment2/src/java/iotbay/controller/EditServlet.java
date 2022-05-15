@@ -26,26 +26,29 @@ class EditServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        // initialise required fields
         HttpSession session = request.getSession();
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         
         DBManager manager = (DBManager) session.getAttribute("manager");
-        
         User user = null;
+        
+        // find user in DB
         try {
             user = manager.findUser(email, password);
             if (user != null) {
+                // set session attribute to user for other pages
                 session.setAttribute("user", user);
                 request.getRequestDispatcher("edit.jsp").include(request, response);
             } else {
-                System.out.println("user does not exist");
+                // display error message
+                System.out.println("User does not exist");
             }
         } catch (SQLException ex) {
             Logger.getLogger(EditServlet.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex.getErrorCode() + " and "  + ex.getMessage());
         }
-        
         request.getRequestDispatcher("edit.jsp").include(request, response);
     }
 }
