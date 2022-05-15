@@ -30,17 +30,10 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
-//        Validator validator = new Validator();
-        
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
         session.setAttribute("email", email);
-        
-       if (email.equals("sysadmin@iotbay.com") && password.equals("sysadmin")) {
-            session.setAttribute("sysadmin", true);
-            request.getRequestDispatcher("HomeAdmin.jsp").include(request, response);
-        }
         
         DBManager manager = (DBManager) session.getAttribute("manager");
         User user = null;
@@ -61,13 +54,20 @@ public class LoginServlet extends HttpServlet {
                     System.out.println("here1");
                     session.setAttribute("logError", "User does not exist.");
                     request.getRequestDispatcher("login.jsp").include(request, response);
-                } else if (user.getUserActive() == false) {
+                } 
+                else if (user.getUserActive() == false) {
                     System.out.println("here");
                     session.setAttribute("logError", "User registration has been cancelled.");
                     request.getRequestDispatcher("login.jsp").include(request, response);
+                } 
+                else if (user.getEmail().equals("sysadmin@iotbay.com")) {
+                    session.setAttribute("sysadmin", true);
+                    Timestamp login = new Timestamp(new Date().getTime());  
+                    session.setAttribute("loginTimestamp", login);  
+                    session.setAttribute("user", user);
+                    request.getRequestDispatcher("HomeAdmin.jsp").include(request, response);
                 }
-                else { 
-                    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+                else {  
                     Timestamp login = new Timestamp(new Date().getTime());  
                     session.setAttribute("loginTimestamp", login);  
                     session.setAttribute("user", user);
