@@ -13,10 +13,12 @@
         User user = (User) session.getAttribute("user");
     %>
     <body>
-        <div class="loggedInMenu">            
-            <a href="welcome.jsp" class="button">Main</a>
-            <a href="LogoutServlet" class="button" id="logout">Logout</a>
-        </div>
+        <% if ("guest@guest.com".equals(user.getEmail())) { %>
+        <jsp:include page="guestHeader.jsp"/>
+        
+        <% } else { %>
+        <jsp:include page="header.jsp"/>
+        <% } %>
         <div class="log">
             <div class="logContents">
                 <h2 id="title"><b>Order Search</b></h2>

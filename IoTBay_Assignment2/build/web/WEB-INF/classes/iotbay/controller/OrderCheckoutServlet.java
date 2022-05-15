@@ -120,26 +120,27 @@ public class OrderCheckoutServlet extends HttpServlet {
                 if (savedPayment != null) {
                     session.setAttribute("savedPayment", savedPayment);
                     session.setAttribute("anythingSaved", "true");
-
+                //if null, creates dummy savedPayment
                 } else {
                     Savedpayment nullPayment = new Savedpayment("N/A", "N/A", "N/A", "N/A");
                     session.setAttribute("savedPayment", nullPayment);
                     session.setAttribute("anythingSaved", "false");
                 }
+                //redirect user to page
                 request.getRequestDispatcher("payment.jsp").include(request, response);
             }
-            
+            //if quantity is larger than stock avaliable, returns error
             else if (quantity > product.getStock()) {
                 session.setAttribute("orderError", "Quantity exceeds avaliable stock!");
                 request.getRequestDispatcher("orderCheckout.jsp").include(request, response);
             }
-
+           //if quantity is in wrong format, returns error
             else {
                 session.setAttribute("orderError", "Quantity amount invalid!");
                 request.getRequestDispatcher("orderCheckout.jsp").include(request, response);
             }
 
-
+        //if dbmanager fails an SQL search, returns error
         } catch(SQLException ex) {
             Logger.getLogger(OrderCheckoutServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
