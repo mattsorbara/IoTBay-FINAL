@@ -40,7 +40,7 @@
                 </div>                
                 <div class="buttons">
                     <a href="shipmentSearch.jsp" class="submit">Search Shipment Logs</a>
-                </div> 
+                </div>
                 <div class="buttons">
                     <a href="paymentSearch.jsp" class="submit">Search Payment Logs</a>
                 </div>   

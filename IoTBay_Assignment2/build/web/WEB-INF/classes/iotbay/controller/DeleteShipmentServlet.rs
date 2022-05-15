@@ -1,1 +1,0 @@
-iotbay.shipment.controller.DeleteShipmentServlet
