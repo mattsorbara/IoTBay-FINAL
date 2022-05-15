@@ -5,6 +5,7 @@
 --%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="iotbay.model.Catalogue"%>
+<%@page import="iotbay.model.User"%>
 
 <!DOCTYPE html>
 <html>
@@ -26,6 +27,10 @@
         
         <%
             Catalogue product = (Catalogue) session.getAttribute("product");
+            
+            User user = (User) session.getAttribute("user");
+            String sysAdmin = (String) session.getAttribute("sysadmin");
+
         %>
         
         <jsp:include page="header.jsp"/>
@@ -35,12 +40,12 @@
               
                     <h2 id="title"><%=product.getTitle()%></h2>
                     <hr>
-                    <div style="text-align:center; padding:10px">
-                        <b>If the user has admin access</b>
-                        <p>
-                        <a  style="color:white; text-decoration: none;" href="EditProductServlet?id=<%=product.getId()%>"><button class="submit">Edit Product</button></a>
-                        <button class="submit" onclick="checkDelete(<%=product.getId()%>)">Delete Product</button>
-                    </div>
+                    <% if (sysAdmin != null) {%>
+                        <div style="text-align:center; padding:10px">
+                            <a  style="color:white; text-decoration: none;" href="EditProductServlet?id=<%=product.getId()%>"><button class="submit">Edit Product</button></a>
+                            <button class="submit" onclick="checkDelete(<%=product.getId()%>)">Delete Product</button>
+                        </div>
+                    <% } %>
                     
                     <h5 id="title">Product ID: <%=product.getId()%></h5>
                     <h5 id="title">Product Type: <%=product.getType()%></h5>

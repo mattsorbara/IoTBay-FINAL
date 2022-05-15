@@ -6,17 +6,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Log Search | IoT Bay</title>
-        <link rel="stylesheet" type="text/css" href="static/css/logSearch.css">
+        <link rel="stylesheet" type="text/css" href="static/css/orderSearch.css">
     </head>
     <% 
         String orderViewError = (String) session.getAttribute("orderViewError");
         User user = (User) session.getAttribute("user");
     %>
     <body>
-        <div class="loggedInMenu">            
-            <a href="welcome.jsp" class="button">Main</a>
-            <a href="LogoutServlet" class="button" id="logout">Logout</a>
-        </div>
+        <% if ("guest@guest.com".equals(user.getEmail())) { %>
+        <jsp:include page="guestHeader.jsp"/>
+        
+        <% } else { %>
+        <jsp:include page="header.jsp"/>
+        <% } %>
         <div class="log">
             <div class="logContents">
                 <h2 id="title"><b>Order Search</b></h2>
@@ -26,7 +28,7 @@
                 <% 
                     if (!"guest@guest.com".equals(user.getEmail())){
                             %>
-                    <div>
+                    <div class="searchAttribute">
                         <label>From:</label>
                         <input type="datetime-local" name="from" value="2022-05-01T00:00">
                         <label>To:</label>
@@ -36,7 +38,7 @@
                 <%
                     }
                 %>
-                    <div>
+                    <div class="searchAttribute">
                         <label>Order ID:</label>
                         <input type="text" name="orderIDSearch">
                         <button name="id" value="2" type="submit" class="submit">Search by Order ID</button>

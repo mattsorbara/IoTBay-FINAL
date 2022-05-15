@@ -5,13 +5,13 @@
 html {
     background-color: #8EC5FC;
     background-image: linear-gradient(192deg, #4e85bb 0%, #8539cc 100%);
-    height: 100%;
     margin: 0;
+    height: 150%;
 }
 
 body{
     margin: 0;
-    height: 100%;
+    height: 90%;
 }
 
 input  {
@@ -29,8 +29,10 @@ input  {
     display: flex;
     flex-direction: column;
     align-content: center;
-    justify-content: center;   
+    justify-content: flex-start;   
     height: 95%;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .logContents {
@@ -119,11 +121,13 @@ table, th, td, tr {
 .loggedInMenu {
     font-family: "Poppins", sans-serif;
     width: 15%;
-    margin-left: 85%;
-    margin-right: 0;
+    margin-left: 84%;
+    margin-right: 50%;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
     display: flex;
-    justify-content: space-evenly;
 }
+
 
 .button {
     padding: 5px;

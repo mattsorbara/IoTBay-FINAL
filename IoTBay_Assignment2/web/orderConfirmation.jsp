@@ -28,7 +28,7 @@
         </div>
         <div class="register">
             <div class="registerContents">
-                <h2 id="title"><b>Thank you for your Order!</b></h2>
+                <h2 id="title"><b>Order Summary</b></h2>
                 <div class="registerFormElement" id="productName">
                     <label>Order ID</label>
                     <div>
@@ -86,6 +86,14 @@
                         <input class="border-customized-input" type="text" value="<%= payment.getCardExpiry() %>" readonly>
                     </div>
                 </div>
+            </div>
+            <div class="registerContents">
+                <form action="SubmitOrderServlet" method="post">
+                    <div class="buttons">
+                        <button name="id" value="<%= order.getOrderID() %>" class="submit">Submit Order</button>
+                        <a href="catalogue.jsp"><button class="submit">Save Order</button></a>
+                    </div>
+                </form>
             </div>
         </div>
     </body>

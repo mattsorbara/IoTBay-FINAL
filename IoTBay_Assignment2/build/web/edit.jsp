@@ -17,6 +17,9 @@
         <%
             User user = (User) session.getAttribute("user");
             String updated = (String) session.getAttribute("updated");
+            String updatedError = (String) session.getAttribute("updateError");
+            System.out.println(updatedError);
+            session.setAttribute("updated", "");
         %>
         <div class="loggedInMenu">            
             <a href="welcome.jsp" class="button">Main</a>
@@ -27,7 +30,7 @@
             
                 <h2 id="title"><b>Update Details</b></h2>
                 <hr>
-                <h4 class="message"><span class="message"><%=(updated != null ? updated : "")%></span></h4>
+                <h4 class="message"><span class="errormessage"><%=(updatedError != null ? updatedError : "")%></span></h4>
                 <form class="editForm" action="UpdateServlet" method="post">
                     <div class="editFormElement" id="name">
                         <label><b>Full Name</b></label>
