@@ -106,5 +106,6 @@
                 </table>
             </div>
         </div>
+        <div id="invisDiv"/>
     </body>
 </html>

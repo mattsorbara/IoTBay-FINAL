@@ -32,6 +32,10 @@ input  {
     height: 95%;
 }
 
+#invisDiv {
+    height: 800px;
+}
+
 .logContents {
     font-family: "Poppins", sans-serif;
     background-color: #eff7ed;
@@ -112,10 +116,11 @@ table, th, td, tr {
 .loggedInMenu {
     font-family: "Poppins", sans-serif;
     width: 15%;
-    margin-left: 85%;
-    margin-right: 0;
+    margin-left: 84%;
+    margin-right: 50%;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
     display: flex;
-    justify-content: space-evenly;
 }
 
 .button {
