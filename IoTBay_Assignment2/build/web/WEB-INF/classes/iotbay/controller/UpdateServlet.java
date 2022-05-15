@@ -26,8 +26,10 @@ public class UpdateServlet extends HttpServlet  {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        // initialise required fields
         HttpSession session = request.getSession();
         
+        // get data from form
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -38,20 +40,18 @@ public class UpdateServlet extends HttpServlet  {
         DBManager manager = (DBManager) session.getAttribute("manager");
         
         try {
+            // if user is not null
             if (user != null) {
                 session.setAttribute("user", user);
                 session.setAttribute("updated", "Update successful.");
-                System.out.println("updated " + user.getPhone());
                 manager.updateUser(name, email, password, phone);
                 request.getRequestDispatcher("welcome.jsp").include(request, response);
             }
         } catch (SQLException ex) {
             Logger.getLogger(EditServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        // redirect to edit.jsp
         response.sendRedirect("edit.jsp");
-        
-        
     }
   
 }

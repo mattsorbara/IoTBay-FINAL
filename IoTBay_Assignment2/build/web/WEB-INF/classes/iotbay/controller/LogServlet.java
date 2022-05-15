@@ -28,28 +28,37 @@ public class LogServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         
+        // initialise required fields
         HttpSession session = request.getSession();
         
         DBManager manager = (DBManager)session.getAttribute("manager");
         User user = (User)session.getAttribute("user");
         
+        // get from and to dates
         String fromString = request.getParameter("from")+":00";
         String toString = request.getParameter("to")+":00";
-
+        
+        // generate timestamps
         Timestamp fromTime = Timestamp.valueOf(fromString.replace("T"," "));
         Timestamp toTime = Timestamp.valueOf(toString.replace("T"," "));
         
-        try {
-           ResultSet filteredLogs = manager.filterLogs(fromTime, toTime, user.getEmail());
-           
-           session.setAttribute("userLogRows", filteredLogs);
-           session.setAttribute("from", fromString.replace("T"," "));
-           session.setAttribute("to", toString.replace("T"," "));
-           
-           request.getRequestDispatcher("viewLogs.jsp").forward(request, response);
-           
-        } catch (SQLException ex) {
-            System.out.println("SQL Error.");
+        // get result set from DB
+        if (toTime.after(fromTime) && fromTime.before(toTime)) {
+            try {
+               ResultSet filteredLogs = manager.filterLogs(fromTime, toTime, user.getEmail());
+
+               session.setAttribute("userLogRows", filteredLogs);
+               session.setAttribute("from", fromString.replace("T"," "));
+               session.setAttribute("to", toString.replace("T"," "));
+
+               request.getRequestDispatcher("viewLogs.jsp").forward(request, response);
+
+            } catch (SQLException ex) {
+                System.out.println("SQL Error.");
+            }
+        } else {
+            session.setAttribute("logSearchError", "Date format wrong.");
+            request.getRequestDispatcher("logSearch.jsp").include(request, response);
         }
         
 
