@@ -5,6 +5,7 @@
 --%>
 <div class="loggedInMenu">            
     <a href="orderSearch.jsp" class="button">View Orders</a>
+    <a href="paymentSearch.jsp" class="button">View Payments</a>
     <a href="CatalogueServlet" class="button">Catalogue</a>
     <a href="LogoutServlet" class="button" id="logout">Logout</a>
 </div>

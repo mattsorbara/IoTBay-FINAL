@@ -10,10 +10,6 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,10 +18,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author oliverguerreiro
+ * @author lindale
  */
 
-public class OrderSearchServlet extends HttpServlet {
+public class PaymentSearchServlet extends HttpServlet {
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,27 +35,27 @@ public class OrderSearchServlet extends HttpServlet {
 
         String requestType = (String) request.getParameter("id");
 
-        //checks if the id field is equal to 2, which triggers a orderIDSearch
+        //checks if the id field is equal to 2, which triggers a paymentIDSearch
         if ("2".equals(requestType)) {
             try {
-               //checks if orderIDSearch is null or incorrect format
-               int orderIDSearch = Integer.parseInt(request.getParameter("orderIDSearch"));
+               //checks if paymentIDSearch is null or incorrect format
+               int paymentIDSearch = Integer.parseInt(request.getParameter("paymentIDSearch"));
                     //attempts to search database to find orders through filtered list
                     try {
-                        ResultSet filteredLogs = manager.filterOrdersID(user.getEmail(), orderIDSearch);
-                        session.setAttribute("orderIDSearch", orderIDSearch);
-                        session.setAttribute("orderLogRows", filteredLogs);
+                        ResultSet filteredLogs = manager.filterPaymentID(user.getEmail(), paymentIDSearch);
+                        session.setAttribute("paymentIDSearch", paymentIDSearch);
+                        session.setAttribute("paymentLogRows", filteredLogs);
 
-                        request.getRequestDispatcher("viewOrders.jsp").forward(request, response);
+                        request.getRequestDispatcher("viewPayments.jsp").forward(request, response);
 
                     //catches any errors from the dbmanager
                     } catch (SQLException ex) {
                         System.out.println("SQL Error.");
                     }
-            //sets error if the orderIDSearch is invalid
+            //sets error if the paymentIDSearch is invalid
             } catch (NumberFormatException ex) {
-                session.setAttribute("orderViewError", "OrderID not valid!");
-                request.getRequestDispatcher("orderSearch.jsp").include(request, response); 
+                session.setAttribute("paymentViewError", "PaymentID not valid!");
+                request.getRequestDispatcher("paymentSearch.jsp").include(request, response); 
             }
         }
         //Timestamp search
@@ -68,23 +64,23 @@ public class OrderSearchServlet extends HttpServlet {
             Timestamp toTime = Timestamp.valueOf(toString.replace("T"," "));
             //Checks if the time period is correct
             if (toTime.after(fromTime) && fromTime.before(toTime)) {
-                //attempts to search database to find orders through filtered list
+                //attempts to search database to find payments through filtered list
                 try {
-                   ResultSet filteredLogs = manager.filterOrdersDate(fromTime, toTime, user.getEmail());
+                   ResultSet filteredLogs = manager.filterPaymentDate(fromTime, toTime, user.getEmail());
 
-                   session.setAttribute("orderLogRows", filteredLogs);
+                   session.setAttribute("paymentLogRows", filteredLogs);
                    session.setAttribute("from", fromString.replace("T"," "));
                    session.setAttribute("to", toString.replace("T"," "));
 
-                   request.getRequestDispatcher("viewOrders.jsp").forward(request, response);
+                   request.getRequestDispatcher("viewPayments.jsp").forward(request, response);
                 //catches any errors from the dbmanager
                 } catch (SQLException ex) {
                     System.out.println("SQL Error.");
                 }
             //returns error is date not valid
             } else {
-                session.setAttribute("orderViewError", "Date not valid!");
-                request.getRequestDispatcher("orderSearch.jsp").include(request, response); 
+                session.setAttribute("paymentViewError", "Date not valid!");
+                request.getRequestDispatcher("paymentSearch.jsp").include(request, response); 
             }
         }
     }

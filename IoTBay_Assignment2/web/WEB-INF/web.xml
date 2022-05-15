@@ -182,7 +182,14 @@
         <servlet-name>SubmitOrderServlet</servlet-name>
         <url-pattern>/SubmitOrderServlet</url-pattern>
     </servlet-mapping>
-    
+    <servlet>
+        <servlet-name>PaymentSearchServlet</servlet-name>
+        <servlet-class>iotbay.controller.PaymentSearchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PaymentSearchServlet</servlet-name>
+        <url-pattern>/PaymentSearchServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
