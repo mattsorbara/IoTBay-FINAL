@@ -34,10 +34,14 @@ public class ViewUserAdminServlet extends HttpServlet {
         DBManager manager = (DBManager) session.getAttribute("manager");
 
         try {
+
+            System.out.println("I'm here");
      
             ArrayList<User> users = manager.fetchUsers();
 
-            request.setAttribute("users", users);
+            System.out.println(users);
+
+            session.setAttribute("users", users);
 
             request.getRequestDispatcher("ViewUser.jsp").include(request, response);
 

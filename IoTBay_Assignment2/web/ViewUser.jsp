@@ -32,7 +32,7 @@
         
        
         HttpSession current_session = request.getSession();
-        ResultSet rows = (ResultSet)current_session.getAttribute("userLogRows");
+        ArrayList<User> rows = (ArrayList<User>)current_session.getAttribute("users");
 
      %>
 
@@ -84,13 +84,13 @@
                             </tr>   
                           </thead>
                     <tbody>
-                        <% while(rows.next()){ %>
+                        <% for (User u : rows) {%>
                         <tr>
-                            <td><%=rows.getString(1)%></td>
-                            <td><%=rows.getString(5)%></td>
-                            <td><%=rows.getString(2)%></td>
-                            <td><%=rows.getString(4)%></td>
-                            <td><%=rows.getString(3)%></td>
+                            <td><%=u.getEmail()%></td>
+                            <td><%=u.getUserType()%></td>
+                            <td><%=u.getName()%></td>
+                            <td><%=u.getPhone()%></td>
+                            <td><%=u.getPassword()%></td>
                         </tr>
                             <% } %>
         </tbody>
