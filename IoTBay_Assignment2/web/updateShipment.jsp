@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>IoTBay | Update Shipment Details</title>
         
-        <link rel="stylesheet" href="static/css/updateShipment.css"/>
+        <link rel="stylesheet" href="static/updateShipment.css"/>
     </head>
     
      <body>
@@ -69,7 +69,8 @@
                     </div>
                     <div class="buttons">
                         <a href="viewShipment.jsp" class="cancel">Cancel</a>
-                        <button class="updatebutton" type ="submit" >Update</button> <!-- probably need to add in a type here-->
+                        
+                        <button href="viewShipment.jsp" class="updatebutton" type ="submit" > Update </button> 
                     </div>
                 </form>
             </div>

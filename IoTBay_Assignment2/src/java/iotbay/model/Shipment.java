@@ -10,7 +10,7 @@ package iotbay.shipment.model;
  * @author tanya
  */
 public class Shipment {
-   private String shipmethod;
+   private String shipMethod;
    private String unitno;
    private String streetno;
    private String streetname;
@@ -18,8 +18,8 @@ public class Shipment {
    private String postcode;
 
     
-    public Shipment(String shipmethod, String unitno, String streetno, String streetname, String suburb, String postcode) {
-        this.shipmethod = shipmethod;
+    public Shipment(String shipMethod, String unitno, String streetno, String streetname, String suburb, String postcode) {
+        this.shipMethod = shipMethod;
         this.unitno = unitno;
         this.streetno = streetno;
         this.streetname = streetname;
@@ -28,13 +28,14 @@ public class Shipment {
         
     }
 
-public String getShipmethod() {
-        return shipmethod;
+public String getShipMethod() {
+        return shipMethod;
     }
 
-    public void setShipmethod(String shipmethod) {
-        this.shipmethod = shipmethod;
+    public void setShipmethod(String shipMethod) {
+        this.shipMethod = shipMethod;
     }
+
 
     public String getUnitno() {
         return unitno;
