@@ -33,9 +33,6 @@
                     <a href="logSearch.jsp" class="submit">Search Logs</a>
                 </div>
                 <div class="buttons">
-                    <a href="deviceSearch.jsp" class="submit">Search Devices</a>
-                </div>
-                <div class="buttons">
                     <a href="CatalogueServlet" class="submit">Browse Catalogue</a>
                 </div>
                 <div class="buttons">
