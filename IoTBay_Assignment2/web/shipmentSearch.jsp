@@ -38,26 +38,27 @@
                   <!--" method="post"> this will be made into a form later-->
                    
                    <form action="searchShipmentServlet" method="post" id="shipSearchForm">
-                
+                </form>
                     <div>
                         <label>From:</label>
                         <input type="datetime-local" name="from" value="2021-04-01T00:00">
                         <label>To:</label>
                         <input type="datetime-local" name="to" value="2022-05-01T00:00">
-                        <button  value="1" type="submit" class="searchbutton">Search by Date</button>
+                        <button class="searchbutton">Search by Date</button>
                     </div><br/>
                 
                     <div>
                         <label>Shipment ID:</label>
                         <input type="text" name="shipmentIDSearch">
-                        <button  value="2" type="submit" class="searchbutton">Search by Shipment ID</button>
+                        <button  class="searchbutton">Search by Shipment ID</button>
                     </div>
-                </form>
+                
                   
                 </div>
                
             </div>
-        <button class="backbutton" href=""> Back </button>
+        <br>
+        <a class="button" href="welcome.jsp"> Back </a>
     </body>
 </html>
 
