@@ -30,11 +30,7 @@
         <jsp:include page="header.jsp"/>
         <% } %>
             
-        <body>
-        <div class="loggedInMenu">            
-            <a href="welcome.jsp" class="button">Main</a>
-            <a href="LogoutServlet" class="button" id="logout">Logout</a>
-        </div>
+    <body>
         <div class="log">
             <div class="logContents">
                 <h2 id="title"><b>User Access Logs</b></h2>
@@ -53,11 +49,7 @@
                             <td><%=rows.getString(4)%></td>
                         </tr>
                     <% } %>
-
-
-
                 </table>
-
             </div>
         </div>
     </body>
