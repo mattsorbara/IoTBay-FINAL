@@ -4,6 +4,7 @@
  */
 package iotbay.controller;
 
+
 import iotbay.model.Catalogue;
 import iotbay.model.Savedpayment;
 import iotbay.model.User;
@@ -35,71 +36,55 @@ public class LoginServlet extends HttpServlet {
         
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+
         
        if (email.equals("sysadmin@iotbay.com") && password.equals("sysadmin")) {
             session.setAttribute("sysadmin", true);
             request.getRequestDispatcher("HomeAdmin.jsp").include(request, response);
         }
+
+
+        session.setAttribute("email", email);
+        
         
         DBManager manager = (DBManager) session.getAttribute("manager");
         User user = null;
-        Catalogue testProduct = null;
-        Savedpayment savedPayment = null;
-//        validator.clear(session);
+        Validator val = new Validator();
         
         try {
-            user = manager.findUser(email, password);
-            testProduct = manager.testGetDevice();
-////            
-            session.setAttribute("testProduct", testProduct);
-
-            savedPayment = manager.findSavedpayment(email);
-//
-            if (savedPayment != null) {
-                session.setAttribute("savedPayment", savedPayment);
-            } else {
-                Savedpayment nullPayment = new Savedpayment("N/A", "N/A", "N/A", "N/A");
-                session.setAttribute("savedPayment", nullPayment);
-            }
-
-            if (user != null) {
-                
-                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
-                Timestamp login = new Timestamp(new Date().getTime());  
-                session.setAttribute("loginTimestamp", login);   
-
-                session.setAttribute("user", user);
-                request.getRequestDispatcher("welcome.jsp").include(request, response);
-            } else {
-                session.setAttribute("existErr", "Student does not exist in the Database!");
+            if (!val.validateEmail(email)) {
+                session.setAttribute("logError", "Email format wrong.");
                 request.getRequestDispatcher("login.jsp").include(request, response);
             }
+            else if (!val.validatePassword(password)) {
+                session.setAttribute("logError", "Password format wrong.");
+                request.getRequestDispatcher("login.jsp").include(request, response);
+            }
+            else {
+                user = manager.findUser(email, password);
+                if (user == null) {
+                    System.out.println("here1");
+                    session.setAttribute("logError", "User does not exist.");
+                    request.getRequestDispatcher("login.jsp").include(request, response);
+                } else if (user.getUserActive() == false) {
+                    System.out.println("here");
+                    session.setAttribute("logError", "User registration has been cancelled.");
+                    request.getRequestDispatcher("login.jsp").include(request, response);
+                }
+                else { 
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+                    Timestamp login = new Timestamp(new Date().getTime());  
+                    session.setAttribute("loginTimestamp", login);  
+                    session.setAttribute("user", user);
+                    request.getRequestDispatcher("welcome.jsp").include(request, response);  
+                }
+            }
+            
         } catch (SQLException | NullPointerException ex) {
-            System.out.println(ex.getMessage() == null ? "Student does not exist" : "welcome");
+            System.out.println(ex.getMessage() == null ? "User does not exist" : "welcome");
         }
 //        
-//        if (!validator.validateEmail(email)) {
-//            session.setAttribute("emailErr", "Error: Email format incorrect");
-//            request.getRequestDispatcher("login.jsp").include(request, response);
-//        } else if (!validator.validatePassword(password)) {
-//           session.setAttribute("passErr", "Error: Password format incorrect");
-//           request.getRequestDispatcher("login.jsp").include(request, response);
-//        } else {
-//            try {
-//                user = manager.findUser(email, password);
-//                
-//                if (user != null) {
-//                    session.setAttribute("student", user);
-//                    request.getRequestDispatcher("main.jsp").include(request, response);
-//                } else {
-//                    session.setAttribute("existErr", "Student does not exist in the Database!");
-//                    request.getRequestDispatcher("login.jsp").include(request, response);
-//                }
-//            } catch (SQLException | NullPointerException ex) {
-//                System.out.println(ex.getMessage() == null ? "Student does not exist" : "welcome");
-//            }
-//        }
-        
+
         
         
         

@@ -16,12 +16,10 @@ IoTBay_Assignment2/nbproject/private/private.properties
 *.properties
 *.xml
 *.properties
-*.properties
-IoTBay_Assignment2/nbproject/private/private.xml
-IoTBay_Assignment2/nbproject/private/private.properties
-IoTBay_Assignment2/nbproject/private/private.properties
 IoTBay_Assignment2/nbproject/private/private.xml
 *.properties
-IoTBay_Assignment2/dist/IoTBay_Assignment2.war
+*.xml
+IoTBay_Assignment2/nbproject/private/private.xml
 IoTBay_Assignment2/nbproject/private/private.properties
 /IoTBay_Assignment2/dist/
+*.properties

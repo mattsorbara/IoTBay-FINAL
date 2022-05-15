@@ -27,10 +27,10 @@ input  {
 
 .register {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-content: center;
-    justify-content: center;  
-    height: 95%;
+    justify-content: center;   
+    height: 100%;
 }
 
 .registerContents {
@@ -39,11 +39,11 @@ input  {
     padding: 40px;
     width: 25%;
     border-radius: 20px;
-    justify-content: center;
+    align-self: center;
 }
 
 .registerForm {
-    align-self: flex-start;
+    display: inline-grid;
     width: 100%;
 }
 

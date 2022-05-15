@@ -12,10 +12,14 @@
         <title>Login | IoT Bay</title>
         <link rel="stylesheet" type="text/css" href="static/css/login.css">
     </head>
+    <%
+        String errors = (String) session.getAttribute("logError");
+    %>
     <body>
         <div class="login">
             <div class="loginContents">
                 <h2 id="title"><b>Login</b></h2>
+                <p style="color: red; text-align: center; margin-bottom: 0">${logError}</p>
                 <form class="loginForm" action="LoginServlet" method="post">
                     
                         <label>Email</label>

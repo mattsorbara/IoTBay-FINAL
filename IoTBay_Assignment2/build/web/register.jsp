@@ -12,10 +12,14 @@
         <title>Register | IoT Bay</title>
         <link rel="stylesheet" type="text/css" href="static/css/register.css">
     </head>
+    <%
+        String errors = (String) session.getAttribute("regError");
+    %>
      <body>
         <div class="register">
             <div class="registerContents">
                 <h2 id="title"><b>Register</b></h2>
+                <p style="color: red; text-align: center; margin-bottom: 0">${regError}</p>
                 <form class="registerForm" action="RegisterServlet" method="post">
                     <div class="registerFormElement" id="name">
                         <label>Full Name</label>
@@ -41,6 +45,7 @@
                             <input class="border-customized-input" type="text" required="true" name="phone" placeholder="Phone">
                         </div>
                     </div>
+                    <input type="hidden" name="type" value="Customer">
                     <div class="buttons">
                         <a href="home.jsp" class="cancel">Cancel</a>
                         <button class="submit" type="submit">Register</button>
