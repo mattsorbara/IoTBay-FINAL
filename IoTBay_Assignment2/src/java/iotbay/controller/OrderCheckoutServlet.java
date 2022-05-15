@@ -126,10 +126,28 @@ public class OrderCheckoutServlet extends HttpServlet {
                     session.setAttribute("savedPayment", nullPayment);
                     session.setAttribute("anythingSaved", "false");
                 }
-                //redirect user to page
-                request.getRequestDispatcher("payment.jsp").include(request, response);
+         //       request.getRequestDispatcher("payment.jsp").include(request, response);
+
+/* SAVED SHIPMENT STUFF BELOW - TANYA */
+                Savedshipment savedShipment = manager.findSavedshipment(user.getEmail());
+
+                if (savedShipment != null) {
+                    session.setAttribute("savedShipment", savedShipment);
+                    session.setAttribute("anythingSaved", "true");
+
+                } else {
+                    Savedshipment nullShipment = new Savedshipment("N/A", "N/A", "N/A", "N/A","N/A", "N/A");
+                    session.setAttribute("savedShipment", nullShipment);
+                    session.setAttribute("anythingSaved", "false");
+                }
+                request.getRequestDispatcher("viewShipment.jsp").include(request, response);
+            
+
+/* FIN SAVED SHIPMENT */
             }
-            //if quantity is larger than stock avaliable, returns error
+          
+
+            
             else if (quantity > product.getStock()) {
                 session.setAttribute("orderError", "Quantity exceeds avaliable stock!");
                 request.getRequestDispatcher("orderCheckout.jsp").include(request, response);
@@ -144,6 +162,8 @@ public class OrderCheckoutServlet extends HttpServlet {
         } catch(SQLException ex) {
             Logger.getLogger(OrderCheckoutServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+
        
     }
 }

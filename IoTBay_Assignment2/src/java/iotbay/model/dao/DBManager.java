@@ -20,16 +20,16 @@ public class DBManager {
     }
 
     public void addShipment(String shipmethod, String unitno, String streetno, String streetname, String suburb, String postcode) throws SQLException {
-        st.executeUpdate("INSERT INTO IOTADMIN.Shipment " + "VALUES ('" + shipmethod + "', '" + unitno +"', '" + streetno + "', '" + streetname +"','" + suburb + "', '" + postcode);
+        st.executeUpdate("INSERT INTO IOTADMIN.SHIPMENT " + "VALUES ('" + shipmethod + "', '" + unitno +"', '" + streetno + "', '" + streetname +"','" + suburb + "', '" + postcode);
     }
     
     public void updateShipment(String shipmethod, String unitno, String streetno, String streetname, String suburb, String postcode, String email) throws SQLException {
-        st.executeUpdate("UPDATE IOTADMIN.Shipment SET SHIPMETHOD='" + shipmethod + "',UNITNUMBER='" + unitno + "',STREETNUMBER='" + streetno + "',STREETNAME='" + streetname + "',SUBURB='" + suburb + "',POSTCODE='" + postcode + "' WHERE EMAIL='" + email + "'");
+        st.executeUpdate("UPDATE IOTADMIN.SAVEDSHIPMENT SET SHIPMETHOD='" + shipmethod + "',UNITNUMBER='" + unitno + "',STREETNUMBER='" + streetno + "',STREETNAME='" + streetname + "',SUBURB='" + suburb + "',POSTCODE='" + postcode + "' WHERE EMAIL='" + email + "'");
         
     }
-    
+
     public void deleteShipment(String email) throws SQLException {
-        st.executeUpdate("DELETE FROM IOTADMIN.Shipment WHERE EMAIL='" + email + "'");
+        st.executeUpdate("DELETE FROM IOTADMIN.SAVEDSHIPMENT WHERE EMAIL='" + email + "'");
     }
     
     
@@ -290,7 +290,27 @@ public class DBManager {
             return new Savedpayment(userEmail, cardNumber, cardCVC, cardExpiry);
         }
         return null;
-    }
+    } 
+
+// SAVED SHIPMENT HERE - TANYA
+    public Savedshipment findSavedshipment(String email) throws SQLException {
+        String fetch = "SELECT * FROM IOTADMIN.Savedshipment WHERE USEREMAIL='" + email + "'";
+        ResultSet rs = st.executeQuery(fetch);
+        
+        while (rs.next()) {
+            String shipmethod = rs.getString(1);
+            String unitno = rs.getString(2);
+            String streetno = rs.getString(3);
+            String streetname = rs.getString(4);
+            String suburb = rs.getString(5);
+            String postcode = rs.getString(6);
+            return new Savedshipment(shipmethod, unitno, streetno, streetname, suburb, postcode);
+        }
+        return null;
+    } 
+
+
+// UNTIL HERE 
 
     
     public ArrayList<Catalogue> fetchProducts() throws SQLException {

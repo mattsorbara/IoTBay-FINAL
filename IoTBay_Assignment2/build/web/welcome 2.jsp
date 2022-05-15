@@ -28,9 +28,10 @@
                 <hr>
                 <div class="buttons">
                     <a href="edit.jsp" class="submit">Edit</a>
+                    <a href="logSearch.jsp" class="submit">Search Logs</a>
                 </div>
                 <div class="buttons">
-                    <a href="logSearch.jsp" class="submit">Search User Access Logs</a>
+                    <a href="deviceSearch.jsp" class="submit">Search Devices</a>
                 </div>
                 <div class="buttons">
                     <a href="CatalogueServlet" class="submit">Browse Catalogue</a>
@@ -40,10 +41,7 @@
                 </div>                
                 <div class="buttons">
                     <a href="shipmentSearch.jsp" class="submit">Search Shipment Logs</a>
-                </div> 
-                <div class="buttons">
-                    <a href="paymentSearch.jsp" class="submit">Search Payment Logs</a>
-                </div>   
+                </div>
             </div>
         </div>
     </body>
