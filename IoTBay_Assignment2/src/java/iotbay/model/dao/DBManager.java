@@ -351,7 +351,7 @@ public class DBManager {
     }
     
     public void addProduct(int id, String title, double price, String description, String image, int stock, String type) throws SQLException {
-        st.executeUpdate("INSERT INTO IOTADMIN.PRODUCTS (PRODUCTID, PRODUCTTITLE, PRODUCTTITLE, PRODUCTDESCRIPTION, PRODUCTIMAGE, PRODUCTSTOCK, PRODUCTTYPE) VALUES (" + id + ", '" + title + "', " + price +",'" + description + "','" + image + "'," + stock + ", '" + type + "')");
+        st.executeUpdate("INSERT INTO IOTADMIN.PRODUCTS (PRODUCTTITLE, PRODUCTPRICE, PRODUCTDESCRIPTION, PRODUCTIMAGE, PRODUCTSTOCK, PRODUCTTYPE) VALUES ('" + title + "', " + price +",'" + description + "','" + image + "'," + stock + ", '" + type + "')");
     }
     
     public void deleteProduct(int id) throws SQLException {
