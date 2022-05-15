@@ -87,11 +87,14 @@
                     </div>
                 </div>
             </div>
-            <form action="SubmitOrderServlet" method="post">
-                <div class="buttons">
-                    <button name="id" value="<%= order.getOrderID() %>" class="submit">Submit Order</button>
-                </div>
-            </form>
+            <div class="registerContents">
+                <form action="SubmitOrderServlet" method="post">
+                    <div class="buttons">
+                        <button name="id" value="<%= order.getOrderID() %>" class="submit">Submit Order</button>
+                        <a href="catalogue.jsp"><button class="submit">Save Order</button></a>
+                    </div>
+                </form>
+            </div>
         </div>
     </body>
 </html>
