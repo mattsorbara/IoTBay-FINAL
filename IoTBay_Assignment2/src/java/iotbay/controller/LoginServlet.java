@@ -79,7 +79,7 @@ public class LoginServlet extends HttpServlet {
                 }
                 // if user is sysadmin redirect them to the admin page
                 else if (user.getEmail().equals("sysadmin@iotbay.com")) {
-                    session.setAttribute("sysadmin", true);
+                    session.setAttribute("sysadmin", "true");
                     Timestamp login = new Timestamp(new Date().getTime());  
                     session.setAttribute("loginTimestamp", login);  
                     session.setAttribute("user", user);
