@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author saniyakhanna
  */
-public class ActivateAdmin extends HttpServlet {
+public class ActivateAdminServlet extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

@@ -73,10 +73,11 @@
                 <div class="tablewrap">
                     <table class="UserTable">
                         <thead>
-                            <tr><td colspan="2"><h2>Customers</h2></td></tr>
+                            <tr><td colspan="2"><h2>Users</h2></td></tr>
                             <tr>
-                                <th colspan="2">Type</th>                             
+                                <th colspan="2">Users</th>                             
                                 <th>Email</th>
+                                <th>User Type</th>
                                 <th>Full name</th>
                                 <th>Phone number</th>
                                 <th>Password</th>
@@ -86,33 +87,14 @@
                         <% while(rows.next()){ %>
                         <tr>
                             <td><%=rows.getString(1)%></td>
+                            <td><%=rows.getString(5)%></td>
                             <td><%=rows.getString(2)%></td>
                             <td><%=rows.getString(4)%></td>
+                            <td><%=rows.getString(3)%></td>
                         </tr>
                             <% } %>
         </tbody>
  </table>
-                        <table class="UserTable"> 
-                         <thead>
-                            <tr><td colspan="2"><h2>Staff</h2></td></tr>
-                            <tr>
-                                <th colspan="2">Type</th>
-                                <th>Email</th>
-                                <th>Full name</th>
-                                <th>Phone number</th>
-                                <th>Password</th>
-                                <th>Manager</th>
-                            </tr>
-                    <% while(rows.next()){ %>
-                        <tr>
-                            <td><%=rows.getString(1)%></td>
-                            <td><%=rows.getString(2)%></td>
-                            <td><%=rows.getString(4)%></td>
-                        </tr>
-                        <% } %>
-                        </thead>
-
-                 </table>
                 </div>
                  <script>
                     function filterUsers() {

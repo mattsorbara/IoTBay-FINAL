@@ -18,11 +18,11 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author saniyakhanna
+ * @author matthewsorbara
  */
-public class RegisterAdminServlet extends HttpServlet {
+public class RegisterServlet extends HttpServlet {
     
-@Override
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -35,25 +35,44 @@ public class RegisterAdminServlet extends HttpServlet {
         
         DBManager manager = (DBManager) session.getAttribute("manager");
         
+        Validator val = new Validator();
+        
         try {
-
             User exist = manager.findUser(email, password);
             if (exist != null) {
-                System.out.println("user already exists");
-
-            } else {
+                session.setAttribute("regError", "User already exists.");
+                request.getRequestDispatcher("register.jsp").include(request, response);
+            }
+            else if(!val.validateName(name)) {
+                session.setAttribute("regError", "Name format wrong.");
+                request.getRequestDispatcher("register.jsp").include(request, response);
+            }
+            else if(!val.validateEmail(email)) {
+                session.setAttribute("regError", "Email format wrong.");
+                request.getRequestDispatcher("register.jsp").include(request, response);
+            }
+            else if(!val.validatePassword(password)) {
+                session.setAttribute("regError", "Password format wrong.");
+                request.getRequestDispatcher("register.jsp").include(request, response);
+            }
+            else {
                 manager.addUser(name, email, password, phone, type);
                 User user = new User(name, email, password, phone, type);
                 session.setAttribute("user", user);
-                request.getRequestDispatcher("HomeAdmin.jsp").include(request, response);
+                request.getRequestDispatcher("welcome.jsp").include(request, response);
             }
             
         } catch(SQLException ex) {
-            Logger.getLogger(RegisterAdminServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
+        
+        
+        
+        
             
     }
- 
+    
+    
     
 }

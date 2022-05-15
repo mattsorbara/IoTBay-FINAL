@@ -21,9 +21,9 @@
         </div>
         <div class="activate">
             <div class="view">
-                    <h1 id="h1"> Activated! </h1>
+                    <h1 id="h1"> New User Created! </h1>
                     <p id="p1">
-                        This user was successfully activated. 
+                        This user was successfully created. 
                     </p>
                     <a class="button3" href="ViewUser.jsp">View More Users Here</a>
             </div>

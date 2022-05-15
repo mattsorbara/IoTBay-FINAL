@@ -9,9 +9,8 @@ import iotbay.model.User;
 import iotbay.model.dao.DBManager;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,32 +21,27 @@ import javax.servlet.http.HttpSession;
  *
  * @author saniyakhanna
  */
-public class ViewUserAdmin extends HttpServlet {
+public class DeleteAdminServlet extends HttpServlet {
     
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
         HttpSession session = request.getSession();
- 
-        DBManager manager = (DBManager) session.getAttribute("manager");
-
+        
+        DBManager manager = (DBManager)session.getAttribute("manager");
+        User user = (User)session.getAttribute("user");
+        
+        
         try {
-     
-            ArrayList<User> customer = manager.fetchCustomers();
-            ArrayList<User> staff = manager.fetchStaff();
-
-            request.setAttribute("customers", customer);
-            request.setAttribute("staffs", staff);
-
-            request.getRequestDispatcher("ViewUser.jsp").include(request, response);
-
-        } 
-
-            catch (SQLException ex) {
-            Logger.getLogger(ViewUserAdmin.class.getName()).log(Level.SEVERE, null, ex);
+            manager.deleteUser(user.getEmail());
+            request.getRequestDispatcher("Delete.jsp").include(request, response);
+        
+            
+        } catch (SQLException ex) {
+            System.out.println("Error: user not deleted.");
         }
-
+       
     }
+    
 }

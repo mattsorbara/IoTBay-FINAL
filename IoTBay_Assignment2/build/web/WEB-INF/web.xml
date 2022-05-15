@@ -26,7 +26,22 @@
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
     </servlet-mapping>
-
+        <servlet>
+        <servlet-name>RegisterAdminServlet</servlet-name>
+        <servlet-class>iotbay.controller.RegisterAdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterAdminServlet</servlet-name>
+        <url-pattern>/RegisterAdminServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ViewUserAdminServlet</servlet-name>
+        <servlet-class>iotbay.controller.ViewUserAdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewUserAdminServlet</servlet-name>
+        <url-pattern>/ViewUserAdminServlet</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>EditServlet</servlet-name>
         <servlet-class>iotbay.controller.EditServlet</servlet-class>

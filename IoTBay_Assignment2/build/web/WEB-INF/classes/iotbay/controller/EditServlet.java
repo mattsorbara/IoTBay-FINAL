@@ -18,42 +18,34 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author saniyakhanna
+ * @author matthewsorbara
  */
-public class RegisterAdminServlet extends HttpServlet {
+class EditServlet extends HttpServlet{
     
-@Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
-        String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        String phone = request.getParameter("phone");
-        String type = request.getParameter("type");
         
         DBManager manager = (DBManager) session.getAttribute("manager");
         
+        User user = null;
         try {
-
-            User exist = manager.findUser(email, password);
-            if (exist != null) {
-                System.out.println("user already exists");
-
-            } else {
-                manager.addUser(name, email, password, phone, type);
-                User user = new User(name, email, password, phone, type);
+            user = manager.findUser(email, password);
+            if (user != null) {
                 session.setAttribute("user", user);
-                request.getRequestDispatcher("HomeAdmin.jsp").include(request, response);
+                request.getRequestDispatcher("edit.jsp").include(request, response);
+            } else {
+                System.out.println("user does not exist");
             }
-            
-        } catch(SQLException ex) {
-            Logger.getLogger(RegisterAdminServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditServlet.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getErrorCode() + " and "  + ex.getMessage());
         }
-
-            
+        
+        request.getRequestDispatcher("edit.jsp").include(request, response);
     }
- 
-    
 }

@@ -59,7 +59,7 @@
                     </div>
                     <div class="buttons">
                         <a href="HomeAdmin.jsp" class="cancel">Cancel</a>
-                        <button href="UserCreated.jsp" class="create" type="Create">Create</button>
+                        <a href="UserCreated.jsp" class="create">Create</a>
                     </div>
                 </form>
             </div>
