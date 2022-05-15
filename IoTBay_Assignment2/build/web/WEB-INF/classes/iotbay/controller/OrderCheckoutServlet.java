@@ -120,6 +120,7 @@ public class OrderCheckoutServlet extends HttpServlet {
                 if (savedPayment != null) {
                     session.setAttribute("savedPayment", savedPayment);
                     session.setAttribute("anythingSaved", "true");
+                    System.out.print(session.getAttribute("anythingSaved"));
                 //if null, creates dummy savedPayment
                 } else {
                     Savedpayment nullPayment = new Savedpayment("N/A", "N/A", "N/A", "N/A");
