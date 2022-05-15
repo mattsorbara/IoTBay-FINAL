@@ -12,8 +12,18 @@
         <title>Welcome | IoT Bay</title>
         <link rel="stylesheet" type="text/css" href="static/css/welcome.css">
     </head>
+    
+    <%
+        User user = (User) session.getAttribute("user");
+        if (user.getEmail().equals("guest@guest.com")) {
+            System.out.println("here");
+            request.getRequestDispatcher("LogoutServlet").include(request, response);
+        }
+    %>
+    
+    <% if (!user.getEmail().equals("guest@guest.com")) { %>
+    
     <body>
-
         <div class="loggedInMenu">            
             <a href="welcome.jsp" class="button">Main</a>
             <a href="LogoutServlet" class="button" id="logout">Logout</a>
@@ -47,4 +57,6 @@
             </div>
         </div>
     </body>
+    
+    <% } %>
 </html>
