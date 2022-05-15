@@ -57,7 +57,7 @@ HttpSession session = request.getSession();
             int shipmentID = currentOrder.getshipmentID();
             
 
-            manager.addShipment1(shipmentID, shipMethod, shipDate, unitno, streetno, streetname, suburb, postcode);
+            manager.addShipment1(shipmentID, shipmethod, unitno, streetno, streetname, suburb, postcode);
              if (!"guest@guest.com".equals(currentOrder.getUserEmail())){ {
                 Savedshipment savedShipment = manager.findsavedShipment(email);               
                     int shipmentID = manager.getshipmentID();

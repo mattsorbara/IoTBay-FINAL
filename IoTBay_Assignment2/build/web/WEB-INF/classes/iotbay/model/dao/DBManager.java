@@ -263,7 +263,27 @@ public class DBManager {
             return new Savedpayment(userEmail, cardNumber, cardCVC, cardExpiry);
         }
         return null;
-    }
+    } 
+
+// SAVED SHIPMENT HERE - TANYA
+    public Savedshipment findSavedshipment(String email) throws SQLException {
+        String fetch = "SELECT * FROM IOTADMIN.Savedshipment WHERE USEREMAIL='" + email + "'";
+        ResultSet rs = st.executeQuery(fetch);
+        
+        while (rs.next()) {
+            String shipmethod = rs.getString(1);
+            String unitno = rs.getString(2);
+            String streetno = rs.getString(3);
+            String streetname = rs.getString(4);
+            String suburb = rs.getString(5);
+            String postcode = rs.getString(6);
+            return new Savedshipment(shipmethod, unitno, streetno, streetname, suburb, postcode);
+        }
+        return null;
+    } 
+
+
+// UNTIL HERE 
 
     
     public ArrayList<Catalogue> fetchProducts() throws SQLException {

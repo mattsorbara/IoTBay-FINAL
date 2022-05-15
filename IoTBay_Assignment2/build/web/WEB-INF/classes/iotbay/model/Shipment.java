@@ -1,5 +1,7 @@
 package iotbay.shipment.model;
 
+import java.sql.Timestamp;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -16,6 +18,7 @@ public class Shipment {
    private String streetname;
    private String suburb;
    private String postcode;
+   private Timestamp shipmentDate;
 
     
     public Shipment(String shipMethod, String unitno, String streetno, String streetname, String suburb, String postcode) {
@@ -75,6 +78,14 @@ public String getShipMethod() {
 
     public void setPostcode(String postcode) {
         this.postcode = postcode;
+    }
+
+    public Timestamp getShipmentDate() {
+        return shipmentDate;
+    }
+
+    public void setShipmentDate(Timestamp shipmentDate) {
+        this.shipmentDate = shipmentDate;
     }
     
 

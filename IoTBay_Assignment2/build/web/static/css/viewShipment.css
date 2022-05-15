@@ -21,7 +21,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     display: flex;
     justify-content: space-evenly;
     
+}
 
+::after { 
+     background-color: #8EC5FC;
+    background-image: linear-gradient(192deg, #4e85bb 0%, #8539cc 100%);
+}
 html {
     background-color: #8EC5FC;
     background-image: linear-gradient(192deg, #4e85bb 0%, #8539cc 100%);
@@ -33,6 +38,7 @@ body{
     margin: 50px;
     height: 100%;
     font-family: "Poppins", sans-serif;
+   
     
 }
 
@@ -95,7 +101,7 @@ h3.infoTableHeader {
     background-color: #4154b4;
     border: 10px;
     padding: 10px;
-    margin-top: 10px;
+    margin: 10px;
     color: white;
     border-radius: 5px;
     width: 40%;
@@ -113,7 +119,7 @@ h3.infoTableHeader {
     background-color: #b44141;
     border: 0;
     padding: 10px;
-    margin-top: 10px;
+    margin: 10px;
     color: white;
     border-radius: 5px;
     width: 49%;
@@ -127,4 +133,60 @@ h3.infoTableHeader {
 }
 
 
+.shipment {
+    display: flex;
+    align-content: center;
+    justify-content: center;   
+    height: 75%;
+    flex-wrap: nowrap;
+    align-items: center;
+    
+}
 
+.shipmentcontents {
+    font-family: "Poppins", sans-serif;
+    background-color: #eff7ed;
+    padding: 40px;
+    width: 75%;
+    border-radius: 20px;
+    align-self: center;
+    margin: 5%;
+    
+}
+
+.shipmentForm {
+    display: inline-grid;
+    width: 100%;
+}
+
+.shipmentFormElement {
+    display: inline-block;
+    justify-content: center;
+    
+
+}
+
+#title {
+    color: black;
+    font-size: 20px;
+}
+
+option {
+    font-family: "Poppins", sans-serif;
+    display: inline-grid;
+    width: 100%;
+    border: 2px solid rgb(62, 60, 60);
+    border-radius: 5px;
+    width: 93%;
+    margin: 10px 0;
+}
+
+select {
+    font-family: "Poppins", sans-serif;
+    display: inline-grid;
+    width: 100%;
+    border: 2px solid rgb(62, 60, 60);
+    border-radius: 5px;
+    width: 93%;
+    margin: 10px 0;
+}
