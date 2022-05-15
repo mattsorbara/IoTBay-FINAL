@@ -17,7 +17,6 @@ public class Validator {
     
    private String emailPattern = "([a-zA-Z0-9]+)(([._-])([a-zA-Z0-9]+))*(@)([a-z]+)(.)([a-z]{3})((([.])[a-z]{0,2})*)";      
    private String namePattern = "([A-Z][a-z]+[\\s])+[A-Z][a-z]*";       
-
    private String passwordPattern = "[A-Za-z0-9]{4,}";       
               
     private String cardNumberPattern = "[0-9]{16}|[0-9]{4}[\\s]?[0-9]{4}[\\s]?[0-9]{4}[\\s]?[0-9]{4}";
@@ -64,22 +63,20 @@ public class Validator {
 
    }          
 
-
     public boolean checkPaymentDetailsEmpty(String paymentMethod, String cardNumber, String cardCVC, String cardExpiry) {
         return paymentMethod.isEmpty() || cardNumber.isEmpty() || cardCVC.isEmpty() || cardExpiry.isEmpty();
     }
-
+     
     public boolean validateCardNumber (String cardNumber) {
         return validate(cardNumberPattern, cardNumber);
     }
-
+    
     public boolean validateCardCVC (String cardCVC) {
         return validate(cardCVCPattern, cardCVC);
     }
-
+    
     public boolean validateCardExpiry (String cardExpiry){
         return validate(cardExpiryPattern, cardExpiry);
     }
-
 }
     

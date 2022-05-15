@@ -1,18 +1,3 @@
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package iotbay.controller;
-
-import iotbay.model.*;
-import iotbay.model.dao.DBManager;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 package iotbay.controller;
 
 //Import both Catalogue and User for verification
@@ -22,7 +7,6 @@ import iotbay.model.dao.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -30,12 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-
-/**
- *
- * @author matthewsorbara
- */
+import java.sql.Timestamp;
+import java.util.Date;
 
 public class OrderCheckoutServlet extends HttpServlet {
     
@@ -166,5 +146,4 @@ public class OrderCheckoutServlet extends HttpServlet {
         }
        
     }
-
 }

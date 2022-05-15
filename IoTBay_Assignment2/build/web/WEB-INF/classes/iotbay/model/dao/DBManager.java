@@ -44,16 +44,14 @@ public class DBManager {
                 String userName = rs.getString(2);
                 String userPhone = rs.getString(4);
                 String userType = rs.getString(5);
-
                 boolean userActive = rs.getBoolean(6);
                 return new User(userName, userEmail, password, userPhone, userType, userActive);
-
                 
             }
         }
         return null;
     }
-
+    
 
     public User fetchGuestUser() throws SQLException {
         String fetch = "SELECT * FROM IOTADMIN.USERS WHERE USEREMAIL='guest@guest.com'";
@@ -81,11 +79,7 @@ public class DBManager {
     public void updateUser(String name, String email, String password, String phone) throws SQLException {
         st.executeUpdate("UPDATE IOTADMIN.Users SET FULLNAME='" + name + "',PASSWORD='" + password + "',PHONE='" + phone + "' WHERE USEREMAIL='" + email + "'");
     }
-
-    public void findUser(String name, String email, String password, String phone) throws SQLException {
-        st.executeUpdate("UPDATE IOTADMIN.Users SET FULLNAME='" + name + "',PASSWORD='" + password + "',PHONE='" + phone + "' WHERE USEREMAIL='" + email + "'");
-    }
-
+    
     public void setUserStatus(boolean status, String email) throws SQLException {
         st.executeUpdate("UPDATE IOTADMIN.Users SET TYPE=" + status + "WHERE USEREMAIL='" + email + "'");
     }
@@ -93,10 +87,7 @@ public class DBManager {
     public void deleteUser(String email) throws SQLException {
         st.executeUpdate("DELETE FROM IOTADMIN.USERS WHERE USEREMAIL='" + email + "'");
     }
-
-    public ArrayList<User> fetchCustomers() throws SQLException {
-        String fetch = "SELECT * FROM IOTADMIN.USERS WHERE USERTYPE = 'customer'";
-
+    
     public void disableUser(String email) throws SQLException {
         st.executeUpdate("UPDATE IOTADMIN.USERS SET USERACTIVE=false WHERE USEREMAIL='" + email + "'");
     }
@@ -117,25 +108,6 @@ public class DBManager {
         }
         return temp;
     }
-
-
-    public ArrayList<User> fetchStaff () throws SQLException {
-        String fetch = "SELECT * FROM IOTADMIN.USERS WHERE USERTYPE = 'staff'";
-        ResultSet rs = st.executeQuery(fetch);
-        ArrayList<User> temp = new ArrayList<User>();
-        
-        while (rs.next()) {
-            String name = rs.getString(2);
-            String email = rs.getString(1);
-            String password = rs.getString(3);
-            String phone = rs.getString(4);
-            String type = rs.getString(5);
-            
-            temp.add(new User(email,name,password,phone,type));
-        }
-        return temp;
-    }
-
     
     public boolean checkStudent(String email, String password) throws SQLException {
         String fetch = "SELECT * FROM IOTADMIN.Users where EMAIL='" + email + "' AND PASSWORD='" + password + "'";
@@ -167,7 +139,6 @@ public class DBManager {
         return rs;
     }
 
-
     public ResultSet filterOrdersID(String email, int orderID) throws SQLException {
         String filter = "SELECT * FROM IOTADMIN.ORDERS WHERE USEREMAIL='" + email + "' AND ORDERID = " + orderID + "";
         ResultSet rs = st.executeQuery(filter);
@@ -180,7 +151,6 @@ public class DBManager {
         return rs;
     }
     
-
     
     public void submitFinalOrder(String orderID, String userEmail, String productID, double orderPrice, int quantity, String orderDate, String shippingType) throws SQLException {
         st.executeUpdate("INSERT INTO IOTADMIN.ORDERS " + "VALUES ('" + orderID + "', '" + userEmail + "', '" + productID + "', '" + orderPrice + "', '" + quantity + "', '" + orderDate + "', '" + shippingType + ", 'SUBMITTED')");
@@ -397,5 +367,6 @@ public class DBManager {
         }
         return false;
     }
+
 
 }

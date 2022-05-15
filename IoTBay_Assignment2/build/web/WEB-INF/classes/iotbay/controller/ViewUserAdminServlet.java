@@ -35,11 +35,9 @@ public class ViewUserAdminServlet extends HttpServlet {
 
         try {
      
-            ArrayList<User> customer = manager.fetchCustomers();
-            ArrayList<User> staff = manager.fetchStaff();
+            ArrayList<User> users = manager.fetchUsers();
 
-            request.setAttribute("customers", customer);
-            request.setAttribute("staffs", staff);
+            request.setAttribute("users", users);
 
             request.getRequestDispatcher("ViewUser.jsp").include(request, response);
 

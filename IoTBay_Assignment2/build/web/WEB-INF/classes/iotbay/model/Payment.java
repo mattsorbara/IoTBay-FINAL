@@ -4,16 +4,13 @@
  */
 package iotbay.model;
 
-
 import java.sql.Timestamp;
-
 
 /**
  *
  * @author lindale
  */
 public class Payment {
-
     private int paymentID;
     private int orderID;
     private String userEmail;
@@ -74,7 +71,6 @@ public class Payment {
 
     public void setPaymentAmount(double paymentAmount) {
         this.paymentAmount = paymentAmount;
-
     }
 
     public String getCardNumber() {
@@ -101,7 +97,6 @@ public class Payment {
         this.cardCVC = cardCVC;
     }
 
-
     public Timestamp getPaymentDate() {
         return paymentDate;
     }
@@ -109,7 +104,6 @@ public class Payment {
     public void setPaymentDate(Timestamp paymentDate) {
         this.paymentDate = paymentDate;
     }
-
 
 
 }

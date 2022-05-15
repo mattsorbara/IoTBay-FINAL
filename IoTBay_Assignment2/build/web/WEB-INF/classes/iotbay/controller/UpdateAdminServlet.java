@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
 class UpdateAdminServlet extends HttpServlet{
     
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
@@ -36,46 +36,27 @@ class UpdateAdminServlet extends HttpServlet{
         
         DBManager manager = (DBManager) session.getAttribute("manager");
         
-        User user = null;
+        User user = new User (name, email, password, phone, type);
 
         try {
-                user = manager.findUser(email, password);
+                manager.updateUser(email, name, phone, password);
+
                 session.setAttribute("user", user);
-                request.getRequestDispatcher("EditUser.jsp").include(request, response);
 
-
-                ArrayList<User> staff = manager.fetchStaff();
-                request.setAttribute("staff", staff);
-
-                ArrayList<User> customer = manager.fetchCustomers();
-                request.setAttribute("customer", customer);
+                ArrayList<User> users = manager.fetchUsers();
+                request.setAttribute("users", users);
 
                 request.getRequestDispatcher("EditUser.jsp").include(request, response);
+ 
 
             } catch (SQLException ex) {
-                Logger.getLogger(EditServlet.class.getName()).log(Level.SEVERE, null, ex);
+                session.setAttribute("updateMsg", "Update was not successful");
                 request.getRequestDispatcher("HomeAdmin.jsp").include(request, response);
             }
 
     }
-    }
+}
 
-        try {
-                    manager.updateUser(email, name, phone, password);
-                    User updateUser = manager.findUser (email);
-
-                    session.setAttribute("staff", updateUser);
-
-                    session.setAttribute("user", updateUser);
-
-
-          } catch (SQLException ex) {
-
-                    session.setAttribute("updateMsg", "Update was not successful");
-                    response.sendRedirect("UpdateAdminServlet");
-        
-    }
-  
 
                
 //        try {

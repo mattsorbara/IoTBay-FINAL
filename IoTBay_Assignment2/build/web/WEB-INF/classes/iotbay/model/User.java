@@ -26,7 +26,6 @@ public class User {
         this.userType = type;
         this.userActive = true;
     }
-
     
     public User(String name, String email, String password, String phone, String type, boolean active) {
         this.name = name;
@@ -37,7 +36,6 @@ public class User {
         this.userActive = active;
     }
     
-
     public String getName() {
         return name;
     }
@@ -78,7 +76,6 @@ public class User {
         this.userType = type;
     }
 
-
     public boolean getUserActive() {
         return this.userActive;
     }
@@ -87,5 +84,4 @@ public class User {
         this.userActive = activeStatus;
     }
      
-
 }
