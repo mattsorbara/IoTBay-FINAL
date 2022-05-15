@@ -94,7 +94,7 @@
                             <td><a href="EditOrderServlet?id=<%=rows.getString(1)%>"><button class="submit">Edit Order</button></a></td>
                             <td/>
                             <%}%>
-                            <% if (rows.getString(7).equals("SUBMITTED") || rows.getString(7).equals("SAVED")){%>
+                            <% if (rows.getString(7).equals("SUBMITTED") || rows.getString(7).equals("SAVED") || rows.getString(7).equals("SHIPPED")){%>
                             <form action="CancelOrderServlet" method="post">
                                 <td><button name="id" value="<%=rows.getString(1)%>" class="cancel">Cancel Order</button></a></td>
                             </form>
