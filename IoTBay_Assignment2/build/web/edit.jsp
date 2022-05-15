@@ -31,7 +31,6 @@
                 <h2 id="title"><b>Update Details</b></h2>
                 <hr>
                 <h4 class="message"><span class="errormessage"><%=(updatedError != null ? updatedError : "")%></span></h4>
-                <h4 class="message"><span class="message"><%=(updated != null ? updated : "")%></span></h4>
                 <form class="editForm" action="UpdateServlet" method="post">
                     <div class="editFormElement" id="name">
                         <label><b>Full Name</b></label>
