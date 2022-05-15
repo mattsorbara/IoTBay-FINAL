@@ -30,7 +30,7 @@
                     <a href="edit.jsp" class="submit">Edit</a>
                 </div>
                 <div class="buttons">
-                    <a href="logSearch.jsp" class="submit">Search Logs</a>
+                    <a href="logSearch.jsp" class="submit">Search User Access Logs</a>
                 </div>
                 <div class="buttons">
                     <a href="CatalogueServlet" class="submit">Browse Catalogue</a>

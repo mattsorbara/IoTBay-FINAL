@@ -43,17 +43,22 @@ public class LogServlet extends HttpServlet {
         Timestamp toTime = Timestamp.valueOf(toString.replace("T"," "));
         
         // get result set from DB
-        try {
-           ResultSet filteredLogs = manager.filterLogs(fromTime, toTime, user.getEmail());
-           
-           session.setAttribute("userLogRows", filteredLogs);
-           session.setAttribute("from", fromString.replace("T"," "));
-           session.setAttribute("to", toString.replace("T"," "));
-           
-           request.getRequestDispatcher("viewLogs.jsp").forward(request, response);
-           
-        } catch (SQLException ex) {
-            System.out.println("SQL Error.");
+        if (toTime.after(fromTime) && fromTime.before(toTime)) {
+            try {
+               ResultSet filteredLogs = manager.filterLogs(fromTime, toTime, user.getEmail());
+
+               session.setAttribute("userLogRows", filteredLogs);
+               session.setAttribute("from", fromString.replace("T"," "));
+               session.setAttribute("to", toString.replace("T"," "));
+
+               request.getRequestDispatcher("viewLogs.jsp").forward(request, response);
+
+            } catch (SQLException ex) {
+                System.out.println("SQL Error.");
+            }
+        } else {
+            session.setAttribute("logSearchError", "Date format wrong.");
+            request.getRequestDispatcher("logSearch.jsp").include(request, response);
         }
         
 
