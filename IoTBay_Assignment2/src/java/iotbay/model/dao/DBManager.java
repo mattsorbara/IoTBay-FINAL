@@ -92,6 +92,24 @@ public class DBManager {
         st.executeUpdate("UPDATE IOTADMIN.USERS SET USERACTIVE=false WHERE USEREMAIL='" + email + "'");
     }
     
+    public User findUserEmail (String email) throws SQLException {
+        String fetch = "SELECT * FROM IOTADMIN.USERS WHERE USEREMAIL='" + email + "'";
+        ResultSet rs = st.executeQuery(fetch);
+        
+        while (rs.next()) {
+            String userEmail = rs.getString(1);
+            String userPass = rs.getString(3);
+            
+            String userName = rs.getString(2);
+            String userPhone = rs.getString(4);
+            String userType = rs.getString(5);
+            boolean userActive = rs.getBoolean(6);
+            return new User(userName, userEmail, userPass, userPhone, userType, userActive);
+
+        }
+        return null;
+    }
+
     public ArrayList<User> fetchUsers() throws SQLException {
         String fetch = "SELECT * FROM IOTADMIN.USERS";
         ResultSet rs = st.executeQuery(fetch);
@@ -104,7 +122,7 @@ public class DBManager {
             String phone = rs.getString(4);
             String type = rs.getString(5);
             
-            temp.add(new User(email,name,password,phone,type));
+            temp.add(new User(name,email,password,phone,type));
         }
         return temp;
     }

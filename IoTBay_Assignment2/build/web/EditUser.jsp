@@ -4,6 +4,7 @@
     Author     : saniyakhanna
 --%>
 
+<%@page import="iotbay.model.dao.DBManager"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="iotbay.model.User"%>
 <!DOCTYPE html>
@@ -15,8 +16,12 @@
     </head>
      <body>
         <%
-            User user = (User)session.getAttribute("user");
+            DBManager manager = (DBManager) session.getAttribute("manager");
+            System.out.println(request.getParameter("adminsubmit"));
+            String retrievedEmail = request.getParameter("adminsubmit");
+            User user = manager.findUserEmail(retrievedEmail);
             String update = request.getParameter("update");
+            System.out.println(user.getEmail());
         %>
        <div class="topnav">
             <a class="button1" href="HomeAdmin.jsp">Home</a>
@@ -32,34 +37,34 @@
                     <div class="registerFormElement" id="name">
                         <label>Full Name</label>
                         <div>
-                            <input class="border-customized-input" type="text" value="${user.fullName}" required="true" name="fullName" placeholder="Full Name">
+                            <input class="border-customized-input" type="text" value="<%=user.getName()%>" required="true" name="fullName" placeholder="Full Name">
                         </div>
                     </div>
                        <div class="registerFormElement" id="email">
                         <label>Email</label>
                         <div>
-                            <input class="border-customized-input" type="text" value="${user.email}" required="true" name="email" placeholder="Email">
+                            <input class="border-customized-input" type="text" value="<%=user.getEmail()%>" required="true" name="email" placeholder="Email">
                         </div>
                     </div>
                     <div class="loginFormElement" id="type">
                         <label>Type</label>
                         <div>
-                        <input type="radio"  value="${user.type}" id="type" name="customer">
+                        <input type="radio"  value="<%=user.getUserType()%>" id="type" name="customer">
                             <label for="customer">Customer</label>
-                       <input type="radio"  value="${user.type}" id="type" name="staff">     
+                       <input type="radio"  value="<%=user.getUserType()%>" id="type" name="staff">     
                             <label for="staff">Staff</label>
                     </div>
                     </div> 
                      <div class="registerFormElement" id="phone">
                         <label>Phone Number</label>
                         <div>
-                            <input class="border-customized-input" type="text"  value="${user.phoneNumber}" required="true" name="phone" placeholder="Phone Number">
+                            <input class="border-customized-input" type="text"  value="<%=user.getPhone()%>" required="true" name="phone" placeholder="Phone Number">
                         </div>
                     </div>
                     <div class="registerFormElement" id="password">
                         <label>Password</label>
                         <div>
-                            <input class="border-customized-input" type="text"  value="${user.password}"required="true" name="password" placeholder="Password">
+                            <input class="border-customized-input" type="text"  value="<%=user.getPassword()%>"required="true" name="password" placeholder="Password">
                         </div>
                     </div>
                      <div class="buttons">
@@ -71,16 +76,9 @@
                     </div>
                </form>
                 
-             <%
-                if(update != null) {
-                    String fullName = request.getParameter("fullName");
-                    String email = request.getParameter("Email");
-                    String password = request.getParameter("Password");
-                    String type = request.getParameter("Type");
-                    String phoneNumber = request.getParameter("PhoneNumber");
-                    session.setAttribute("user", user);
-                }
-            %>               
+           <%
+
+           %>    
                 
             </div>
           </div>

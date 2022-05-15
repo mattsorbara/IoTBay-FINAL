@@ -80,6 +80,8 @@
                                 <th>Email</th>
                                 <th>Phone number</th>
                                 <th>Password</th>
+                                <th>Edit User Details</th>
+                                    
                             </tr>   
                           </thead>
                     <tbody>
@@ -90,6 +92,7 @@
                             <td><%=u.getName()%></td>
                             <td><%=u.getPhone()%></td>
                             <td><%=u.getPassword()%></td>
+                            <td><form method="post" action="EditUser.jsp"><button type="submit" name="adminsubmit" value="<%=u.getEmail()%>">Edit User</button></form></td>
                         </tr>
                             <% } %>
         </tbody>

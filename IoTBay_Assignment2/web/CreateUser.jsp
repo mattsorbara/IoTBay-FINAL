@@ -23,7 +23,7 @@
         <div class="login">
             <div class="loginContents">
                 <h2 id="title"><b>Create New User</b></h2>
-                <form class="loginForm" action="AdminRegister" method="post">
+                <form class="loginForm" action="RegisterAdminServlet" method="post">
                     <div class="loginFormElement" id="name">
                         <label>Full Name</label>
                         <div>
@@ -59,7 +59,7 @@
                     </div>
                     <div class="buttons">
                         <a href="HomeAdmin.jsp" class="cancel">Cancel</a>
-                        <a href="UserCreated.jsp" class="create">Create</a>
+                        <button type="submit">Create</button>
                     </div>
                 </form>
             </div>
