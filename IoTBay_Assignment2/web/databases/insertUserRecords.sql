@@ -59,3 +59,4 @@ insert into USERS (userEmail, fullName, password, phone, userType, userActive) v
 insert into USERS (userEmail, fullName, password, phone, userType, userActive) values ('tbranchr@g.co', 'Tarah Branch', 'Jl4u7tUE7', '6391269704', 'staff', true);
 insert into USERS (userEmail, fullName, password, phone, userType, userActive) values ('acranks@123-reg.co.uk', 'Andeee Crank', 's50zaSngXkU', '9746335090', 'staff', true);
 insert into USERS (userEmail, fullName, password, phone, userType, userActive) values ('mbeecroftt@prnewswire.com', 'Michel Beecroft', 'WLupZ3IE7', '8211399854', 'customer', true);
+insert into USERS (userEmail, fullName, password, phone, userType, userActive) values ('sysadmin@iotbay.com', 'System Admin', 'sysadmin', '999999999', 'admin', true);
