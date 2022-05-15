@@ -19,13 +19,26 @@
         
         <%
             ArrayList<Catalogue> products = (ArrayList<Catalogue>) session.getAttribute("catalogue");
+            
+            User user = (User) session.getAttribute("user");
+
         %>
         
-        <jsp:include page="header.jsp"/>
+        <% 
+            if ("guest@guest.com".equals(user.getEmail())){
+                    %>
+        <jsp:include page="guestHeader.jsp"/>
         
+        <% } else { %>
+        <jsp:include page="header.jsp"/>
+        <% } %>
         <div class="catalogue">
             <div class="catalogueContents">
+                    <% if ("guest@guest.com".equals(user.getEmail())) { %>
+                    <h2 id ="title">Catalogue - Guest</h2>
+                    <% } else { %>
                     <h2 id="title">Catalogue</h2>
+                    <% } %>
                     <div class="searchForm">
                         <form class="search" action="CatalogueSearch" method="post">
                             <input class="searchField" type="text" name="query" placeholder="Search Products">
@@ -54,7 +67,8 @@
                             <p style="text-align:center;color:black"><%=p.getTitle()%></p>
                             <p style="text-align:center;color:black">$<%=p.getPrice()%>0</p>
                             <% if(p.getStock() > 0){%>
-                                <center><a href="/AddToOrderServlet?id=<%=p.getId()%>"><button class="addtocart">Add To Order</button></a></center>
+                                <center><a href="OrderCheckoutServlet?id=<%=(int)p.getId()%>"><button class="addtocart">Add To Order</button></a></center>
+                            
                             <%}else{%>
                                 <center><h4><font color="red">Out of Stock</font></h4></center>
                             <%}%>

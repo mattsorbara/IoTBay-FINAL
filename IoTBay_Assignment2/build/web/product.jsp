@@ -55,7 +55,7 @@
                     
                     <% if(product.getStock() > 0){%>
                     </div>
-                        <center><a href="/AddToOrderServlet?id=<%=product.getId()%>"><button class="submit">Add To Order</button></a></center>
+                        <center><a href="OrderCheckoutServlet?id=<%=product.getId()%>"><button class="submit">Add To Order</button></a></center>
                     <hr>
                     <%}else{%>
                     <h4><font color="red">Out of Stock</font></h4>
