@@ -28,6 +28,8 @@
                 <hr>
                 <div class="buttons">
                     <a href="edit.jsp" class="submit">Edit</a>
+                </div>
+                <div class="buttons">
                     <a href="logSearch.jsp" class="submit">Search Logs</a>
                 </div>
                 <div class="buttons">
